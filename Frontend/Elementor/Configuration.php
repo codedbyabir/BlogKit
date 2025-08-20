@@ -198,6 +198,7 @@ class Configuration
             'blogkit_featured_sidebar' => 'FeaturedSidebar\Main',
             'blogkit_post_card' => 'PostCard\Main',
             'blogkit_featured_grid' => 'FeaturedGrid\Main',
+            'smart_posts_list' => 'SmartPostsList\Main',
 
         ];
 
