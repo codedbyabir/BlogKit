@@ -577,7 +577,7 @@
   }
 }
 
-/* Smart Posts List  */
+/* Smart Posts List - Style 1  */
 .smart-posts-list-wrapper {
   display: grid;
   /* grid-template-columns: repeat(1, 1fr); */
@@ -629,4 +629,34 @@
   font-size: 14px;
   font-weight: 400;
   color: #686868;
+}
+
+/* Smart Posts List - Style 2  */
+.smart-posts-list-wrapper .smart-posts-list-item.list-style-2{
+  padding: 20px 30px;
+  background-color: #f8f8f8;
+  border: 1px solid #01021826;
+  border-radius: 10px;
+}
+.smart-posts-list-wrapper .smart-posts-list-item.list-style-2 .smart_posts_list-category{
+  padding: 8px 18px;
+  background-color: rgba(53, 179, 34, 1);
+  color: #fff;
+  border-radius: 100px;
+  font-size: 14px;
+}
+.smart-posts-list-wrapper .smart-posts-list-item.list-style-2 .smart_posts_list-category:hover{
+
+  background-color: rgb(31, 154, 12);
+
+}
+.smart-posts-list-wrapper .smart-posts-list-item.list-style-2 .smart-posts-title{
+  font-size: 25px;
+}
+.smart-posts-list-wrapper .smart-posts-list-item.list-style-2 .smart-posts-date {
+  display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 5px;
 }

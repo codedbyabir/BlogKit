@@ -37,13 +37,13 @@ $query = new WP_Query($args);
 
 // check if there are posts to display
 if ($query->have_posts()):
-    echo '<div class="smart-posts-list-wrapper ">';
+    echo '<div class="smart-posts-list-wrapper">';
 
     while ($query->have_posts()):
         $query->the_post();
         ?>
         <!-- single blog -->
-        <div class="smart-posts-list-item">
+        <div class="smart-posts-list-item list-style-2">
 
 
             <!-- Content   -->
@@ -73,9 +73,9 @@ if ($query->have_posts()):
 
                     // Displaying Human Different Time
                     if ('yes' === $settings['show_humanize_date']) {
-                        echo '<span>' . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago </span>';
+                        echo '<span class="smart-posts-date">' . SVG::Clock() . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago </span>';
                     } else {
-                        echo '<span>' . get_the_date('M j, Y') . '<span>';
+                        echo '<span class="smart-posts-date">' . SVG::Clock() . get_the_date('M j, Y') . '<span>';
                     }
                     ?>
 

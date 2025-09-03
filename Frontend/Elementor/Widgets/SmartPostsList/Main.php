@@ -290,11 +290,14 @@ class Main extends Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'layout_style' => 'style_1',
+                ]
             ]
         );
         //Padding 
         $this->add_responsive_control(
-            'grid_item_padding',
+            'item_padding',
             [
                 'label' => esc_html__('Item Padding', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
