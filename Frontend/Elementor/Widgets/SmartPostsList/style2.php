@@ -44,16 +44,7 @@ if ($query->have_posts()):
         ?>
         <!-- single blog -->
         <div class="smart-posts-list-item">
-            <!-- Thumbnail -->
-            <?php if (has_post_thumbnail()): ?>
-                <div class="smart-posts-thumb" >
-                    <?php the_post_thumbnail('large'); ?>
-                </div>
-                
-            <?php else: ?>
-                <img src="<?php echo esc_url(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png'); ?>"
-                    alt="<?php the_title_attribute(); ?>">
-            <?php endif; ?>
+
 
             <!-- Content   -->
             <div class="smart-posts-content">

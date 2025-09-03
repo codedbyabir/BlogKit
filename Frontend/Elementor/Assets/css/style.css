@@ -581,8 +581,8 @@
 .smart-posts-list-wrapper {
   display: grid;
   /* grid-template-columns: repeat(1, 1fr); */
-  /* gap: 20px; */
-  /* row-gap: 20px; */
+  column-gap: 20px;
+  row-gap: 20px;
 }
 
 .smart-posts-list-wrapper .smart-posts-list-item {
@@ -607,8 +607,8 @@
 }
 
 .smart-posts-list-wrapper .smart-posts-content {
-  flex: 1;
-      display: flex;
+    flex: 1;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
@@ -617,11 +617,16 @@
 .smart-posts-list-wrapper .smart-posts-title {
   font-size: 16px;
   font-weight: 600;
-  margin: unset;
-  line-height: 1.4;
+  line-height: 1.5;
+  color: #000000;
+}
+
+.smart-posts-list-wrapper a:hover .smart-posts-title{
+  color: rgba(53, 179, 34, 1);
 }
 
 .smart-posts-list-wrapper .smart-posts-date {
-  font-size: 13px;
-  color: #888;
+  font-size: 14px;
+  font-weight: 400;
+  color: #686868;
 }

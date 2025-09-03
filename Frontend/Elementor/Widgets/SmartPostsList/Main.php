@@ -248,10 +248,6 @@ class Main extends Widget_Base
                 'range' => [
                     'px' => ['min' => 0, 'max' => 100]
                 ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 20,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper' => 'column-gap: {{SIZE}}{{UNIT}};',
                 ],
@@ -267,10 +263,6 @@ class Main extends Widget_Base
                 'size_units' => ['px', 'custom'],
                 'range' => [
                     'px' => ['min' => 0, 'max' => 100]
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 20,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper' => 'row-gap: {{SIZE}}{{UNIT}};',
@@ -294,14 +286,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Content Padding', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'default' => [
-                    'top' => 30,
-                    'right' => 20,
-                    'bottom' => 30,
-                    'left' => 20,
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
+              
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -314,14 +299,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Item Padding', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'default' => [
-                    'top' => 0,
-                    'right' => 0,
-                    'bottom' => 0,
-                    'left' => 0,
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
+               
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-list-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -335,14 +313,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Item Border Radius', 'blogkit'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', 'rem', 'custom'],
-                'default' => [
-                    'top' => 10,
-                    'right' => 10,
-                    'bottom' => 10,
-                    'left' => 10,
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
+              
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-list-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -417,10 +388,7 @@ class Main extends Widget_Base
 						'max' => 100,
 					],
 				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 100,
-				],
+				
 				'selectors' => [
 					    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-list-item .smart-posts-thumb img' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
 
@@ -435,14 +403,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Border Radius', 'blogkit'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'default' => [
-                    'top' => 10,
-                    'right' => 10,
-                    'bottom' => 10,
-                    'left' => 10,
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
+             
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -511,10 +472,6 @@ class Main extends Widget_Base
                         'default' => 'yes',
                     ],
                     'font_size' => [
-                        'default' => [
-                            'size' => 12,
-                            'unit' => 'px',
-                        ],
                     ],
                 ],
             ]
@@ -537,14 +494,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Padding', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'default' => [
-                    'top' => 5,
-                    'right' => 10,
-                    'bottom' => 5,
-                    'left' => 10,
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
+             
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart_posts_list-category' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -558,14 +508,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Border Radius', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'default' => [
-                    'top' => 50,
-                    'right' => 50,
-                    'bottom' => 50,
-                    'left' => 50,
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
+               
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart_posts_list-category' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -591,7 +534,6 @@ class Main extends Widget_Base
             [
                 'label' => esc_html__('Text Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
-                'default' => '#ffffff',
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart_posts_list-category' => 'color: {{VALUE}};',
                 ],
@@ -604,7 +546,6 @@ class Main extends Widget_Base
             [
                 'label' => esc_html__('Background Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
-                'default' => '#35B322',
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart_posts_list-category' => 'background-color: {{VALUE}};',
                 ],
@@ -681,7 +622,6 @@ class Main extends Widget_Base
             [
                 'label' => esc_html__('Text Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
-                'default' => '#1E1D26',
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart-posts-date' => 'color: {{VALUE}};',
                 ],
@@ -694,7 +634,6 @@ class Main extends Widget_Base
             [
                 'label' => esc_html__('Icon Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
-                'default' => '#35B322',
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper .blogkit-post-card svg path' => 'fill: {{VALUE}};',
                 ],
@@ -711,15 +650,6 @@ class Main extends Widget_Base
                 'name' => 'meta_typography',
                 'selector' => '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart-posts-date',
                 'fields_options' => [
-                    'typography' => [
-                        'default' => 'custom',
-                    ],
-                    'font_size' => [
-                        'default' => [
-                            'unit' => 'px',
-                            'size' => 14,
-                        ],
-                    ],
                 ],
             ]
         );
@@ -744,15 +674,6 @@ class Main extends Widget_Base
                 'name' => 'heading_typography',
                 'selector' => '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-title',
                 'fields_options' => [
-                    'typography' => [
-                        'default' => 'custom',
-                    ],
-                    'font_size' => [
-                        'default' => [
-                            'unit' => 'px',
-                            'size' => 16,
-                        ],
-                    ],
                 ],
             ]
         );
@@ -775,7 +696,6 @@ class Main extends Widget_Base
             [
                 'label' => esc_html__('Text Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
-                'default' => '#000000',
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-title' => 'color: {{VALUE}};',
                 ],
@@ -796,7 +716,6 @@ class Main extends Widget_Base
             [
                 'label' => esc_html__('Text Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
-                'default' => '#35B322',
                 'selectors' => [
                     '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-title:hover' => 'color: {{VALUE}};',
                 ],
@@ -824,7 +743,7 @@ class Main extends Widget_Base
             ]
         );
 
-        // Alignment
+        // Alignments
         $this->add_responsive_control(
             'pagination_align',
             [
