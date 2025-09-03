@@ -580,14 +580,22 @@
 /* Smart Posts List  */
 .smart-posts-list-wrapper {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 20px;
+  /* grid-template-columns: repeat(1, 1fr); */
+  /* gap: 20px; */
+  /* row-gap: 20px; */
 }
 
 .smart-posts-list-wrapper .smart-posts-list-item {
   display: flex;
   gap: 15px;
   align-items: center;
+}
+
+.smart-posts-list-wrapper .smart-posts-thumb {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .smart-posts-list-wrapper .smart-posts-thumb img {

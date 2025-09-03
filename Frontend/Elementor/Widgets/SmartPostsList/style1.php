@@ -63,17 +63,6 @@ if ($query->have_posts()):
                 <!-- Rendering post title -->
               <?php
 
-                // Category 
-                if ('yes' === $settings['show_category']) {
-                    $categories = get_the_category();
-                    if ($categories && !is_wp_error($categories)) {
-                        $first_category = $categories[0];
-                        // Getting the first category name 
-                        $category_link = get_category_link($first_category->term_id);
-                        echo '<a href="' . esc_url($category_link) . '" class="blogkit-post-card-category">' . esc_html($first_category->name) . '</a>';
-                    }
-                }
-
 
 
                 echo '<a href="' . get_the_permalink() . '"><' . $title_tag . ' class="smart-posts-title">' . get_the_title() . '</' . $title_tag . '></a>';
@@ -82,9 +71,9 @@ if ($query->have_posts()):
 
                     // Displaying Human Different Time
                     if ('yes' === $settings['show_humanize_date']) {
-                        echo '<span>' . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago </span>';
+                        echo '<span class="smart-posts-date">' . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago </span>';
                     } else {
-                        echo '<span>' . get_the_date('M j, Y') . '<span>';
+                        echo '<span class="smart-posts-date">' . get_the_date('M j, Y') . '<span>';
                     }
                     ?>
 
