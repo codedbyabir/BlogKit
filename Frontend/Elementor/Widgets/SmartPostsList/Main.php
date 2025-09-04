@@ -163,8 +163,26 @@ class Main extends Widget_Base
                     'layout_style' => 'style_2',
                 ],
             ]
-            
         );
+
+
+        // Random Color 
+         $this->add_control(
+			'category_random_color_switch',
+			[
+				'label' => esc_html__('Use Random Color?', 'blogkit'),
+				'description' => esc_html__('Use Random Color for Category Background color', 'blogkit'),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => esc_html__('Yes', 'blogkit'),
+				'label_off' => esc_html__('No', 'blogkit'),
+				'return_value' => 'true',
+				'default' => 'false',
+                'condition' => [
+                    'show_category' => 'yes',
+                    'layout_style' => 'style_2',
+                ],
+			]
+		);
 
 
 
@@ -369,6 +387,9 @@ class Main extends Widget_Base
             [
                 'label' => esc_html__('Thumbnail', 'blogkit'),
                 'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'layout_style' => 'style_1',
+                ],
             ]
         );
 
@@ -464,6 +485,9 @@ class Main extends Widget_Base
                 ],
             ]
         );
+
+
+       
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -621,30 +645,30 @@ class Main extends Widget_Base
 
         //Text Color
         $this->add_control(
-            'meta_text_color',
+            'color',
             [
-                'label' => esc_html__('Text Color', 'blogkit'),
+                'label' => esc_html__('Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart-posts-date' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart-posts-date' => 'color: {{VALUE}};','{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content svg path' => 'fill: {{VALUE}};',
                 ],
             ]
         );
 
-        //Icon Color
-        $this->add_control(
-            'meta_icon_color',
-            [
-                'label' => esc_html__('Icon Color', 'blogkit'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .blogkit-post-card svg path' => 'fill: {{VALUE}};',
-                ],
-                'condition' => [
-                    'layout_style' => 'style_2',
-                ],
-            ]
-        );
+        // //Icon Color
+        // $this->add_control(
+        //     'meta_icon_color',
+        //     [
+        //         'label' => esc_html__('Icon Color', 'blogkit'),
+        //         'type' => Controls_Manager::COLOR,
+        //         'selectors' => [
+        //             '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content svg path' => 'fill: {{VALUE}};',
+        //         ],
+        //         'condition' => [
+        //             'layout_style' => 'style_2',
+        //         ],
+        //     ]
+        // );
 
         // Meta Typography
         $this->add_group_control(
@@ -1009,6 +1033,15 @@ class Main extends Widget_Base
         }
         return $cats;
     }
+
+
+    /**
+     * Render Random Color.
+     */
+    private function generate_random_color()
+	{
+		return sprintf('#%06X', wp_rand(0, 0xFFFFFF));
+	}
 
     /**
      * Render frontend output.

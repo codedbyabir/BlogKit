@@ -11,6 +11,7 @@ use Elementor\Icons_Manager;
 $settings = $this->get_settings_for_display();
 $title_tag = $settings['title_tag'];
 
+
 // Pagination setup
 $paged = 1;
 if (get_query_var('paged')) {
@@ -41,6 +42,7 @@ if ($query->have_posts()):
 
     while ($query->have_posts()):
         $query->the_post();
+        $random_color = $this->generate_random_color(); // get random color
         ?>
         <!-- single blog -->
         <div class="smart-posts-list-item list-style-2">
@@ -53,7 +55,7 @@ if ($query->have_posts()):
 
                 <!-- Rendering post title -->
               <?php
-
+            
                 // Category 
                 if ('yes' === $settings['show_category']) {
                     $categories = get_the_category();
@@ -61,7 +63,15 @@ if ($query->have_posts()):
                         $first_category = $categories[0];
                         // Getting the first category name 
                         $category_link = get_category_link($first_category->term_id);
-                        echo '<a href="' . esc_url($category_link) . '" class="smart_posts_list-category">' . esc_html($first_category->name) . '</a>';
+
+                        // echo '<a style="background-color: ' . esc_attr($random_color) . '" href="' . esc_url($category_link) . '" class="smart_posts_list-category">' . esc_html($first_category->name) . '</a>';
+
+                        echo '<a class="smart_posts_list-category" href="' . esc_url(get_category_link($categories[0]->term_id)) . '"';
+                                        if ('true' === $settings['category_random_color_switch']) {
+                                            echo ' style="background-color: ' . esc_attr($random_color) . '"';
+                                        }
+                                        echo '>' . esc_html($categories[0]->name) . '</a>';
+
                     }
                 }
 
