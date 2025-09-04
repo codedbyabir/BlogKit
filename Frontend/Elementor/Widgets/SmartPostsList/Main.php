@@ -388,7 +388,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Thumbnail', 'blogkit'),
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
-                    'layout_style' => 'style_1',
+                    'layout_style' => ['style_1', 'style_3'],
                 ],
             ]
         );
@@ -632,56 +632,6 @@ class Main extends Widget_Base
         $this->end_controls_section();
 
 
-        /**
-         * Style section: Meta
-         */
-        $this->start_controls_section(
-            'blogkit_card_grid_meta_style',
-            [
-                'label' => esc_html__('Meta Info', 'blogkit'),
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        //Text Color
-        $this->add_control(
-            'color',
-            [
-                'label' => esc_html__('Color', 'blogkit'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart-posts-date' => 'color: {{VALUE}};','{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content svg path' => 'fill: {{VALUE}};',
-                ],
-            ]
-        );
-
-        // //Icon Color
-        // $this->add_control(
-        //     'meta_icon_color',
-        //     [
-        //         'label' => esc_html__('Icon Color', 'blogkit'),
-        //         'type' => Controls_Manager::COLOR,
-        //         'selectors' => [
-        //             '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content svg path' => 'fill: {{VALUE}};',
-        //         ],
-        //         'condition' => [
-        //             'layout_style' => 'style_2',
-        //         ],
-        //     ]
-        // );
-
-        // Meta Typography
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'meta_typography',
-                'selector' => '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart-posts-date',
-                'fields_options' => [
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
 
         /**
          * Style section: Heading
@@ -751,6 +701,60 @@ class Main extends Widget_Base
 
         $this->end_controls_tab();
         $this->end_controls_tabs();
+        $this->end_controls_section();
+
+
+
+        
+        /**
+         * Style section: Meta
+         */
+        $this->start_controls_section(
+            'blogkit_card_grid_meta_style',
+            [
+                'label' => esc_html__('Meta Info', 'blogkit'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        //Text Color
+        $this->add_control(
+            'color',
+            [
+                'label' => esc_html__('Color', 'blogkit'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart-posts-date' => 'color: {{VALUE}};','{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content svg path' => 'fill: {{VALUE}};',
+                ],
+            ]
+        );
+
+        // //Icon Color
+        // $this->add_control(
+        //     'meta_icon_color',
+        //     [
+        //         'label' => esc_html__('Icon Color', 'blogkit'),
+        //         'type' => Controls_Manager::COLOR,
+        //         'selectors' => [
+        //             '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content svg path' => 'fill: {{VALUE}};',
+        //         ],
+        //         'condition' => [
+        //             'layout_style' => 'style_2',
+        //         ],
+        //     ]
+        // );
+
+        // Meta Typography
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'meta_typography',
+                'selector' => '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart-posts-date',
+                'fields_options' => [
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
 
@@ -1061,9 +1065,9 @@ protected function render()
             include_once 'style2.php';
             break;
 
-        case 'style_3':
-            include_once 'style3.php';
-            break;
+        // case 'style_3':
+        //     include_once 'style3.php';
+        //     break;
 
         default:
             // Optional: fallback style

@@ -631,7 +631,7 @@
   color: #686868;
 }
 
-/* Smart Posts List - Style 2  */
+/* Smart Posts List - Style 2 & 3*/
 .smart-posts-list-wrapper .smart-posts-list-item.list-style-2{
   padding: 20px 30px;
   background-color: #f8f8f8;
@@ -653,10 +653,15 @@
 .smart-posts-list-wrapper .smart-posts-list-item.list-style-2 .smart-posts-title{
   font-size: 25px;
 }
-.smart-posts-list-wrapper .smart-posts-list-item.list-style-2 .smart-posts-date {
+.smart-posts-list-wrapper .smart-posts-list-item .smart-posts-date{
   display: flex;
     align-items: center;
     flex-direction: row;
     flex-wrap: nowrap;
-    gap: 5px;
+    gap: 8px;
 }
+.smart-posts-list-wrapper .smart-posts-list-item .smart-posts-date svg{
+  width: 20px;
+  height: 20px;
+}
+/* Smart Posts List - Style 3  */

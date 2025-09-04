@@ -64,9 +64,9 @@ if ($query->have_posts()):
                         // Getting the first category name 
                         $category_link = get_category_link($first_category->term_id);
 
-                        // echo '<a style="background-color: ' . esc_attr($random_color) . '" href="' . esc_url($category_link) . '" class="smart_posts_list-category">' . esc_html($first_category->name) . '</a>';
-
+                        // Display category button 
                         echo '<a class="smart_posts_list-category" href="' . esc_url(get_category_link($categories[0]->term_id)) . '"';
+                        // Display category random bg color 
                                         if ('true' === $settings['category_random_color_switch']) {
                                             echo ' style="background-color: ' . esc_attr($random_color) . '"';
                                         }

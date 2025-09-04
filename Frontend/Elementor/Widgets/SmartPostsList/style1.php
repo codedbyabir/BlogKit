@@ -71,9 +71,9 @@ if ($query->have_posts()):
 
                     // Displaying Human Different Time
                     if ('yes' === $settings['show_humanize_date']) {
-                        echo '<span class="smart-posts-date">' . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago </span>';
+                        echo '<span class="smart-posts-date">' . ( $settings['layout_style'] === 'style_3' ? SVG::Calender() : '' ) . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago </span>';
                     } else {
-                        echo '<span class="smart-posts-date">' . get_the_date('M j, Y') . '<span>';
+                        echo '<span class="smart-posts-date">' . ( $settings['layout_style'] === 'style_3' ? SVG::Calender() : '' ) . get_the_date('M j, Y') . '<span>';
                     }
                     ?>
 
