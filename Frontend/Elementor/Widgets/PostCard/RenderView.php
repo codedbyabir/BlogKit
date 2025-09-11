@@ -79,14 +79,12 @@ if ($query->have_posts()):
                     <span><strong>By</strong> <?php the_author(); ?></span>
 
                     <?php
-                    // Displaying the date
-                    if ('yes' === $settings['show_date'] && '' === $settings['show_humanize_date']) {
-                        echo '<span>' . get_the_date('M j, Y') . '<span>';
-                    }
+
                     // Displaying Human Different Time
                     if ('yes' === $settings['show_humanize_date']) {
-
                         echo '<span>' . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago </span>';
+                    } else {
+                        echo '<span>' . get_the_date('M j, Y') . '<span>';
                     }
                     ?>
 

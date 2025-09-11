@@ -106,26 +106,28 @@ if ($query->have_posts()):
     echo '</div>'; // .blogkit-card-grid-wrapper
 
     // Pagination
-    $big = 999999999; // need an unlikely integer
-    $pagination_links = paginate_links([
-        'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-        'format' => '?paged=%#%',
-        'current' => max(1, $paged),
-        'total' => $query->max_num_pages,
-        'prev_text' => __('« Previous', 'blogkit'),
-        'next_text' => __('Next »', 'blogkit'),
-        'type' => 'list',
-    ]);
 
-    if ($pagination_links) {
-        echo '<div class="blogkit-pagination">' . wp_kses_post($pagination_links) . '</div>';
+    if ('yes' === $settings['show_pagination']) {
+
+        $big = 999999999; // need an unlikely integer for base replacement
+        $pagination_links = paginate_links([
+            'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+            'format' => '?paged=%#%',
+            'current' => max(1, $paged),
+            'total' => $query->max_num_pages,
+            'prev_text' => __('« Previous', 'blogkit'),
+            'next_text' => __('Next »', 'blogkit'),
+            'type' => 'list',
+        ]);
+
+        if ($pagination_links) {
+            echo '<div class="blogkit-pagination">' . wp_kses_post($pagination_links) . '</div>';
+        } else {
+            echo '<p>' . esc_html__('No posts found.', 'blogkit') . '</p>';
+        }
+
+        wp_reset_postdata();
+
     }
-
-    wp_reset_postdata();
-else:
-    echo '<p>' . esc_html__('No posts found.', 'blogkit') . '</p>';
 endif;
 
-
-
-?>

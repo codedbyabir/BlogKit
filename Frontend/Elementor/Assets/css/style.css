@@ -82,7 +82,7 @@
   padding: 0;
 }
 
-.blogkit-article .blogkit-thumb figure  a img {
+.blogkit-article .blogkit-thumb figure a img {
   width: 100%;
   height: auto;
   display: block;
@@ -155,27 +155,28 @@
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
+
   .blogkit-classic-grid.columns-4,
   .blogkit-classic-grid.columns-3 {
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .blogkit-title {
-      font-size: 18px;
+    font-size: 18px;
   }
 }
 
 @media (max-width: 767px) {
   .blogkit-classic-grid {
-      grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr !important;
   }
-  
+
   .blogkit-title {
-      font-size: 16px;
+    font-size: 16px;
   }
-  
+
   .blogkit-meta {
-      font-size: 12px;
+    font-size: 12px;
   }
 }
 
@@ -189,9 +190,11 @@
 .blogkit-grid-columns-2 {
   grid-template-columns: repeat(2, 1fr);
 }
+
 .blogkit-grid-columns-3 {
   grid-template-columns: repeat(3, 1fr);
 }
+
 .blogkit-grid-columns-4 {
   grid-template-columns: repeat(4, 1fr);
 }
@@ -277,9 +280,13 @@
   list-style: none;
 }
 
-.blogkit-pagination ul li a, .blogkit-pagination ul li .current {color: #fff;
+.blogkit-pagination ul li a,
+.blogkit-pagination ul li .current {
+  color: #fff;
   padding: 10px 15px;
-  display: inline-block;}
+  display: inline-block;
+}
+
 .blogkit-pagination .page-numbers.current,
 .blogkit-pagination ul li a:hover {
   background: #333;
@@ -289,28 +296,32 @@
 
 
 @media screen and (max-width: 1024px) {
- .blogkit-grid-columns-2 {
-      grid-template-columns: repeat(2, 1fr);
+  .blogkit-grid-columns-2 {
+    grid-template-columns: repeat(2, 1fr);
   }
 
- .blogkit-grid-columns-3 {
-      grid-template-columns: repeat(2, 1fr);
+  .blogkit-grid-columns-3 {
+    grid-template-columns: repeat(2, 1fr);
   }
-.blogkit-grid-columns-4 {
-      grid-template-columns: repeat(2, 1fr);
-  }  
+
+  .blogkit-grid-columns-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 
 @media screen and (max-width: 768px) {
-  .blogkit-grid-columns-2, .blogkit-grid-columns-3, .blogkit-grid-columns-4 {
-      grid-template-columns: 1fr;
+
+  .blogkit-grid-columns-2,
+  .blogkit-grid-columns-3,
+  .blogkit-grid-columns-4 {
+    grid-template-columns: 1fr;
   }
 }
 
 
 /* card grid  */
-.blogkit-card-grid-wrapper{
+.blogkit-card-grid-wrapper {
   display: grid;
 }
 
@@ -327,6 +338,7 @@
 .blogkit-card-grid-wrapper .blogkit-card-grid-item {
   overflow: hidden;
 }
+
 .blogkit-card-grid-wrapper .blogkit-card-grid-meta {
   display: flex;
   align-items: center;
@@ -334,12 +346,12 @@
   gap: 10px;
 }
 
-.blogkit-card-grid-wrapper .blogkit-card-grid-meta span{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 5px;
+.blogkit-card-grid-wrapper .blogkit-card-grid-meta span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
 }
 
 
@@ -348,7 +360,9 @@
   height: 24px;
   border-radius: 50%;
 }
-.blogkit-card-grid-wrapper .blogkit-card-grid-meta svg , .blogkit-post-card-grid-wrapper .blogkit-post-card-content svg  {
+
+.blogkit-card-grid-wrapper .blogkit-card-grid-meta svg,
+.blogkit-post-card-grid-wrapper .blogkit-post-card-content svg {
   width: 15px;
   height: 15px;
 }
@@ -356,9 +370,11 @@
 .blogkit-card-grid-wrapper .blogkit-card-grid-title {
   margin-bottom: 10px;
 }
+
 .blogkit-card-grid-wrapper .blogkit-card-grid-body {
   /* padding: 20px; */
 }
+
 .blogkit-card-grid-wrapper .blogkit-card-grid-body .blogkit-card-grid-excerpt {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -371,7 +387,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
-  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -432,4 +447,132 @@
   height: 100%;
   flex-basis: 50%;
   width: 100%;
+}
+
+
+/* Featured Grid  */
+.blogkit-fg-custom-post {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  /* background: #071723; */
+  border-radius: 12px;
+  color: #fff;
+  /* font-family: 'Segoe UI', sans-serif; */
+  align-items: stretch;
+}
+
+.blogkit-fg-post__left {
+  flex: 1 1 50%;
+  min-width: 300px;
+}
+
+.blogkit-fg-post__right {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 280px;
+}
+
+.blogkit-fg-post__bottom {
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.blogkit-fg-post-card {
+  position: relative;
+  background-size: cover;
+  background-position: top left;
+  border-radius: 12px;
+  overflow: hidden;
+  color: #fff;
+  min-height: 200px;
+  display: flex;
+  align-items: flex-end;
+  transition: transform 0.3s ease;
+}
+
+.blogkit-fg-post-card:hover {
+  /* transform: scale(1.01); */
+}
+
+.blogkit-fg-post-card__overlay {
+  /* background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 60%, transparent 100%); */
+  background: linear-gradient(0deg, #010218 0%, rgba(1, 2, 24, 0) 100%);
+  padding: 16px;
+  width: 100%;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+.blogkit-fg-post-card__cat {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  text-transform: capitalize;
+  background-color: #007acc;
+  color: #fff;
+}
+
+
+.blogkit-fg-post-card__title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 8px;
+  color: #fff;
+}
+
+.blogkit-fg-post-card__meta {
+  font-size: 13px;
+  opacity: 0.85;
+  display: flex;
+  gap: 12px;
+  color: #fff;
+}
+
+.blogkit-fg-post-card__author {}
+
+.blogkit-fg-post-card__date {}
+
+/* Size modifiers */
+.blogkit-fg-post-card--large {
+  min-height: 380px;
+}
+
+.blogkit-fg-post-card--wide {
+  height: 180px;
+}
+
+.blogkit-fg-post-card--small {
+  flex: 1 50;
+  height: 160px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .blogkit-fg-custom-post {
+    flex-direction: column;
+  }
+
+  .blogkit-fg-post-card--large,
+  .blogkit-fg-post-card--wide,
+  .blogkit-fg-post-card--small {
+    height: auto;
+    min-height: 200px;
+  }
+
+  .blogkit-fg-post__bottom {
+    flex-direction: column;
+  }
+
+  .blogkit-fg-post-card--small {
+    flex: 1;
+  }
 }

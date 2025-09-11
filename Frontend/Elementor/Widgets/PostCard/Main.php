@@ -169,18 +169,7 @@ class Main extends Widget_Base
             ]
         );
 
-        // Date 
-        $this->add_control(
-            'show_date',
-            [
-                'label' => esc_html__('Date', 'blogkit'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'blogkit'),
-                'label_off' => esc_html__('Hide', 'blogkit'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
+
 
         // Hunamize Date
         $this->add_control(
@@ -192,14 +181,10 @@ class Main extends Widget_Base
                 'label_off' => esc_html__('Hide', 'blogkit'),
                 'return_value' => 'yes',
                 'default' => 'yes',
-                'condition' => [
-                    'show_date' => 'yes',
-                ],
             ]
         );
 
         // Pagination
-        // Hunamize Date
         $this->add_control(
             'show_pagination',
             [
@@ -282,11 +267,11 @@ class Main extends Widget_Base
             ]
         );
 
-        // Padding 
+        //Content Padding 
         $this->add_responsive_control(
             'item_body_padding',
             [
-                'label' => esc_html__('Body Padding', 'blogkit'),
+                'label' => esc_html__('Content Padding', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'default' => [
@@ -302,7 +287,7 @@ class Main extends Widget_Base
                 ],
             ]
         );
-        // Body Padding 
+        //Padding 
         $this->add_responsive_control(
             'grid_item_padding',
             [
@@ -784,6 +769,36 @@ class Main extends Widget_Base
                 ],
             ]
         );
+
+        // Alignment
+        $this->add_responsive_control(
+            'pagination_align',
+            [
+                'label' => esc_html__('Alignment', 'blogkit'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'blogkit'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'blogkit'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'blogkit'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'default' => 'center',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .blogkit-pagination' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+
+
         // Spacing 
         $this->add_responsive_control(
             'pagination_spacing',
@@ -826,59 +841,41 @@ class Main extends Widget_Base
                 'selector' => '{{WRAPPER}} .blogkit-pagination ul li a, {{WRAPPER}} .blogkit-pagination .page-numbers.current',
             ]
         );
+
+
         // Padding
         $this->add_responsive_control(
             'pagination_padding',
             [
                 'label' => esc_html__('Padding', 'blogkit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'default' => [
-                    'top' => 5,
-                    'right' => 5,
-                    'bottom' => 5,
-                    'left' => 5,
-                    'unit' => 'px',
-                    'isLinked' => false,
-                ],
+                'type' => Controls_Manager::DIMENSIONS,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-pagination ul' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-pagination ul li a, {{WRAPPER}} .blogkit-pagination .page-numbers.current' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
+
         // Border Radius
         $this->add_responsive_control(
             'pagination_border_radius',
             [
                 'label' => esc_html__('Border Radius', 'blogkit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'default' => [
-                    'top' => 5,
-                    'right' => 5,
-                    'bottom' => 5,
-                    'left' => 5,
-                    'unit' => 'px',
-                    'isLinked' => false,
-                ],
+                'type' => Controls_Manager::DIMENSIONS,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-pagination ul' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-pagination ul li a, {{WRAPPER}} .blogkit-pagination .page-numbers.current' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
-
-        // Background Color
-        $this->add_control(
-            'pagination_bg_color',
+        // Border 
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
             [
-                'label' => esc_html__('Background Color', 'blogkit'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .blogkit-pagination ul' => 'background-color: {{VALUE}};',
-                ],
+                'name' => 'pagination_border',
+                'selector' => '{{WRAPPER}} .blogkit-pagination ul li a, {{WRAPPER}} .blogkit-pagination .page-numbers.current',
             ]
         );
+
 
 
 
@@ -897,13 +894,14 @@ class Main extends Widget_Base
         $this->add_control(
             'pagination_text_color',
             [
-                'label' => esc_html__('Text Color', 'blogkit'),
+                'label' => esc_html__('Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-pagination ul li a, {{WRAPPER}} .blogkit-pagination .page-numbers.current' => 'color: {{VALUE}};',
                 ],
             ]
         );
+
         // Background Color
         $this->add_control(
             'pagination_bg_color',
@@ -911,12 +909,10 @@ class Main extends Widget_Base
                 'label' => esc_html__('Background Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-pagination ul' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-pagination ul li a, {{WRAPPER}} .blogkit-pagination .page-numbers.current' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
-
-
 
 
         $this->end_controls_tab();
@@ -930,28 +926,43 @@ class Main extends Widget_Base
 
         // Text Color
         $this->add_control(
-            'pagination_text_color',
+            'pagination_text_hover_color',
             [
-                'label' => esc_html__('Text Color', 'blogkit'),
+                'label' => esc_html__('Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-pagination ul li a, {{WRAPPER}} .blogkit-pagination .page-numbers.current' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-        // Background Color
-        $this->add_control(
-            'pagination_bg_color',
-            [
-                'label' => esc_html__('Background Color', 'blogkit'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .blogkit-pagination ul' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-pagination ul li a:hover, {{WRAPPER}} .blogkit-pagination .page-numbers.current:hover' => 'color: {{VALUE}};',
                 ],
             ]
         );
 
+        // Background Color
+        $this->add_control(
+            'pagination_bg_hover_color',
+            [
+                'label' => esc_html__('Background Color', 'blogkit'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .blogkit-pagination ul li a:hover, {{WRAPPER}} .blogkit-pagination .page-numbers.current:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        // Border Color
+        $this->add_control(
+            'pagination_pagination_border_hover_color',
+            [
+                'label' => esc_html__('Border', 'blogkit'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .blogkit-pagination ul li a:hover, {{WRAPPER}} .blogkit-pagination .page-numbers.current:hover' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+
         $this->end_controls_tab();
+
         $this->start_controls_tab(
             'pagination_style_active_tab',
             [
@@ -961,43 +972,47 @@ class Main extends Widget_Base
 
         // Text Color
         $this->add_control(
-            'pagination_text_color',
+            'pagination_text_active_color',
             [
-                'label' => esc_html__('Text Color', 'blogkit'),
+                'label' => esc_html__('Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-pagination ul li a, {{WRAPPER}} .blogkit-pagination .page-numbers.current' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-pagination ul li a.active, {{WRAPPER}} .blogkit-pagination .page-numbers.current' => 'color: {{VALUE}};',
                 ],
             ]
         );
+
         // Background Color
         $this->add_control(
-            'pagination_bg_color',
+            'pagination_bg_active_color',
             [
                 'label' => esc_html__('Background Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-pagination ul' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-pagination ul li a.active, {{WRAPPER}} .blogkit-pagination .page-numbers.current' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
+
+        // Border Color
+        $this->add_control(
+            'pagination_pagination_border_active_color',
+            [
+                'label' => esc_html__('Border', 'blogkit'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .blogkit-pagination ul li a.active, {{WRAPPER}} .blogkit-pagination .page-numbers.current' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
 
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
 
 
-        // Border Radius
-        $this->add_responsive_control(
-            'pagination_border_radius',
-            [
-                'label' => esc_html__('Border Radius', 'blogkit'),
-                'type' => Controls_Manager::DIMENSIONS,
-                'selectors' => [
-                    '{{WRAPPER}} .blogkit-pagination ul li a, {{WRAPPER}} .blogkit-pagination .page-numbers.current' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
+
 
         $this->end_controls_section();
 

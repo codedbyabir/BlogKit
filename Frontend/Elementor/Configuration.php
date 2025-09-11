@@ -197,6 +197,7 @@ class Configuration
             'blogkit_taxonomy_list' => 'TaxonomyList\Main',
             'blogkit_featured_sidebar' => 'FeaturedSidebar\Main',
             'blogkit_post_card' => 'PostCard\Main',
+            'blogkit_featured_grid' => 'FeaturedGrid\Main',
 
         ];
 
