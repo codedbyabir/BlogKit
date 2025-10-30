@@ -124,9 +124,25 @@ class Main extends Widget_Base
                 'label_off' => esc_html__('Hide', 'blogkit'),
                 'return_value' => 'yes',
                 'default' => 'yes',
-                'separator' => 'after',
             ]
         );
+
+         // Random Color
+         $this->add_control(
+			'category_random_color_switch',
+			[
+				'label' => esc_html__('Use Random Color?', 'blogkit'),
+				'description' => esc_html__('Use Random Color for Category Background color', 'blogkit'),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => esc_html__('Yes', 'blogkit'),
+				'label_off' => esc_html__('No', 'blogkit'),
+				'return_value' => 'yes',
+				'default' => 'yes',
+                'condition' => [
+                    'show_category' => 'yes',
+                ],
+			]
+		);
 
 
         // Title switch control
@@ -139,6 +155,7 @@ class Main extends Widget_Base
                 'label_off' => esc_html__('Hide', 'blogkit'),
                 'return_value' => 'yes',
                 'default' => 'yes',
+                'separator' => 'before',
             ]
         );
 
@@ -422,7 +439,7 @@ class Main extends Widget_Base
          * Style section: Meta
          */
         $this->start_controls_section(
-            'blogkit_card_grid_meta_style',
+            'meta_style',
             [
                 'label' => esc_html__('Meta Info', 'blogkit'),
                 'tab' => Controls_Manager::TAB_STYLE,
@@ -431,7 +448,7 @@ class Main extends Widget_Base
 
         //Text Color
         $this->add_control(
-            'meta__color',
+            'meta_color',
             [
                 'label' => esc_html__('Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -449,7 +466,7 @@ class Main extends Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'meta_typography',
-                'selector' => '{{WRAPPER}} .blogkit-fg-post-card .blogkit-card-grid-body .blogkit-card-grid-meta',
+                'selector' => '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post-card .blogkit-fg-post-card__meta',
                 'fields_options' => [
                     'typography' => [
                         'default' => 'custom',
@@ -470,7 +487,7 @@ class Main extends Widget_Base
          * Style section: Title
          */
         $this->start_controls_section(
-            'blogkit_card_grid_title_style',
+            'title_style',
             [
                 'label' => esc_html__('Title', 'blogkit'),
                 'tab' => Controls_Manager::TAB_STYLE,
@@ -551,7 +568,7 @@ class Main extends Widget_Base
          * Style section: Left part
          */
         $this->start_controls_section(
-            'blogkit-fg-post-card_left_part',
+            'blogkit_fg_post_card_left_part',
             [
                 'label' => esc_html__('Left Part', 'blogkit'),
                 'tab' => Controls_Manager::TAB_STYLE,
@@ -560,12 +577,12 @@ class Main extends Widget_Base
 
 
         $this->start_controls_tabs(
-            'blogkit-fg-post-card_left_part_style_tabs'
+            'blogkit_fg_post_card_left_part_style_tabs'
         );
 
         // Category 
         $this->start_controls_tab(
-            'blogkit-fg-post-card_left_part_category',
+            'blogkit_fg_post_card_left_part_category',
             [
                 'label' => esc_html__('Category', 'blogkit'),
             ]
@@ -576,7 +593,7 @@ class Main extends Widget_Base
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'left_part_category_typography',
+                'name' => 'blogkit_fg_laft_part_category_typography',
                 'selector' => '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__cat',
                 'fields_options' => [
                     'typography' => [
@@ -591,7 +608,7 @@ class Main extends Widget_Base
 
         // Padding 
         $this->add_responsive_control(
-            'left_part_category_padding',
+            'blogkit_fg_laft_part_category_padding',
             [
                 'label' => esc_html__('Padding', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -604,7 +621,7 @@ class Main extends Widget_Base
 
         // Border Radius
         $this->add_responsive_control(
-            'left_part_category_radius',
+            'blogkit_fg_laft_part_category_radius',
             [
                 'label' => esc_html__('Border Radius', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -617,7 +634,7 @@ class Main extends Widget_Base
 
         // Text Color
         $this->add_control(
-            'left_part_category_text_color',
+            'blogkit_fg_laft_part_category_text_color',
             [
                 'label' => esc_html__('Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -631,7 +648,7 @@ class Main extends Widget_Base
 
         // Background Color
         $this->add_control(
-            'left_part_category_bg_color',
+            'blogkit_fg_laft_part_category_bg_color',
             [
                 'label' => esc_html__('Background Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -644,7 +661,7 @@ class Main extends Widget_Base
 
         // Hover & Current Text Color
         $this->add_control(
-            'left_part_category_hover_text_color',
+            'blogkit_fg_laft_part_category_hover_text_color',
             [
                 'label' => esc_html__('Hover Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -657,7 +674,7 @@ class Main extends Widget_Base
 
         // Hover & Active Background
         $this->add_control(
-            'left_part_category_hover_bg',
+            'blogkit_fg_laft_part_category_hover_bg',
             [
                 'label' => esc_html__('Hover Background Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -672,7 +689,7 @@ class Main extends Widget_Base
 
         // Title 
         $this->start_controls_tab(
-            'blogkit-fg-post-card_left_part_title',
+            'blogkit_fg_laft_part_title',
             [
                 'label' => esc_html__('Title', 'blogkit'),
             ]
@@ -682,7 +699,7 @@ class Main extends Widget_Base
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'left_part_title_typography',
+                'name' => 'blogkit_fg_laft_part_title_typography',
                 'selector' => '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__title',
                 'fields_options' => [
                     'typography' => [
@@ -696,7 +713,7 @@ class Main extends Widget_Base
 
         // Text Color
         $this->add_control(
-            'left_part_title_color',
+            'blogkit_fg_laft_part_title_color',
             [
                 'label' => esc_html__('Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -708,7 +725,7 @@ class Main extends Widget_Base
 
         // Hover Color
         $this->add_control(
-            'left_part_title_hover_color',
+            'blogkit_fg_laft_part_hover_color',
             [
                 'label' => esc_html__('Hover Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -723,7 +740,7 @@ class Main extends Widget_Base
 
         // Meta
         $this->start_controls_tab(
-            'blogkit-fg-post-card_left_part_meta',
+            'blogkit_fg_laft_part_meta',
             [
                 'label' => esc_html__('Meta', 'blogkit'),
             ]
@@ -732,7 +749,7 @@ class Main extends Widget_Base
 
         //Text Color
         $this->add_control(
-            'left_part_meta__color',
+            'blogkit_fg_laft_part_meta_color',
             [
                 'label' => esc_html__('Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -746,7 +763,7 @@ class Main extends Widget_Base
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'left_part_meta_typography',
+                'name' => 'blogkit_fg_laft_part_meta_typography',
                 'selector' => '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__meta',
                 'fields_options' => [
                     'typography' => [
@@ -775,7 +792,7 @@ class Main extends Widget_Base
          * Style section: Right Part
          */
         $this->start_controls_section(
-            'blogkit-fg-post-card_right_part',
+            'blogkit_fg_right_part',
             [
                 'label' => esc_html__('Right Part', 'blogkit'),
                 'tab' => Controls_Manager::TAB_STYLE,
@@ -784,12 +801,14 @@ class Main extends Widget_Base
 
 
         $this->start_controls_tabs(
-            'blogkit-fg-post-card_right_part_style_tabs'
+            'blogkit_fg_right_part_style_tabs'
         );
 
-        // Category 
+        /*
+            Category 
+        */
         $this->start_controls_tab(
-            'blogkit-fg-post-card_right_part_category',
+            'blogkit_fg_right_part_category',
             [
                 'label' => esc_html__('Category', 'blogkit'),
             ]
@@ -800,7 +819,7 @@ class Main extends Widget_Base
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'right_part_category_typography',
+                'name' => 'blogkit_fg_right_part_category_typography',
                 'selector' => '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__right .blogkit-fg-post-card__cat',
                 'fields_options' => [
                     'typography' => [
@@ -814,7 +833,7 @@ class Main extends Widget_Base
 
         // Padding 
         $this->add_responsive_control(
-            'right_part_category_padding',
+            'blogkit_fg_right_part_category_padding',
             [
                 'label' => esc_html__('Padding', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -827,7 +846,7 @@ class Main extends Widget_Base
 
         // Border Radius
         $this->add_responsive_control(
-            'right_part_category_radius',
+            'blogkit_fg_right_part_category_radius',
             [
                 'label' => esc_html__('Border Radius', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -840,7 +859,7 @@ class Main extends Widget_Base
 
         // Text Color
         $this->add_control(
-            'right_part_category_text_color',
+            'blogkit_fg_right_part_category_text_color',
             [
                 'label' => esc_html__('Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -854,7 +873,7 @@ class Main extends Widget_Base
 
         // Background Color
         $this->add_control(
-            'right_part_category_bg_color',
+            'blogkit_fg_right_part_category_bg_color',
             [
                 'label' => esc_html__('Background Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -867,7 +886,7 @@ class Main extends Widget_Base
 
         // Hover & Current Text Color
         $this->add_control(
-            'right_part_category_hover_text_color',
+            'blogkit_fg_right_part_category_hover_text_color',
             [
                 'label' => esc_html__('Hover Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -880,7 +899,7 @@ class Main extends Widget_Base
 
         // Hover & Active Background
         $this->add_control(
-            'right_part_category_hover_bg',
+            'blogkit_fg_right_part_category_hover_bg',
             [
                 'label' => esc_html__('Hover Background Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -893,9 +912,11 @@ class Main extends Widget_Base
 
         $this->end_controls_tab();
 
-        // Title 
+         /*
+            Category 
+        */
         $this->start_controls_tab(
-            'blogkit-fg-post-card_right_part_title',
+            'blogkit_fg_right_part_title',
             [
                 'label' => esc_html__('Title', 'blogkit'),
             ]
@@ -919,7 +940,7 @@ class Main extends Widget_Base
 
         // Text Color
         $this->add_control(
-            'right_part_title_color',
+            'blogkit_fg_right_part_title_color',
             [
                 'label' => esc_html__('Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -931,7 +952,7 @@ class Main extends Widget_Base
 
         // Hover Color
         $this->add_control(
-            'right_part_title_hover_color',
+            'blogkit_fg_right_part_title_hover_color',
             [
                 'label' => esc_html__('Hover Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -944,9 +965,11 @@ class Main extends Widget_Base
 
         $this->end_controls_tab();
 
-        // Meta
+         /*
+            Meta 
+        */
         $this->start_controls_tab(
-            'blogkit-fg-post-card_right_part_meta',
+            'blogkit_fg_right_part_meta',
             [
                 'label' => esc_html__('Meta', 'blogkit'),
             ]
@@ -955,7 +978,7 @@ class Main extends Widget_Base
 
         //Text Color
         $this->add_control(
-            'right_part_meta__color',
+            'blogkit_fg_right_part_meta_color',
             [
                 'label' => esc_html__('Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
@@ -969,7 +992,7 @@ class Main extends Widget_Base
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'right_part_meta_typography',
+                'name' => 'blogkit_fg_right_part_meta_typography',
                 'selector' => '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__right .blogkit-fg-post-card__meta',
                 'fields_options' => [
                     'typography' => [
@@ -993,226 +1016,6 @@ class Main extends Widget_Base
 
 
 
-
-        /**
-         * Style section: Left part
-         */
-        $this->start_controls_section(
-            'blogkit-fg-post-card_left_part',
-            [
-                'label' => esc_html__('Left Part', 'blogkit'),
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-
-        $this->start_controls_tabs(
-            'blogkit-fg-post-card_left_part_style_tabs'
-        );
-
-        // Category 
-        $this->start_controls_tab(
-            'blogkit-fg-post-card_left_part_category',
-            [
-                'label' => esc_html__('Category', 'blogkit'),
-            ]
-        );
-
-
-        // Typography
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'left_part_category_typography',
-                'selector' => '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__cat',
-                'fields_options' => [
-                    'typography' => [
-                        'default' => 'yes',
-                    ],
-                    'font_size' => [
-                    ],
-                ],
-            ]
-        );
-
-        // Padding 
-        $this->add_responsive_control(
-            'left_part_category_padding',
-            [
-                'label' => esc_html__('Padding', 'blogkit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__cat' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        // Border Radius
-        $this->add_responsive_control(
-            'left_part_category_radius',
-            [
-                'label' => esc_html__('Border Radius', 'blogkit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__cat' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        // Text Color
-        $this->add_control(
-            'left_part_category_text_color',
-            [
-                'label' => esc_html__('Color', 'blogkit'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__cat' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-
-
-        // Background Color
-        $this->add_control(
-            'left_part_category_bg_color',
-            [
-                'label' => esc_html__('Background Color', 'blogkit'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__cat' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-
-        // Hover & Current Text Color
-        $this->add_control(
-            'left_part_category_hover_text_color',
-            [
-                'label' => esc_html__('Hover Color', 'blogkit'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__cat:hover' => 'color: {{VALUE}};',
-                ],
-                'separator' => 'before',
-            ]
-        );
-
-        // Hover & Active Background
-        $this->add_control(
-            'left_part_category_hover_bg',
-            [
-                'label' => esc_html__('Hover Background Color', 'blogkit'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__cat:hover' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-
-        $this->end_controls_tab();
-
-        // Title 
-        $this->start_controls_tab(
-            'blogkit-fg-post-card_left_part_title',
-            [
-                'label' => esc_html__('Title', 'blogkit'),
-            ]
-        );
-
-        // Typography
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'left_part_title_typography',
-                'selector' => '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__title',
-                'fields_options' => [
-                    'typography' => [
-                        'default' => 'yes',
-                    ],
-                    'font_size' => [
-                    ],
-                ],
-            ]
-        );
-
-        // Text Color
-        $this->add_control(
-            'left_part_title_color',
-            [
-                'label' => esc_html__('Color', 'blogkit'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__title' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        // Hover Color
-        $this->add_control(
-            'left_part_title_hover_color',
-            [
-                'label' => esc_html__('Hover Color', 'blogkit'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__title:hover' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-
-        $this->end_controls_tab();
-
-        // Meta
-        $this->start_controls_tab(
-            'blogkit-fg-post-card_left_part_meta',
-            [
-                'label' => esc_html__('Meta', 'blogkit'),
-            ]
-        );
-
-
-        //Text Color
-        $this->add_control(
-            'left_part_meta__color',
-            [
-                'label' => esc_html__('Color', 'blogkit'),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__meta' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        // Meta Typography
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'left_part_meta_typography',
-                'selector' => '{{WRAPPER}} .blogkit-fg-custom-post .blogkit-fg-post__left .blogkit-fg-post-card__meta',
-                'fields_options' => [
-                    'typography' => [
-                        'default' => 'yes',
-                    ],
-                    'font_size' => [
-                    ],
-                ],
-            ]
-        );
-
-
-        $this->end_controls_tab();
-
-
-        $this->end_controls_tabs();
-
-
-
-        $this->end_controls_section();
 
 
 
@@ -1460,6 +1263,16 @@ class Main extends Widget_Base
         }
         return $cats;
     }
+
+
+
+    /**
+     * Render Random Color.
+     */
+    private function generate_random_color()
+	{
+		return sprintf('#%06X', wp_rand(0, 0xFFFFFF));
+	}
 
     /**
      * Render frontend output.
