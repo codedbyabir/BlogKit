@@ -54,6 +54,19 @@ class Main extends Widget_Base
             ]
         );
 
+        // Styles 
+        $this->add_control(
+			'layout_style',
+			[
+				'label' => esc_html__( 'Layout Style', 'blogkit' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'style_1',
+				'options' => [
+					'style_1' => esc_html__( 'Style 1', 'blogkit' ),
+				]
+			]
+		);
+
         $this->add_control(
             'posts_per_page',
             [
@@ -1220,11 +1233,24 @@ class Main extends Widget_Base
         return $cats;
     }
 
-    /**
+        /**
      * Render frontend output.
      */
-    protected function render()
-    {
-        include 'RenderView.php';
+protected function render()
+{
+    $settings = $this->get_settings_for_display();
+
+    $layout_style = $settings['layout_style'] ?? 'style_1'; // fallback to style_1 if not set
+
+    switch ($layout_style) {
+        case 'style_1':
+            include_once 'style1.php';
+            break;
+
+        default:
+            // Optional: fallback style
+            include_once 'style1.php';
+            break;
     }
+}
 }

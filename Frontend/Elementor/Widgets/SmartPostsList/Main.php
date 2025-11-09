@@ -1065,10 +1065,6 @@ protected function render()
             include_once 'style2.php';
             break;
 
-        // case 'style_3':
-        //     include_once 'style3.php';
-        //     break;
-
         default:
             // Optional: fallback style
             include_once 'style1.php';
