@@ -382,6 +382,162 @@
   text-overflow: ellipsis;
 }
 
+
+/* card grid - Style 2 */
+
+.bk-card-grid-style2 .featured-post {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.bk-card-grid-style2 .featured-post img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+.bk-card-grid-style2 .featured-post .meta span{
+  display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 8px;
+    /* margin-top: 6px; */
+}
+.bk-card-grid-style2 .featured-post .meta span svg , .bk-card-grid-style2 .featured-post .meta span img{
+  width: 20px;
+  height: 20px;
+}
+
+.bk-card-grid-style2 .featured-overlay {
+  position: absolute;
+  bottom: 06px;
+  left: 0;
+  right: 0;
+  color: #fff;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  border-radius: 16px;
+}
+
+.bk-card-grid-style2 .featured-overlay .tag {
+  background: #35B322;
+  padding: 5px 12px;
+  border-radius: 600px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.bk-card-grid-style2 .featured-overlay .featured-title {
+  font-size: 2rem;
+  font-weight: 700;
+  /* margin-top: 1rem; */
+}
+
+.bk-card-grid-style2 .featured-overlay .featured-title a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.bk-card-grid-style2 .featured-overlay .meta {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+
+
+.bk-card-grid-style2 .card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 2rem;
+  align-items: stretch;
+}
+
+.bk-card-grid-style2 .card-grid-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.bk-card-grid-style2 .card-grid-item img {
+  width: 100%;
+  /* height: 220px; */
+  height: 100%;
+  /* background-position: left center; */
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.4s ease;
+}
+
+.bk-card-grid-style2 .card-grid-item:hover img {
+  /* transform: scale(1.02); */
+}
+
+.bk-card-grid-style2 .card-grid-item {
+  display: flex;
+  align-items: stretch;
+  color: #fff;
+
+}
+
+.bk-card-grid-style2 .card-grid-item:hover::after {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  background: rgba(0, 0, 0, 0.5);
+    transition: 5s ease;
+  /* margin-bottom: 6px; */
+  border-radius: 12px;
+}
+
+.bk-card-grid-style2 .overlay-content { 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: ;
+  z-index: 2;
+  opacity: 0;
+  text-align: center;
+  width: 80%;
+}
+
+.bk-card-grid-style2 .card-grid-item:hover .overlay-content {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.bk-card-grid-style2 .overlay-content .date {
+  font-size: 14px;
+  /* opacity: 0.85; */
+  color: #fff;
+}
+
+.bk-card-grid-style2 .overlay-content .featured-title {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Responsive  */
+
+@media (max-width:1024px) {
+  .bk-card-grid-style2 .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width:768px) {
+  .bk-card-grid-style2 .card-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+
 /* Post Card */
 .blogkit-post-card-grid-wrapper {
   display: grid;

@@ -63,6 +63,7 @@ class Main extends Widget_Base
 				'default' => 'style_1',
 				'options' => [
 					'style_1' => esc_html__( 'Style 1', 'blogkit' ),
+					'style_2' => esc_html__( 'Style 2', 'blogkit' ),
 				]
 			]
 		);
@@ -90,6 +91,8 @@ class Main extends Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-card-grid-wrapper' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+                    '{{WRAPPER}} .bk-card-grid-style2 .post-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+                    
                 ],
             ]
         );
@@ -130,6 +133,7 @@ class Main extends Widget_Base
                 'options' => $this->get_blogkit_categories(),
                 'multiple' => true,
                 'label_block' => true,
+               
             ]
         );
 
@@ -154,6 +158,9 @@ class Main extends Widget_Base
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'separator' => 'after',
+                 'condition' => [
+                    'layout_style' => 'style_1',
+                ]
             ]
         );
 
@@ -168,6 +175,9 @@ class Main extends Widget_Base
                 'label_off' => esc_html__('Hide', 'blogkit'),
                 'return_value' => 'yes',
                 'default' => 'yes',
+                 'condition' => [
+                    'layout_style' => 'style_1',
+                ]
             ]
         );
 
@@ -208,6 +218,9 @@ class Main extends Widget_Base
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'separator' => 'before',
+                 'condition' => [
+                    'layout_style' => 'style_1',
+                ]
             ]
         );
 
@@ -226,6 +239,7 @@ class Main extends Widget_Base
                 ],
                 'condition' => [
                     'show_excerpt' => 'yes',
+                    'layout_style' => 'style_1',
                 ],
             ]
         );
@@ -242,6 +256,9 @@ class Main extends Widget_Base
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'separator' => 'before',
+                 'condition' => [
+                    'layout_style' => 'style_1',
+                ]
             ]
         );
 
@@ -254,6 +271,7 @@ class Main extends Widget_Base
                 'default' => esc_html__('More Details', 'blogkit'),
                 'condition' => [
                     'show_read_more' => 'yes',
+                    'layout_style' => 'style_1',
                 ],
 
             ]
@@ -283,6 +301,9 @@ class Main extends Widget_Base
             [
                 'label' => esc_html__('Grid Item', 'blogkit'),
                 'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'layout_style' => 'style_1',
+                ]
             ]
         );
 
@@ -425,6 +446,9 @@ class Main extends Widget_Base
             [
                 'label' => esc_html__('Thumbnail', 'blogkit'),
                 'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'layout_style' => 'style_1',
+                ]
             ]
         );
 
@@ -461,6 +485,7 @@ class Main extends Widget_Base
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_category' => 'yes',
+                    'layout_style' => 'style_1',
                 ],
             ]
         );
@@ -615,6 +640,9 @@ class Main extends Widget_Base
             [
                 'label' => esc_html__('Meta Info', 'blogkit'),
                 'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'layout_style' => 'style_1',
+                ],
             ]
         );
 
@@ -676,6 +704,7 @@ class Main extends Widget_Base
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_title' => 'yes',
+                    'layout_style' => 'style_1',
                 ],
             ]
         );
@@ -760,6 +789,7 @@ class Main extends Widget_Base
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_excerpt' => 'yes',
+                    'layout_style' => 'style_1',
                 ],
             ]
         );
@@ -807,6 +837,7 @@ class Main extends Widget_Base
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_read_more' => 'yes',
+                    'layout_style' => 'style_1',
                 ],
             ]
         );
@@ -954,6 +985,45 @@ class Main extends Widget_Base
 
 
         $this->end_controls_section();
+
+
+        /**
+         * Style 2 controls
+         */
+         $this->start_controls_section(
+            'bk-card-grid-style2_featured_post_style',
+            [
+                'label' => esc_html__('Featured Post', 'blogkit'),
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'layout_style' => 'style_2',
+                ],
+            ]
+        );
+
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'featured_title_typography',
+                'selector' => '{{WRAPPER}} ..bk-card-grid-style2 .featured-overlay',
+                'fields_options' => [
+                    'typography' => [
+                        'default' => 'custom',
+                    ],
+                    'font_size' => [
+                        'default' => [
+                            'unit' => 'px',
+                            'size' => 16,
+                        ],
+                    ],
+                ],
+            ]
+        );
+
+
+        $this->end_controls_section();
+
 
         /**
          * Style section: Pagination
@@ -1245,6 +1315,10 @@ protected function render()
     switch ($layout_style) {
         case 'style_1':
             include_once 'style1.php';
+            break;
+
+        case 'style_2':
+            include_once 'style2.php';
             break;
 
         default:
