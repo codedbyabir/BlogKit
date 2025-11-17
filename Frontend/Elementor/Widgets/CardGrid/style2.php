@@ -22,7 +22,7 @@ if (get_query_var('paged')) {
 // Posts Query 
 $args = [
     'post_type' => 'post',
-    'posts_per_page' => $settings['posts_per_page'],
+    'posts_per_page' => $settings['posts_per_page_style2'],
     'orderby' => $settings['orderby'],
     'order' => $settings['order'],
     'paged' => $paged,
@@ -47,9 +47,17 @@ if ( $query->have_posts() ) :
 					?>
 					<div class="featured-post">
 						<a href="<?php echo get_permalink( $featured_post->ID ); ?>">
-							<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title( $featured_post->ID ) ); ?>">
+							<img class="featured-thumbnail" src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title( $featured_post->ID ) ); ?>">
 						</a>
 						<div class="featured-overlay">
+							<span class="tag">
+								<?php
+								$cat = get_the_category( $featured_post->ID );
+								if ( ! empty( $cat ) ) {
+									echo esc_html( $cat[0]->name );
+								} 
+								?>
+							</span>
 							
 							<<?php echo $title_tag; ?> class="featured-title">
 								<a href="<?php echo get_permalink( $featured_post->ID ); ?>">
@@ -78,7 +86,7 @@ if ( $query->have_posts() ) :
 								
 									<div class="overlay-content">
 										<span class="date"><?php echo get_the_date( 'F j, Y', $post->ID ); ?></span>
-										<<?php echo $title_tag; ?> class="card-card-title"><?php echo esc_html( get_the_title( $post->ID ) ); ?></<?php echo $title_tag; ?>>
+										<<?php echo $title_tag; ?> class="card-grid-title"><?php echo esc_html( get_the_title( $post->ID ) ); ?></<?php echo $title_tag; ?>>
 									</div>
 							</a>
 						</div>

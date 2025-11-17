@@ -391,7 +391,7 @@
   overflow: hidden;
 }
 
-.bk-card-grid-style2 .featured-post img {
+.bk-card-grid-style2 .featured-post .featured-thumbnail {
   width: 100%;
   height: 450px;
   object-fit: cover;
@@ -408,6 +408,9 @@
 .bk-card-grid-style2 .featured-post .meta span svg , .bk-card-grid-style2 .featured-post .meta span img{
   width: 20px;
   height: 20px;
+}
+.bk-card-grid-style2 .featured-post .meta span img{
+  border-radius: 100px;
 }
 
 .bk-card-grid-style2 .featured-overlay {
@@ -536,6 +539,9 @@
     grid-template-columns: repeat(1, 1fr);
   }
 }
+
+
+
 
 
 /* Post Card */
