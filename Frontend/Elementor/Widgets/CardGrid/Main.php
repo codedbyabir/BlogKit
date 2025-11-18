@@ -109,6 +109,7 @@ class Main extends Widget_Base
             ]
         );
 
+        // Columns control
         $this->add_responsive_control(
             'columns',
             [
@@ -124,8 +125,33 @@ class Main extends Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-card-grid-wrapper' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
                     '{{WRAPPER}} .bk-card-grid-style2 .card-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+
+                ],
+                'condition' => [
+                    'layout_style' => ['style_1', 'style_2'],
+                ],
+            ]
+        );
+
+        // Columns control - Layout 3
+        $this->add_responsive_control(
+            'columns_style3',
+            [
+                'label' => esc_html__('Columns', 'blogkit'),
+                'type' => Controls_Manager::SELECT,
+                'default' => '2',
+                'options' => [
+                    '1' => esc_html__('1 Column', 'blogkit'),
+                    '2' => esc_html__('2 Columns', 'blogkit'),
+                    '3' => esc_html__('3 Columns', 'blogkit'),
+                    '4' => esc_html__('4 Columns', 'blogkit'),
+                ],
+                'selectors' => [
                     '{{WRAPPER}} .blogkit-card-grid-style3 .blogkit-style3-bottom-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
 
+                ],
+                'condition' => [
+                    'layout_style' => 'style_3',
                 ],
             ]
         );
