@@ -58,17 +58,18 @@ class Main extends Widget_Base
 
         // Styles 
         $this->add_control(
-			'layout_style',
-			[
-				'label' => esc_html__( 'Layout Style', 'blogkit' ),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'default' => 'style_1',
-				'options' => [
-					'style_1' => esc_html__( 'Style 1', 'blogkit' ),
-					'style_2' => esc_html__( 'Style 2', 'blogkit' ),
-				]
-			]
-		);
+            'layout_style',
+            [
+                'label' => esc_html__('Layout Style', 'blogkit'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'style_1',
+                'options' => [
+                    'style_1' => esc_html__('Style 1', 'blogkit'),
+                    'style_2' => esc_html__('Style 2', 'blogkit'),
+                    'style_3' => esc_html__('Style 3', 'blogkit'),
+                ]
+            ]
+        );
 
         $this->add_control(
             'posts_per_page',
@@ -95,6 +96,19 @@ class Main extends Widget_Base
             ]
         );
 
+        // POP Style 3
+        $this->add_control(
+            'posts_per_page_style3',
+            [
+                'label' => esc_html__('Posts Per Page', 'blogkit'),
+                'type' => Controls_Manager::NUMBER,
+                'default' => 3,
+                'condition' => [
+                    'layout_style' => 'style_3'
+                ]
+            ]
+        );
+
         $this->add_responsive_control(
             'columns',
             [
@@ -109,8 +123,9 @@ class Main extends Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-card-grid-wrapper' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
-                    '{{WRAPPER}} .bk-card-grid-style2 .post-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
-                    
+                    '{{WRAPPER}} .bk-card-grid-style2 .card-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+                    '{{WRAPPER}} .blogkit-card-grid-style3 .blogkit-style3-bottom-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+
                 ],
             ]
         );
@@ -151,7 +166,7 @@ class Main extends Widget_Base
                 'options' => $this->get_blogkit_categories(),
                 'multiple' => true,
                 'label_block' => true,
-               
+
             ]
         );
 
@@ -176,7 +191,7 @@ class Main extends Widget_Base
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'separator' => 'after',
-                 'condition' => [
+                'condition' => [
                     'layout_style' => 'style_1',
                 ]
             ]
@@ -193,7 +208,7 @@ class Main extends Widget_Base
                 'label_off' => esc_html__('Hide', 'blogkit'),
                 'return_value' => 'yes',
                 'default' => 'yes',
-                 'condition' => [
+                'condition' => [
                     'layout_style' => 'style_1',
                 ]
             ]
@@ -236,7 +251,7 @@ class Main extends Widget_Base
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'separator' => 'before',
-                 'condition' => [
+                'condition' => [
                     'layout_style' => 'style_1',
                 ]
             ]
@@ -274,7 +289,7 @@ class Main extends Widget_Base
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'separator' => 'before',
-                 'condition' => [
+                'condition' => [
                     'layout_style' => 'style_1',
                 ]
             ]
@@ -1006,54 +1021,55 @@ class Main extends Widget_Base
 
 
         /**
-         * Style 2 controls
+         * Style 2,3 controls
          */
-         $this->start_controls_section(
+        $this->start_controls_section(
             'bk-card-grid-style2_featured_post_style',
             [
                 'label' => esc_html__('Featured Style', 'blogkit'),
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
-                    'layout_style' => 'style_2',
+                    'layout_style' => ['style_2', 'style_3'],
                 ],
             ]
         );
 
         // Featured Post Title Typography
         $this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
-			[
-				'name' => 'featured_title_typography',
-				'selector' => '{{WRAPPER}} .bk-card-grid-style2 .featured-overlay .featured-title',
-                'label' => esc_html__( 'Title Typography', 'blogkit' ),
-			]
-		);
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'featured_title_typography',
+                'label' => esc_html__('Title Typography', 'blogkit'),
+                'selector' => '{{WRAPPER}} .bk-card-grid-style2 .featured-overlay .featured-title, {{WRAPPER}} .blogkit-style3-featured-post .blogkit-style3-featured-content .blogkit-style3-title a',
+            ]
+        );
 
-         // Featured Post Title Color
-         $this->start_controls_tabs(
-	'style_tabs'
+        // Featured Post Title Color
+        $this->start_controls_tabs(
+            'style_tabs'
         );
 
         //Normal
         $this->start_controls_tab(
             'style_normal_tab',
             [
-                'label' => esc_html__( 'Normal', 'blogkit' ),
+                'label' => esc_html__('Normal', 'blogkit'),
             ]
         );
 
 
         // Color Normal
-        	$this->add_control(
-			'featured_text_color',
-			[
-				'label' => esc_html__( 'Color', 'blogkit' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .bk-card-grid-style2 .featured-overlay .featured-title a' => 'color: {{VALUE}}',
-				],
-			]
-		);
+        $this->add_control(
+            'featured_text_color',
+            [
+                'label' => esc_html__('Color', 'blogkit'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bk-card-grid-style2 .featured-overlay .featured-title a' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-style3-featured-post .blogkit-style3-featured-content .blogkit-style3-title a' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -1061,79 +1077,93 @@ class Main extends Widget_Base
         $this->start_controls_tab(
             'style_hover_tab',
             [
-                'label' => esc_html__( 'Hover', 'blogkit' ),
+                'label' => esc_html__('Hover', 'blogkit'),
             ]
         );
 
         // Color Hover
-        	$this->add_control(
-			'featured_text_color_hover',
-			[
-				'label' => esc_html__( 'Hover Color', 'blogkit' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .bk-card-grid-style2 .featured-overlay .featured-title a:hover' => 'color: {{VALUE}}',
-				],
-			]
-		);
+        $this->add_control(
+            'featured_text_color_hover',
+            [
+                'label' => esc_html__('Hover Color', 'blogkit'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bk-card-grid-style2 .featured-overlay .featured-title a:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-style3-featured-post .blogkit-style3-featured-content .blogkit-style3-title a:hover' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
 
-        	$this->add_control(
-			'hr1',
-			[
-				'type' => \Elementor\Controls_Manager::DIVIDER,
-			]
-		);
+        $this->add_control(
+            'hr1',
+            [
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
 
         // Meta Typography
         $this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
-			[
-				'name' => 'featured_meta_typography',
-                'label' => esc_html__( 'Meta Typography', 'blogkit' ),
-				'selector' => '{{WRAPPER}} .bk-card-grid-style2 .featured-overlay .meta',
-			]
-		);
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'featured_meta_typography',
+                'label' => esc_html__('Meta Typography', 'blogkit'),
+                'selector' => '{{WRAPPER}} .bk-card-grid-style2 .featured-overlay .meta, {{WRAPPER}} .blogkit-style3-featured-post .blogkit-style3-featured-content .blogkit-style3-meta .blogkit-meta-item',
+            ]
+        );
 
         // Meta Color
         $this->add_control(
-			'featured_meta_color',
-			[
-				'label' => esc_html__( 'Meta Color', 'blogkit' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#ffffff',
-				'selectors' => [
-					'{{WRAPPER}} .bk-card-grid-style2 .featured-overlay .meta' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .bk-card-grid-style2 .featured-overlay svg path' => 'fill: {{VALUE}}',
-				],
-			]
-		);
+            'featured_meta_text_color',
+            [
+                'label' => esc_html__('Text Color', 'blogkit'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bk-card-grid-style2 .featured-overlay .meta' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-style3-featured-post .blogkit-style3-featured-content .blogkit-style3-meta .blogkit-meta-item' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        // Icon Color
+         $this->add_control(
+            'featured_meta_icon_color',
+            [
+                'label' => esc_html__('Icon Color', 'blogkit'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bk-card-grid-style2 .featured-overlay svg path' => 'fill: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-card-grid-style3 .blogkit-style3-meta span svg path' => 'fill: {{VALUE}}',
+                ],
+            ]
+        );
 
         // Divider
         $this->add_control(
-			'hr4',
-			[
-				'type' => \Elementor\Controls_Manager::DIVIDER,
-			]
-		);
+            'hr4',
+            [
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
 
         // Border Radius
-        $this->add_control(
-			'featured_item_border_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'blogkit' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'selectors' => [
-					'{{WRAPPER}} .bk-card-grid-style2 .featured-post' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .bk-card-grid-style2 .featured-post .featured-thumbnail' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .bk-card-grid-style2 .featured-overlay' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+        $this->add_responsive_control(
+            'featured_item_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'blogkit'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .bk-card-grid-style2 .featured-post' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .bk-card-grid-style2 .featured-post .featured-thumbnail' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .bk-card-grid-style2 .featured-overlay' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-card-grid-style3 .blogkit-style3-featured-post .blogkit-style3-featured-thumb img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
 
         $this->end_controls_section();
@@ -1145,110 +1175,101 @@ class Main extends Widget_Base
                 'label' => esc_html__('Cards Styles', 'blogkit'),
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
-                    'layout_style' => 'style_2',
+                    'layout_style' => ['style_2', 'style_3'],
                 ],
             ]
         );
 
         //Columns Gap
-        $this->add_control(
-			'columns_gap',
-			[
-				'label' => esc_html__( 'Columns Gap', 'blogkit' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .bk-card-grid-style2 .card-grid' => 'column-gap: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
+        $this->add_responsive_control(
+            'columns_gap',
+            [
+                'label' => esc_html__('Columns Gap', 'blogkit'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .bk-card-grid-style2 .card-grid' => 'column-gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-style3-bottom-grid' => 'column-gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
         //Rows Gap
-        $this->add_control(
-			'rows_gap',
-			[
-				'label' => esc_html__( 'Rows Gap', 'blogkit' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .bk-card-grid-style2 .card-grid' => 'row-gap: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
+        $this->add_responsive_control(
+            'rows_gap',
+            [
+                'label' => esc_html__('Rows Gap', 'blogkit'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .bk-card-grid-style2 .card-grid' => 'row-gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-style3-bottom-grid' => 'row-gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
         //Divider
         $this->add_control(
-			'hr3',
-			[
-				'type' => \Elementor\Controls_Manager::DIVIDER,
-			]
-		);
+            'hr3',
+            [
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
 
 
 
 
         // Title Typography
         $this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
-			[
-				'name' => 'card_title_typography',
-                'label' => esc_html__( 'Title Typography', 'blogkit' ),
-				'selector' => '{{WRAPPER}} .bk-card-grid-style2 .card-grid .card-grid-item .card-grid-title',
-                'fields_options' => [
-                    'typography' => [
-                        'default' => 'yes',
-                    ],
-                    'font_size' => [
-                        'default' => [
-                            'size' => 18,
-                            'unit' => 'px',
-                        ],
-                    ],
-                ],
-			]
-		);
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'card_title_typography',
+                'label' => esc_html__('Title Typography', 'blogkit'),
+                'selector' => '{{WRAPPER}} .bk-card-grid-style2 .card-grid .card-grid-item .card-grid-title , {{WRAPPER}} .blogkit-style3-bottom-grid .blogkit-style3-grid-item .blogkit-grid-content .blogkit-style3-title a',
+            ]
+        );
 
 
         // Card Title Color
-         $this->start_controls_tabs(
-	'cards_style_tabs'
+        $this->start_controls_tabs(
+            'cards_style_tabs'
         );
 
         //Normal
         $this->start_controls_tab(
             'cards_style_normal_tab',
             [
-                'label' => esc_html__( 'Normal', 'blogkit' ),
+                'label' => esc_html__('Normal', 'blogkit'),
             ]
         );
 
 
         // Color Normal
-        	$this->add_control(
-			'cards_text_color',
-			[
-				'label' => esc_html__( 'Color', 'blogkit' ),
-                'default' => '#ffffff',
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .bk-card-grid-style2 .card-grid .card-grid-item .card-grid-title' => 'color: {{VALUE}}',
-				],
-			]
-		);
+        $this->add_control(
+            'cards_text_color',
+            [
+                'label' => esc_html__('Color', 'blogkit'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bk-card-grid-style2 .card-grid .card-grid-item .card-grid-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-style3-bottom-grid .blogkit-style3-grid-item .blogkit-grid-content .blogkit-style3-title a' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -1256,21 +1277,22 @@ class Main extends Widget_Base
         $this->start_controls_tab(
             'cards_style_hover_tab',
             [
-                'label' => esc_html__( 'Hover', 'blogkit' ),
+                'label' => esc_html__('Hover', 'blogkit'),
             ]
         );
 
         // Color Hover
-        	$this->add_control(
-			'cards_text_color_hover',
-			[
-				'label' => esc_html__( 'Hover Color', 'blogkit' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .bk-card-grid-style2 .card-grid .card-grid-item .card-grid-title:hover' => 'color: {{VALUE}}',
-				],
-			]
-		);
+        $this->add_control(
+            'cards_text_color_hover',
+            [
+                'label' => esc_html__('Hover Color', 'blogkit'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bk-card-grid-style2 .card-grid .card-grid-item .card-grid-title:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-style3-bottom-grid .blogkit-style3-grid-item .blogkit-grid-content .blogkit-style3-title a:hover' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -1279,60 +1301,76 @@ class Main extends Widget_Base
 
         //Divider
         $this->add_control(
-			'hr2',
-			[
-				'type' => \Elementor\Controls_Manager::DIVIDER,
-			]
-		);
+            'hr2',
+            [
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
 
         // Meta Typography
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'card_meta_typography',
-                'label' => esc_html__( 'Meta Typography', 'blogkit' ),
-                'selector' => '{{WRAPPER}} .bk-card-grid-style2 .card-grid .card-grid-item .date',
+                'label' => esc_html__('Meta Typography', 'blogkit'),
+                'selector' => '{{WRAPPER}} .bk-card-grid-style2 .card-grid .card-grid-item .date , {{WRAPPER}} .blogkit-style3-bottom-grid .blogkit-style3-grid-item .blogkit-grid-content .blogkit-time',
             ]
         );
 
         // Date Color
-        	$this->add_control(
-			'cards_date_color',
-			[
-				'label' => esc_html__( 'Date Color', 'blogkit' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .bk-card-grid-style2 .card-grid .card-grid-item .date' => 'color: {{VALUE}}',
-				],
-			]
-		);
+        $this->add_control(
+            'cards_date_color',
+            [
+                'label' => esc_html__('Color', 'blogkit'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bk-card-grid-style2 .card-grid .card-grid-item .date' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-style3-bottom-grid .blogkit-style3-grid-item .blogkit-grid-content .blogkit-time' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+        
+        // Icon Color 
+        $this->add_control(
+            'cards_icon_color',
+            [
+                'label' => esc_html__('Icon Color', 'blogkit'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'condition' => [
+                    'layout_style' => 'style_3',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .blogkit-style3-bottom-grid .blogkit-style3-grid-item .blogkit-grid-content .blogkit-time svg path' => 'fill: {{VALUE}}',
+                ],
+
+            ]
+        );
 
         //Divider
         $this->add_control(
-			'hr5',
-			[
-				'type' => \Elementor\Controls_Manager::DIVIDER,
-			]
-		);
+            'hr5',
+            [
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
 
         // Border Radius
-        	$this->add_control(
-			'card_grid_item_border_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'blogkit' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'selectors' => [
-					'{{WRAPPER}} .bk-card-grid-style2 .card-grid-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .bk-card-grid-style2 .card-grid-item img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .bk-card-grid-style2 .card-grid-item:hover::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+        $this->add_responsive_control(
+            'card_grid_item_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'blogkit'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .bk-card-grid-style2 .card-grid-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .bk-card-grid-style2 .card-grid-item img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .bk-card-grid-style2 .card-grid-item:hover::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-style3-bottom-grid .blogkit-style3-grid-item .blogkit-grid-thumb img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
 
-
-        
 
         $this->end_controls_section();
 
@@ -1618,28 +1656,32 @@ class Main extends Widget_Base
         return $cats;
     }
 
-        /**
+    /**
      * Render frontend output.
      */
-protected function render()
-{
-    $settings = $this->get_settings_for_display();
+    protected function render()
+    {
+        $settings = $this->get_settings_for_display();
 
-    $layout_style = $settings['layout_style'] ?? 'style_1'; // fallback to style_1 if not set
+        $layout_style = $settings['layout_style'] ?? 'style_1'; // fallback to style_1 if not set
 
-    switch ($layout_style) {
-        case 'style_1':
-            include_once 'style1.php';
-            break;
+        switch ($layout_style) {
+            case 'style_1':
+                include_once 'style1.php';
+                break;
 
-        case 'style_2':
-            include_once 'style2.php';
-            break;
+            case 'style_2':
+                include_once 'style2.php';
+                break;
+            
+            case 'style_3':
+                include_once 'style3.php';
+                break;
 
-        default:
-            // Optional: fallback style
-            include_once 'style1.php';
-            break;
+            default:
+                // Optional: fallback style
+                include_once 'style1.php';
+                break;
+        }
     }
-}
 }
