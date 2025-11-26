@@ -57,6 +57,7 @@ class Assets
     public function enqueue_scripts()
     {
         // General scripts
+        wp_enqueue_script('swiper-bundle-js', BLOGKIT_ELEMENTOR_ASSETS . "/js/swiper-bundle.min.js", ['jquery'], BLOGKIT_VERSION, true);
         wp_register_script('blogkit-main', BLOGKIT_ELEMENTOR_ASSETS . "/js/main.js", ['jquery'], BLOGKIT_VERSION, true);
     }
 
@@ -70,6 +71,7 @@ class Assets
         wp_enqueue_style('blogkit-elementor-style', BLOGKIT_ELEMENTOR_ASSETS . "/css/style.css", [], BLOGKIT_VERSION);
         wp_register_style('blogkit-style-2', BLOGKIT_ELEMENTOR_ASSETS . "/css/style2.css", [], BLOGKIT_VERSION);
         wp_register_style('blogkit-responsive', BLOGKIT_ELEMENTOR_ASSETS . "/css/responsive.css", [], BLOGKIT_VERSION);
+        wp_enqueue_style('swiper-bundle-css', BLOGKIT_ELEMENTOR_ASSETS . "/css/swiper-bundle.min.css", [], BLOGKIT_VERSION);
     }
 
 

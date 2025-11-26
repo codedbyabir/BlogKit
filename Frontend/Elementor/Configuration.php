@@ -199,6 +199,7 @@ class Configuration
             'blogkit_post_card' => 'PostCard\Main',
             'blogkit_featured_grid' => 'FeaturedGrid\Main',
             'smart_posts_list' => 'SmartPostsList\Main',
+            'taxonomy_slider' => 'TaxonomySlider\Main',
 
         ];
 
