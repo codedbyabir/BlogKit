@@ -24,7 +24,7 @@ class Main extends Widget_Base {
     }
 
     protected function register_controls() {
-        $this->start_controls_section('content', ['label'=>'Content']);
+        $this->start_controls_section('slides', ['label'=>'Slides']);
 
         // Slider Settings Desktop
         $this->add_control('slides_per_desktop', [
@@ -127,10 +127,46 @@ class Main extends Widget_Base {
 				'type' => \Elementor\Controls_Manager::DIVIDER,
 			]
 		);
-        
+         $this->end_controls_section();
+
+
+        $this->start_controls_section(
+			'style_section',
+			[
+				'label' => esc_html__( 'Style', 'blogkit' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+        // Add style controls here as needed
+        //Background Color
+        	$this->add_control(
+			'slides_background_color',
+			[
+				'label' => esc_html__( 'Background Color', 'blogkit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .taxonomy-slider .taxonomy-item .image-box' => 'background-color: {{VALUE}}',
+				],
+			]
+		);
+        //Border Radius
+        $this->add_control(
+			'slides_border_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'blogkit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'selectors' => [
+					'{{WRAPPER}} .taxonomy-slider .taxonomy-item .image-box' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
 
         $this->end_controls_section();
     }
+
+
+
 
     protected function render() {
         include 'RenderView.php';
