@@ -18,7 +18,8 @@ if (!$terms) {
 }
 
 ?>
-<div class="swiper">
+<div>
+    <div class="swiper">
     <div class="slider-wrapper taxonomy-slider-wrapper">
     <div class="swiper-wrapper taxonomy-slider">
         <?php foreach ($terms as $term):
@@ -37,8 +38,15 @@ if (!$terms) {
         <?php endforeach; ?>
     </div>
     <div class="swiper-pagination"></div>
-    <div class="swiper-slide-button swiper-button-prev"></div>
-    <div class="swiper-slide-button swiper-button-next"></div>
+</div>
+</div>
+<div>
+    <div class="swiper-slide-button taxonomy-slider-button-prev">
+        <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#ff0000"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>
+    </div>
+    <div class="swiper-slide-button taxonomy-slider-button-next">
+        <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#ff0000"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg>
+    </div>
 </div>
 </div>
 <script>
@@ -73,8 +81,8 @@ if (!$terms) {
 
         // find pagination & nav elements scoped to this widget instance
         var paginationEl = container.querySelector('.swiper-pagination') || root.querySelector('.swiper-pagination');
-        var nextEl = container.querySelector('.swiper-button-next') || root.querySelector('.swiper-button-next');
-        var prevEl = container.querySelector('.swiper-button-prev') || root.querySelector('.swiper-button-prev');
+        var nextEl = container.querySelector('.taxonomy-slider-button-next') || root.querySelector('.taxonomy-slider-button-next');
+        var prevEl = container.querySelector('.taxonomy-slider-button-prev') || root.querySelector('.taxonomy-slider-button-prev');
 
         // Ensure container is positioned so absolutely-positioned pagination is visible
         var computed = window.getComputedStyle(container);
