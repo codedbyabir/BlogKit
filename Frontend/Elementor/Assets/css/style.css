@@ -949,10 +949,11 @@
 
 .swiper-wrapper {
   align-items: flex-start;
-  margin-bottom: 50px !important;
+  margin-bottom: 50px;
 }
 .slider-wrapper {
   overflow: hidden;
+  /* padding: 0px 20px; */
   
 }
 
@@ -977,8 +978,8 @@
   border-radius: 10px;
 }
 .taxonomy-slider .taxonomy-item .image-box img{
-  width: 100px;
-  height: 100px;
+  /* width: 100px;
+  height: 100px; */
   object-fit: contain;
 }
 
@@ -997,9 +998,12 @@
 .taxonomy-slider-button-next,
 .taxonomy-slider-button-prev {
     position: absolute;
-    top: var(--swiper-navigation-top-offset, 50%);
-    /* width: calc(var(--swiper-navigation-size)/ 44 * 27); */
-    /* height: var(--swiper-navigation-size); */
+    top: var(--swiper-navigation-top-offset, 35%);
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 1px solid #35B322;
+    box-shadow: 0px 0px 50px 0px #0000001A;
     margin-top: calc(0px - (var(--swiper-navigation-size)/ 2));
     z-index: 10;
     cursor: pointer;
@@ -1007,6 +1011,12 @@
     align-items: center;
     justify-content: center;
     color: var(--swiper-navigation-color, var(--swiper-theme-color))
+}
+.taxonomy-slider-button-next:hover, .taxonomy-slider-button-prev:hover , .taxonomy-slider-button-next:hover svg path , .taxonomy-slider-button-prev:hover svg path {
+    background-color: #35B322;
+    color: #ffffff;
+    fill: #ffffff;
+    /* transition: 0.3s ease; */
 }
 .taxonomy-slider-button-next{
     right: 10px;
@@ -1016,14 +1026,15 @@
 }
 
 .slider-wrapper .swiper-pagination-bullet {
-  background: #000000;
+  background: #D9D9D9;
   height: 13px;
   width: 13px;
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .slider-wrapper .swiper-pagination-bullet-active {
   opacity: 1;
+  background: #35B322;
 }
 
 .slider-wrapper .swiper-slide-button {

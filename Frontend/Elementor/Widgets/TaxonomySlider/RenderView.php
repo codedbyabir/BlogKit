@@ -1,4 +1,6 @@
 <?php
+
+use BlogKit\Admin\Assets\SVG;
 if (!defined('ABSPATH'))
     exit; // Exit if accessed directly
 
@@ -18,110 +20,127 @@ if (!$terms) {
 }
 
 ?>
-<div>
+<div class="blogkit-wrapper">
     <div class="swiper">
-    <div class="slider-wrapper taxonomy-slider-wrapper">
-    <div class="swiper-wrapper taxonomy-slider">
-        <?php foreach ($terms as $term):
-            $img = get_term_meta($term->term_id, 'cat-image', true);
-            ?>
-            <div class="swiper-slide taxonomy-item">
-                <div class="image-box">
-                    <?php if ($img): ?>
-                        <img src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($term->name); ?>">
-                    <?php else: ?>
-                        <div class="no-image">No Image</div>
-                    <?php endif; ?>
-                </div>
-                <div class="taxonomy-name"><?php echo esc_html($term->name); ?></div>
+        <div class="slider-wrapper taxonomy-slider-wrapper">
+            <div class="swiper-wrapper taxonomy-slider">
+                <?php foreach ($terms as $term):
+                    $img = get_term_meta($term->term_id, 'cat-image', true);
+                    ?>
+                    <div class="swiper-slide taxonomy-item">
+                        <a href="<?php echo get_category_link($term->term_id); ?>">
+                            <div class="image-box">
+                            <?php if ($img): ?>
+                                <img src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($term->name); ?>">
+                            <?php else: ?>
+                                <div class="no-image">No Image</div>
+                            <?php endif; ?>
+                        </div>
+                        </a>
+                        <div class="taxonomy-name"><?php echo esc_html($term->name); ?></div>
+                    </div>
+                <?php endforeach; ?>
             </div>
-        <?php endforeach; ?>
+
+<div class="swiper-pagination"></div>
+
+        </div>
     </div>
-    <div class="swiper-pagination"></div>
-</div>
-</div>
-<div>
-    <div class="swiper-slide-button taxonomy-slider-button-prev">
-        <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#ff0000"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>
-    </div>
-    <div class="swiper-slide-button taxonomy-slider-button-next">
-        <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#ff0000"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg>
-    </div>
-</div>
+
+            
+
+            <div class="taxonomy-slider-button-prev" role="button" aria-label="<?php echo esc_attr__('Previous slide','blogkit'); ?>">
+                <?php echo SVG::arrow_left_alt(); ?>
+</svg>
+
+            </div>
+            <div class="taxonomy-slider-button-next" role="button" aria-label="<?php echo esc_attr__('Next slide','blogkit'); ?>">
+                <?php echo SVG::arrow_right_alt(); ?>
+</svg>
+
+            </div>
 </div>
 <script>
 (function(){
     var script = document.currentScript;
 
-    function findClosestSwiper(el){
-        while (el && el !== document.documentElement) {
-            if (el.classList && el.classList.contains('swiper')) return el;
-            el = el.parentElement;
+    // Scope to the nearest widget wrapper (works even if pagination/nav are outside slider-wrapper)
+    var widgetRoot = script.closest('.blogkit-wrapper') || script.closest('.swiper') || document.querySelector('.blogkit-wrapper') || document.querySelector('.swiper');
+    if (!(widgetRoot instanceof Element)) return;
+
+    function findContainer() {
+        // Prefer explicit slider wrapper, fall back to .swiper containing .swiper-wrapper
+        var c = widgetRoot.querySelector('.slider-wrapper') || widgetRoot.querySelector('.swiper') || widgetRoot;
+        if (!(c instanceof Element)) return null;
+        if (!c.querySelector('.swiper-wrapper')) {
+            var alt = widgetRoot.querySelector('.swiper') || document.querySelector('.swiper');
+            if (alt && alt.querySelector('.swiper-wrapper')) c = alt;
         }
-        return document.querySelector('.swiper');
+        return c;
     }
 
-    var root = findClosestSwiper(script);
-
-    // abort if we couldn't find a valid root element
-    if (!(root instanceof Element)) return;
+    var container = findContainer();
+    if (!(container instanceof Element)) return;
 
     function init(){
         if (typeof Swiper === 'undefined') {
             return setTimeout(init, 50);
         }
 
-        // prefer the inner slider-wrapper as the Swiper container if present
-        var container = root.querySelector('.slider-wrapper') || root;
-        if (!(container instanceof Element)) return;
+        // Find controls within the same widget wrapper (works even if controls are outside slider-wrapper)
+        var paginationEl = widgetRoot.querySelector('.swiper-pagination');
+        var nextEl = widgetRoot.querySelector('.taxonomy-slider-button-next') || widgetRoot.querySelector('.swiper-button-next');
+        var prevEl = widgetRoot.querySelector('.taxonomy-slider-button-prev') || widgetRoot.querySelector('.swiper-button-prev');
 
-        // require a wrapper with slides
-        var wrapper = container.querySelector('.swiper-wrapper');
-        if (!wrapper) return;
-
-        // find pagination & nav elements scoped to this widget instance
-        var paginationEl = container.querySelector('.swiper-pagination') || root.querySelector('.swiper-pagination');
-        var nextEl = container.querySelector('.taxonomy-slider-button-next') || root.querySelector('.taxonomy-slider-button-next');
-        var prevEl = container.querySelector('.taxonomy-slider-button-prev') || root.querySelector('.taxonomy-slider-button-prev');
-
-        // Ensure container is positioned so absolutely-positioned pagination is visible
+        // ensure container is positioned so controls/pagination are visible
         var computed = window.getComputedStyle(container);
         if (computed.position === 'static') {
             container.style.position = 'relative';
         }
 
         new Swiper(container, {
-            loop: true,
+            loop: <?php echo ($settings['infinite_loop'] ?? 'yes') === 'yes' ? 'true' : 'false'; ?>,
             grabCursor: true,
-            spaceBetween: <?php echo (int) ($settings['space_between'] ?? 30); ?>,
-            // pass Elements (not selector strings) to ensure proper scoping
-
             //Autoplay
-            autoplay: <?php echo ($settings['autoplay'] ?? 'yes') === 'yes' ? '{ delay: 2500, disableOnInteraction: false }' : 'false'; ?>,
-
-            //Pagination
+            autoplay: {
+                delay: <?php echo (int) ($settings['autoplay_speed'] ?? 2500); ?>,
+                pauseOnMouseEnter: <?php echo ($settings['pause_on_hover'] ?? 'yes') === 'yes' ? 'true' : 'false'; ?>, // This enables pausing on hover
+                pauseOnInteraction: <?php echo ($settings['pause_on_interaction'] ?? 'yes') === 'yes' ? 'true' : 'false'; ?>, // This enables pausing on interaction
+      },
             pagination: {
                 el: paginationEl,
                 clickable: true,
                 dynamicBullets: true
             },
-            //Navigation
             navigation: {
                 nextEl: nextEl,
                 prevEl: prevEl,
             },
             breakpoints: {
-                0:    { slidesPerView: <?php echo (int) ($settings['slides_per_mobile'] ?? 2); ?> },
-                768:  { slidesPerView: <?php echo (int) ($settings['slides_per_tablet'] ?? 3); ?> },
-                1024: { slidesPerView: <?php echo (int) ($settings['slides_per_desktop'] ?? 6); ?> }
+                0:    { slidesPerView: <?php echo (int) ($settings['slides_per_mobile'] ?? 2); ?>,
+                    <?php if (isset($settings['space_between_mobile'])): ?> spaceBetween: <?php echo (int) ($settings['space_between_mobile']); ?>, <?php endif; ?>
+                    
+                 },
+                768:  { slidesPerView: <?php echo (int) ($settings['slides_per_tablet'] ?? 3); ?>,
+                    <?php if (isset($settings['space_between_tablet'])): ?> spaceBetween: <?php echo (int) ($settings['space_between_tablet']); ?>, <?php endif; ?>
+                    
+                 },
+                1024: { slidesPerView: <?php echo (int) ($settings['slides_per_desktop'] ?? 6); ?>,
+                    <?php if (isset($settings['space_between_desktop'])): ?> spaceBetween: <?php echo (int) ($settings['space_between_desktop']); ?>, <?php endif; ?>
+                    
+                 }
             }
         });
+        
     }
+    
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
+
+
 })();
 </script>
