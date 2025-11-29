@@ -978,8 +978,8 @@
   border-radius: 10px;
 }
 .taxonomy-slider .taxonomy-item .image-box img{
-  /* width: 100px;
-  height: 100px; */
+  width: 200px;
+  height: auto;
   object-fit: contain;
 }
 

@@ -14,6 +14,22 @@ $terms = get_terms( [
     'exclude'    => $exclude_ids,
 ] );
 
+// Autoplay settings
+$autoplay_enabled = ( ($settings['autoplay'] ?? 'yes') === 'yes' );
+$raw_delay = $settings['autoplay_speed'] ?? 2500;
+$delay = is_numeric( $raw_delay ) ? (int) $raw_delay : 2500;
+// clamp delay to sensible range (0..60000 ms)
+$delay = max(0, min(60000, $delay));
+
+$autoplay_js = $autoplay_enabled
+    ? [
+        'delay' => $delay,
+        'disableOnInteraction' => false,
+        'pauseOnMouseEnter' => ( ($settings['pause_on_hover'] ?? 'yes') === 'yes' ),
+        'pauseOnInteraction' => ( ($settings['pause_on_interaction'] ?? 'yes') === 'yes' ),
+      ]
+    : false;
+
 if (!$terms) {
     echo '<p>No categories found.</p>';
     return;
@@ -102,20 +118,19 @@ if (!$terms) {
             loop: <?php echo ($settings['infinite_loop'] ?? 'yes') === 'yes' ? 'true' : 'false'; ?>,
             grabCursor: true,
             //Autoplay
-            autoplay: {
-                delay: <?php echo (int) ($settings['autoplay_speed'] ?? 2500); ?>,
-                pauseOnMouseEnter: <?php echo ($settings['pause_on_hover'] ?? 'yes') === 'yes' ? 'true' : 'false'; ?>, // This enables pausing on hover
-                pauseOnInteraction: <?php echo ($settings['pause_on_interaction'] ?? 'yes') === 'yes' ? 'true' : 'false'; ?>, // This enables pausing on interaction
-      },
+            autoplay: <?php echo wp_json_encode( $autoplay_js ); ?>,
+            // Pagination
             pagination: {
                 el: paginationEl,
                 clickable: true,
                 dynamicBullets: true
             },
+            // Navigation arrows
             navigation: {
                 nextEl: nextEl,
                 prevEl: prevEl,
             },
+            // breakpoints
             breakpoints: {
                 0:    { slidesPerView: <?php echo (int) ($settings['slides_per_mobile'] ?? 2); ?>,
                     <?php if (isset($settings['space_between_mobile'])): ?> spaceBetween: <?php echo (int) ($settings['space_between_mobile']); ?>, <?php endif; ?>
