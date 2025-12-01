@@ -139,3 +139,110 @@ if (!function_exists('blogkit_initialize')) {
 
     blogkit_initialize();
 }
+
+
+
+// Enable media uploader on Category add/edit pages
+function blogkit_enqueue_category_media($hook) {
+    if ($hook === 'edit-tags.php' || $hook === 'term.php') {
+        if (isset($_GET['taxonomy']) && $_GET['taxonomy'] === 'category') {
+            wp_enqueue_media();
+            wp_enqueue_script('jquery');
+        }
+    }
+}
+add_action('admin_enqueue_scripts', 'blogkit_enqueue_category_media');
+
+// Add Image Field to "Add New Category"
+function blogkit_add_category_image_field() { ?>
+    <div class="form-field">
+        <label for="cat-image">Category Image</label>
+        <input type="text" name="cat-image" id="cat-image" value="" />
+        <button style="margin-top: 10px;" class="button upload-cat-image">Upload Image</button>
+    </div>
+
+    <script>
+    jQuery(function($){
+        var mediaFrame;
+        $(document).on('click', '.upload-cat-image', function(e){
+            e.preventDefault();
+            var $input = $(this).prev('input');
+
+            if (mediaFrame) { mediaFrame.open(); return; }
+
+            mediaFrame = wp.media({
+                title: 'Select Category Image',
+                button: { text: 'Use Image' },
+                multiple: false
+            });
+
+            mediaFrame.on('select', function(){
+                var attachment = mediaFrame.state().get('selection').first().toJSON();
+                $input.val(attachment.url);
+            });
+
+            mediaFrame.open();
+        });
+    });
+    </script>
+<?php }
+add_action('category_add_form_fields', 'blogkit_add_category_image_field');
+
+// Add Image Field to "Edit Category"
+function blogkit_edit_category_image_field($term) {
+    $value = get_term_meta($term->term_id, 'cat-image', true); ?>
+    <tr class="form-field">
+        <th scope="row"><label for="cat-image">Category Image</label></th>
+        <td>
+            <input type="text" name="cat-image" id="cat-image" value="<?php echo esc_attr($value); ?>" />
+            <button style="margin-top: 10px;" class="button upload-cat-image">Upload Image</button>
+            <?php if ($value): ?>
+                <br><img src="<?php echo esc_url($value); ?>" style="max-width:120px;margin-top:10px;" />
+            <?php endif; ?>
+        </td>
+    </tr>
+
+    <script>
+    jQuery(function($){
+        var mediaFrame;
+        $(document).on('click', '.upload-cat-image', function(e){
+            e.preventDefault();
+            var $input = $(this).prev('input');
+
+            if (mediaFrame) { mediaFrame.open(); return; }
+
+            mediaFrame = wp.media({
+                title: 'Select Category Image',
+                button: { text: 'Use Image' },
+                multiple: false
+            });
+
+            mediaFrame.on('select', function(){
+                var attachment = mediaFrame.state().get('selection').first().toJSON();
+                $input.val(attachment.url);
+
+                // show preview
+                var $img = $(this).siblings('img');
+                if ($img.length) {
+                    $img.attr('src', attachment.url);
+                } else {
+                    $('<br><img style="max-width:120px;margin-top:10px;">').insertAfter($input).attr('src', attachment.url);
+                }
+            }.bind(this));
+
+            mediaFrame.open();
+        });
+    });
+    </script>
+<?php }
+add_action('category_edit_form_fields', 'blogkit_edit_category_image_field');
+
+// Save Image URL
+function blogkit_save_category_image($term_id) {
+    if (isset($_POST['cat-image'])) {
+        update_term_meta($term_id, 'cat-image', sanitize_text_field($_POST['cat-image']));
+    }
+}
+add_action('created_category', 'blogkit_save_category_image');
+add_action('edited_category', 'blogkit_save_category_image');
+

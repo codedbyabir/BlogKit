@@ -9,6 +9,7 @@ use Elementor\Icons_Manager;
  */
 
 $settings = $this->get_settings_for_display();
+$title_tag = $settings['title_tag'];
 
 // Pagination setup
 $paged = 1;
@@ -36,70 +37,48 @@ $query = new WP_Query($args);
 
 // check if there are posts to display
 if ($query->have_posts()):
-    echo '<div class="blogkit-post-card-grid-wrapper blogkit-grid-columns">';
+    echo '<div class="blogkit-smart-posts-list-wrapper">';
 
     while ($query->have_posts()):
         $query->the_post();
         ?>
         <!-- single blog -->
-        <div class="blogkit-post-card">
+        <div class="blogkit-smart-posts-list-item">
             <!-- Thumbnail -->
             <?php if (has_post_thumbnail()): ?>
-                <a class="blogkit-post-card-thumbnail" href="<?php the_permalink(); ?>">
+                <div class="blogkit-smart-posts-thumb">
                     <?php the_post_thumbnail('large'); ?>
-                </a>
+                </div>
+
             <?php else: ?>
                 <img src="<?php echo esc_url(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png'); ?>"
                     alt="<?php the_title_attribute(); ?>">
             <?php endif; ?>
 
             <!-- Content   -->
-            <div class="blogkit-post-card-content">
-                <!-- Category Button -->
+            <div class="blogkit-smart-posts-content">
+
+                <!-- Rendering post title -->
                 <?php
-                if ('yes' === $settings['show_category']) {
-                    $categories = get_the_category();
-                    if ($categories && !is_wp_error($categories)) {
-                        $first_category = $categories[0];
-                        // Getting the first category name 
-                        $category_link = get_category_link($first_category->term_id);
-                        echo '<a href="' . esc_url($category_link) . '" class="blogkit-post-card-category">' . esc_html($first_category->name) . '</a>';
-                    }
+
+
+                echo '<a href="' . get_the_permalink() . '"><' . $title_tag . ' class="blogkit-smart-posts-title">' . get_the_title() . '</' . $title_tag . '></a>';
+
+                // Displaying Human Different Time
+                if ('yes' === $settings['show_humanize_date']) {
+                    echo '<span class="blogkit-smart-posts-date">' . ($settings['layout_style'] === 'style_3' ? SVG::Calender() : '') . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago </span>';
+                } else {
+                    echo '<span class="blogkit-smart-posts-date">' . ($settings['layout_style'] === 'style_3' ? SVG::Calender() : '') . get_the_date('M j, Y') . '<span>';
                 }
-
-
-                // Rendering post title
-        
-                $title_tag = $settings['title_tag'];
-                echo '<a href="' . get_the_permalink() . '"><' . $title_tag . ' class="blogkit-post-card-title">' . get_the_title() . '</' . $title_tag . '></a>';
-
                 ?>
 
-                <div class="blogkit-post-card-meta">
-                    <span><strong>By</strong> <?php the_author(); ?></span>
 
-                    <?php
-
-                    // Displaying Human Different Time
-                    if ('yes' === $settings['show_humanize_date']) {
-                        echo '<span>' . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago </span>';
-                    } else {
-                        echo '<span>' . get_the_date('M j, Y') . '<span>';
-                    }
-                    ?>
-
-                </div>
-                <div class="blogkit-post-card-comments">
-                    <?php echo SVG::Comments();
-                    comments_number('No Comments', '1', '%'); ?>
-                </div>
             </div>
         </div>
         <?php
     endwhile;
 
-    echo '</div>'; // .blogkit-card-grid-wrapper
-
+    echo '</div>'; // End smart-posts-list-wrapper
     // Pagination
 
     if ('yes' === $settings['show_pagination']) {

@@ -2,6 +2,7 @@
 
 
 $settings = $this->get_settings_for_display();
+$random_color_switch = $settings['category_random_color_switch'];
 
 
 // Posts Query 
@@ -30,6 +31,8 @@ while ($query->have_posts()) {
     $category_name = !empty($category_obj[0]) ? $category_obj[0]->name : '';
     $category_url = !empty($category_obj[0]) ? get_category_link($category_obj[0]->term_id) : '';
 
+
+
     $posts[] = [
         'title' => get_the_title(),
         'link' => get_permalink(),
@@ -38,15 +41,22 @@ while ($query->have_posts()) {
         'date' => get_the_date(),
         'category' => $category_name,
         'category_url' => $category_url,
+        'random_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)),
     ];
 }
+
 wp_reset_postdata();
+
+// helper: detect truthy switch values
+$use_random_global = !empty($settings['category_random_color_switch']) && in_array($settings['category_random_color_switch'], ['yes', 'true', 1, '1'], true);
 ?>
 
-<div class="blogkit-fg-custom-post">
+<div class="blogkit-featured-grid grid-style1">
     <!-- Left Large Post -->
     <?php if (!empty($posts[0])):
-        $p = $posts[0]; ?>
+        $p = $posts[0];
+        $cat_style = ($use_random_global && !empty($p['random_color'])) ? ' style="background-color: ' . esc_attr($p['random_color']) . ';"' : '';
+        ?>
         <div class="blogkit-fg-post-card blogkit-fg-post-card--large blogkit-fg-post__left"
             style="background-image: url('<?php echo esc_url($p['image']); ?>')">
 
@@ -54,9 +64,11 @@ wp_reset_postdata();
 
                 <!-- Category -->
                 <?php if ('yes' === $settings['show_category'] && !empty($p['category'])): ?>
-                    <a href="<?php echo esc_html($p['category_url']); ?>"
-                        class="blogkit-fg-post-card__cat"><?php echo esc_html($p['category']); ?></a>
+                    <a href="<?php echo esc_url($p['category_url']); ?>" class="blogkit-fg-post-card__cat" <?php echo $cat_style; ?>><?php echo esc_html($p['category']); ?></a>
                 <?php endif; ?>
+
+
+
 
                 <!-- Title -->
                 <?php if ('yes' === $settings['show_title']): ?>
@@ -78,15 +90,16 @@ wp_reset_postdata();
     <div class="blogkit-fg-post__right">
         <!-- Top Right Wide Post -->
         <?php if (!empty($posts[1])):
-            $p = $posts[1]; ?>
+            $p = $posts[1];
+            $cat_style = ($use_random_global && !empty($p['random_color'])) ? ' style="background-color: ' . esc_attr($p['random_color']) . ';"' : '';
+            ?>
             <div class="blogkit-fg-post-card blogkit-fg-post-card--wide"
                 style="background-image: url('<?php echo esc_url($p['image']); ?>')">
                 <div class="blogkit-fg-post-card__overlay">
 
                     <!-- Category -->
                     <?php if ('yes' === $settings['show_category'] && !empty($p['category'])): ?>
-                        <a href="<?php echo esc_html($p['category_url']); ?>"
-                            class="blogkit-fg-post-card__cat"><?php echo esc_html($p['category']); ?></a>
+                        <a href="<?php echo esc_url($p['category_url']); ?>" class="blogkit-fg-post-card__cat" <?php echo $cat_style; ?>><?php echo esc_html($p['category']); ?></a>
                     <?php endif; ?>
 
                     <!-- Title -->
@@ -109,15 +122,16 @@ wp_reset_postdata();
         <div class="blogkit-fg-post__bottom">
             <?php for ($i = 2; $i <= 3; $i++):
                 if (!empty($posts[$i])):
-                    $p = $posts[$i]; ?>
+                    $p = $posts[$i];
+                    $cat_style = ($use_random_global && !empty($p['random_color'])) ? ' style="background-color: ' . esc_attr($p['random_color']) . ';"' : '';
+                    ?>
                     <div class="blogkit-fg-post-card blogkit-fg-post-card--small"
                         style="background-image: url('<?php echo esc_url($p['image']); ?>')">
                         <div href="<?php echo esc_url($p['link']); ?>" class="blogkit-fg-post-card__overlay">
 
                             <!-- Category -->
                             <?php if ('yes' === $settings['show_category'] && !empty($p['category'])): ?>
-                                <a href="<?php echo esc_html($p['category_url']); ?>"
-                                    class="blogkit-fg-post-card__cat"><?php echo esc_html($p['category']); ?></a>
+                                <a href="<?php echo esc_url($p['category_url']); ?>" class="blogkit-fg-post-card__cat" <?php echo $cat_style; ?>><?php echo esc_html($p['category']); ?></a>
                             <?php endif; ?>
 
                             <!-- Title -->
