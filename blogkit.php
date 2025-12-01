@@ -143,7 +143,7 @@ if (!function_exists('blogkit_initialize')) {
 
 
 // Enable media uploader on Category add/edit pages
-function tsw_enqueue_category_media($hook) {
+function blogkit_enqueue_category_media($hook) {
     if ($hook === 'edit-tags.php' || $hook === 'term.php') {
         if (isset($_GET['taxonomy']) && $_GET['taxonomy'] === 'category') {
             wp_enqueue_media();
@@ -151,14 +151,14 @@ function tsw_enqueue_category_media($hook) {
         }
     }
 }
-add_action('admin_enqueue_scripts', 'tsw_enqueue_category_media');
+add_action('admin_enqueue_scripts', 'blogkit_enqueue_category_media');
 
 // Add Image Field to "Add New Category"
-function tsw_add_category_image_field() { ?>
+function blogkit_add_category_image_field() { ?>
     <div class="form-field">
         <label for="cat-image">Category Image</label>
         <input type="text" name="cat-image" id="cat-image" value="" />
-        <button class="button upload-cat-image">Upload Image</button>
+        <button style="margin-top: 10px;" class="button upload-cat-image">Upload Image</button>
     </div>
 
     <script>
@@ -186,16 +186,16 @@ function tsw_add_category_image_field() { ?>
     });
     </script>
 <?php }
-add_action('category_add_form_fields', 'tsw_add_category_image_field');
+add_action('category_add_form_fields', 'blogkit_add_category_image_field');
 
 // Add Image Field to "Edit Category"
-function tsw_edit_category_image_field($term) {
+function blogkit_edit_category_image_field($term) {
     $value = get_term_meta($term->term_id, 'cat-image', true); ?>
     <tr class="form-field">
         <th scope="row"><label for="cat-image">Category Image</label></th>
         <td>
             <input type="text" name="cat-image" id="cat-image" value="<?php echo esc_attr($value); ?>" />
-            <button class="button upload-cat-image">Upload Image</button>
+            <button style="margin-top: 10px;" class="button upload-cat-image">Upload Image</button>
             <?php if ($value): ?>
                 <br><img src="<?php echo esc_url($value); ?>" style="max-width:120px;margin-top:10px;" />
             <?php endif; ?>
@@ -235,14 +235,14 @@ function tsw_edit_category_image_field($term) {
     });
     </script>
 <?php }
-add_action('category_edit_form_fields', 'tsw_edit_category_image_field');
+add_action('category_edit_form_fields', 'blogkit_edit_category_image_field');
 
 // Save Image URL
-function tsw_save_category_image($term_id) {
+function blogkit_save_category_image($term_id) {
     if (isset($_POST['cat-image'])) {
         update_term_meta($term_id, 'cat-image', sanitize_text_field($_POST['cat-image']));
     }
 }
-add_action('created_category', 'tsw_save_category_image');
-add_action('edited_category', 'tsw_save_category_image');
+add_action('created_category', 'blogkit_save_category_image');
+add_action('edited_category', 'blogkit_save_category_image');
 
