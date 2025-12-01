@@ -40,48 +40,45 @@ if ($query->have_posts()):
     $featured_post = array_shift($posts); // first post
     ?>
 
-    <section class="blogkit-card-grid-style3">
+    <section class="blogkit-card-grid grid-style3">
         <!-- Featured Post -->
         <?php if ($featured_post):
             ?>
-            <div class="blogkit-style3-featured-post">
-                <div class="blogkit-style3-featured-thumb">
+            <div class="blogkit-featured-post">
+                <div class="blogkit-featured-thumb">
                     <a href="<?php echo get_permalink($featured_post); ?>">
                         <?php echo get_the_post_thumbnail($featured_post, 'large'); ?>
                     </a>
                 </div>
 
-                <div class="blogkit-style3-featured-content">
+                <div class="blogkit-featured-content">
 
                     <?php
                     $cat = get_the_category($featured_post->ID);
                     if (!empty($cat)):
                         ?>
-                        <span class="blogkit-style3-category">
+                        <span class="blogkit-featured-category">
                             <?php echo esc_html($cat[0]->name); ?>
                         </span>
                     <?php endif; ?>
 
-                    <<?php echo $title_tag; ?> class="blogkit-style3-title">
+                    <<?php echo $title_tag; ?> class="blogkit-featured-title">
                         <a href="<?php echo get_permalink($featured_post); ?>">
                             <?php echo esc_html($featured_post->post_title); ?>
                         </a>
                     </<?php echo $title_tag; ?>>
 
-                    <div class="blogkit-style3-meta">
-                        
-
-                        <span
-                            class="blogkit-meta-item"><?php echo get_avatar(get_the_author_meta('ID'));
-                            echo get_the_author_meta('display_name', $featured_post->post_author); ?></span>
+                    <div class="blogkit-featured-meta">
+                        <span class="blogkit-meta-item"><?php echo get_avatar(get_the_author_meta('ID'));
+                        echo get_the_author_meta('display_name', $featured_post->post_author); ?></span>
 
                         <span class="blogkit-meta-item">
                             <?php echo svg::Calender(); ?>
                             <?php echo get_the_date('F j, Y', $featured_post); ?>
                         </span>
 
-                            <span class="blogkit-meta-item">
-                                <?php echo svg::Comments(); ?>
+                        <span class="blogkit-meta-item">
+                            <?php echo svg::Comments(); ?>
                             <?php echo get_comments_number($featured_post); ?> Comments
                         </span>
                     </div>
@@ -90,32 +87,33 @@ if ($query->have_posts()):
         <?php endif; ?>
 
         <!-- Grid -->
-        <div class="blogkit-style3-bottom-grid">
+        <div class="blogkit-bottom-grid">
             <?php
             foreach ($posts as $index => $post):
                 setup_postdata($post);
                 $thumb = get_the_post_thumbnail_url($post->ID, 'medium_large');
                 ?>
 
-                <div class="blogkit-style3-grid-item">
+                <div class="blogkit-card-grid-item">
 
-                    <div class="blogkit-grid-thumb">
+                    <div class="blogkit-card-grid-thumb">
                         <a href="<?php the_permalink($post->ID); ?>">
                             <img src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr(get_the_title($post->ID)); ?>">
                         </a>
                     </div>
 
-                    <div class="blogkit-grid-content">
+                    <div class="blogkit-card-grid-content">
                         <span class="blogkit-time">
                             <?php echo svg::Clock(); ?>
                             <?php echo human_time_diff(get_the_time('U'), current_time('timestamp')); ?> Ago
                         </span>
 
 
-                        
-                            <<?php echo $title_tag; ?>
-                                class="blogkit-style3-title"><a href="<?php echo get_permalink($post->ID); ?>"><?php echo esc_html(get_the_title($post->ID)); ?></a></<?php echo $title_tag; ?>>
-                        
+
+                        <<?php echo $title_tag; ?>
+                            class="blogkit-card-grid-title"><a
+                                href="<?php echo get_permalink($post->ID); ?>"><?php echo esc_html(get_the_title($post->ID)); ?></a></<?php echo $title_tag; ?>>
+
                     </div>
 
                 </div>

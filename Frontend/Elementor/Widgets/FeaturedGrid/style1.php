@@ -41,21 +41,21 @@ while ($query->have_posts()) {
         'date' => get_the_date(),
         'category' => $category_name,
         'category_url' => $category_url,
-        'random_color' => sprintf( '#%06X', mt_rand( 0, 0xFFFFFF ) ),
+        'random_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)),
     ];
 }
 
 wp_reset_postdata();
 
 // helper: detect truthy switch values
-$use_random_global = ! empty( $settings['category_random_color_switch'] ) && in_array( $settings['category_random_color_switch'], [ 'yes', 'true', 1, '1' ], true );
+$use_random_global = !empty($settings['category_random_color_switch']) && in_array($settings['category_random_color_switch'], ['yes', 'true', 1, '1'], true);
 ?>
 
-<div class="blogkit-fg-custom-post">
+<div class="blogkit-featured-grid grid-style1">
     <!-- Left Large Post -->
     <?php if (!empty($posts[0])):
         $p = $posts[0];
-        $cat_style = ( $use_random_global && ! empty( $p['random_color'] ) ) ? ' style="background-color: ' . esc_attr( $p['random_color'] ) . ';"' : '';
+        $cat_style = ($use_random_global && !empty($p['random_color'])) ? ' style="background-color: ' . esc_attr($p['random_color']) . ';"' : '';
         ?>
         <div class="blogkit-fg-post-card blogkit-fg-post-card--large blogkit-fg-post__left"
             style="background-image: url('<?php echo esc_url($p['image']); ?>')">
@@ -63,8 +63,8 @@ $use_random_global = ! empty( $settings['category_random_color_switch'] ) && in_
             <div class="blogkit-fg-post-card__overlay">
 
                 <!-- Category -->
-               <?php if ( 'yes' === $settings['show_category'] && ! empty( $p['category'] ) ) : ?>
-                    <a href="<?php echo esc_url( $p['category_url'] ); ?>" class="blogkit-fg-post-card__cat"<?php echo $cat_style; ?>><?php echo esc_html( $p['category'] ); ?></a>
+                <?php if ('yes' === $settings['show_category'] && !empty($p['category'])): ?>
+                    <a href="<?php echo esc_url($p['category_url']); ?>" class="blogkit-fg-post-card__cat" <?php echo $cat_style; ?>><?php echo esc_html($p['category']); ?></a>
                 <?php endif; ?>
 
 
@@ -91,16 +91,16 @@ $use_random_global = ! empty( $settings['category_random_color_switch'] ) && in_
         <!-- Top Right Wide Post -->
         <?php if (!empty($posts[1])):
             $p = $posts[1];
-            $cat_style = ( $use_random_global && ! empty( $p['random_color'] ) ) ? ' style="background-color: ' . esc_attr( $p['random_color'] ) . ';"' : '';
+            $cat_style = ($use_random_global && !empty($p['random_color'])) ? ' style="background-color: ' . esc_attr($p['random_color']) . ';"' : '';
             ?>
             <div class="blogkit-fg-post-card blogkit-fg-post-card--wide"
                 style="background-image: url('<?php echo esc_url($p['image']); ?>')">
                 <div class="blogkit-fg-post-card__overlay">
 
                     <!-- Category -->
-                    <?php if ( 'yes' === $settings['show_category'] && ! empty( $p['category'] ) ) : ?>
-                    <a href="<?php echo esc_url( $p['category_url'] ); ?>" class="blogkit-fg-post-card__cat"<?php echo $cat_style; ?>><?php echo esc_html( $p['category'] ); ?></a>
-                <?php endif; ?>
+                    <?php if ('yes' === $settings['show_category'] && !empty($p['category'])): ?>
+                        <a href="<?php echo esc_url($p['category_url']); ?>" class="blogkit-fg-post-card__cat" <?php echo $cat_style; ?>><?php echo esc_html($p['category']); ?></a>
+                    <?php endif; ?>
 
                     <!-- Title -->
                     <?php if ('yes' === $settings['show_title']): ?>
@@ -123,16 +123,16 @@ $use_random_global = ! empty( $settings['category_random_color_switch'] ) && in_
             <?php for ($i = 2; $i <= 3; $i++):
                 if (!empty($posts[$i])):
                     $p = $posts[$i];
-                    $cat_style = ( $use_random_global && ! empty( $p['random_color'] ) ) ? ' style="background-color: ' . esc_attr( $p['random_color'] ) . ';"' : '';
+                    $cat_style = ($use_random_global && !empty($p['random_color'])) ? ' style="background-color: ' . esc_attr($p['random_color']) . ';"' : '';
                     ?>
                     <div class="blogkit-fg-post-card blogkit-fg-post-card--small"
                         style="background-image: url('<?php echo esc_url($p['image']); ?>')">
                         <div href="<?php echo esc_url($p['link']); ?>" class="blogkit-fg-post-card__overlay">
 
                             <!-- Category -->
-                            <?php if ( 'yes' === $settings['show_category'] && ! empty( $p['category'] ) ) : ?>
-                    <a href="<?php echo esc_url( $p['category_url'] ); ?>" class="blogkit-fg-post-card__cat"<?php echo $cat_style; ?>><?php echo esc_html( $p['category'] ); ?></a>
-                <?php endif; ?>
+                            <?php if ('yes' === $settings['show_category'] && !empty($p['category'])): ?>
+                                <a href="<?php echo esc_url($p['category_url']); ?>" class="blogkit-fg-post-card__cat" <?php echo $cat_style; ?>><?php echo esc_html($p['category']); ?></a>
+                            <?php endif; ?>
 
                             <!-- Title -->
                             <?php if ('yes' === $settings['show_title']): ?>

@@ -40,16 +40,16 @@ if ( $query->have_posts() ) :
 			$featured_post = array_shift( $posts ); // first post
 			?>
 
-			<section class="bk-card-grid-style2">
+			<section class="blogkit-card-grid grid-style2">
 				<!-- Featured Post -->
 				<?php if ( $featured_post ) :
 					$thumb = get_the_post_thumbnail_url( $featured_post->ID, 'large' );
 					?>
-					<div class="featured-post">
+					<div class="blogkit-featured-post">
 						<a href="<?php echo get_permalink( $featured_post->ID ); ?>">
-							<img class="featured-thumbnail" src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title( $featured_post->ID ) ); ?>">
+							<img class="blogkit-featured-thumbnail" src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title( $featured_post->ID ) ); ?>">
 						</a>
-						<div class="featured-overlay">
+						<div class="blogkit-featured-overlay">
 							<span class="tag">
 								<?php
 								$cat = get_the_category( $featured_post->ID );
@@ -59,12 +59,12 @@ if ( $query->have_posts() ) :
 								?>
 							</span>
 							
-							<<?php echo $title_tag; ?> class="featured-title">
+							<<?php echo $title_tag; ?> class="blogkit-featured-title">
 								<a href="<?php echo get_permalink( $featured_post->ID ); ?>">
 									<?php echo esc_html( get_the_title( $featured_post->ID ) ); ?>
 								</a>
 							</<?php echo $title_tag; ?>>
-							<div class="meta">
+							<div class="blogkit-featured-meta">
 								<span class="author"><?php echo get_avatar(get_the_author_meta('ID')); echo get_the_author_meta( 'display_name', $featured_post->post_author ); ?></span>
 								<span class="date"><?php echo svg::Calender(); echo get_the_date( 'F j, Y', $featured_post->ID ); ?></span>
 								<span class="comments"><?php echo svg::Comments(); echo get_comments_number( $featured_post->ID ); ?> Comments</span>
@@ -74,19 +74,19 @@ if ( $query->have_posts() ) :
 				<?php endif; ?>
 
 				<!-- Grid -->
-				<div class="card-grid">
+				<div class="blogkit-card-grid">
 					<?php
 					foreach ( $posts as $index => $post ) :
 						setup_postdata( $post );
 						$thumb = get_the_post_thumbnail_url( $post->ID, 'medium_large' );
 						?>
-						<div class="card-grid-item">
+						<div class="blogkit-card-grid-item">
 							<a href="<?php echo get_permalink( $post->ID ); ?>">
 								<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title( $post->ID ) ); ?>">
 								
-									<div class="overlay-content">
+									<div class="blogkit-overlay-content">
 										<span class="date"><?php echo get_the_date( 'F j, Y', $post->ID ); ?></span>
-										<<?php echo $title_tag; ?> class="card-grid-title"><?php echo esc_html( get_the_title( $post->ID ) ); ?></<?php echo $title_tag; ?>>
+										<<?php echo $title_tag; ?> class="blogkit-card-grid-title"><?php echo esc_html( get_the_title( $post->ID ) ); ?></<?php echo $title_tag; ?>>
 									</div>
 							</a>
 						</div>

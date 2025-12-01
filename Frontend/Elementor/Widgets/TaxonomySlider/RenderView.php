@@ -38,12 +38,12 @@ if (!$terms) {
 ?>
 <div class="blogkit-wrapper">
     <div class="swiper">
-        <div class="slider-wrapper taxonomy-slider-wrapper">
-            <div class="swiper-wrapper taxonomy-slider">
+        <div class="slider-wrapper blogkit-taxonomy-slider-wrapper">
+            <div class="swiper-wrapper blogkit-taxonomy-slider">
                 <?php foreach ($terms as $term):
                     $img = get_term_meta($term->term_id, 'cat-image', true);
                     ?>
-                    <div class="swiper-slide taxonomy-item">
+                    <div class="swiper-slide blogkit-taxonomy-item">
                         <a href="<?php echo get_category_link($term->term_id); ?>">
                             <div class="image-box">
                             <?php if ($img): ?>
@@ -53,24 +53,24 @@ if (!$terms) {
                             <?php endif; ?>
                         </div>
                         </a>
-                        <div class="taxonomy-name"><?php echo esc_html($term->name); ?></div>
+                        <div class="blogkit-taxonomy-name"><?php echo esc_html($term->name); ?></div>
                     </div>
                 <?php endforeach; ?>
             </div>
 
-<div class="swiper-pagination"></div>
+<div class="swiper-pagination blogkit-taxonomy-slider-pagination"></div>
 
         </div>
     </div>
 
             
 
-            <div class="taxonomy-slider-button-prev" role="button" aria-label="<?php echo esc_attr__('Previous slide','blogkit'); ?>">
+            <div class="blogkit-taxonomy-slider-button-prev" role="button" aria-label="<?php echo esc_attr__('Previous slide','blogkit'); ?>">
                 <?php echo SVG::arrow_left_alt(); ?>
 </svg>
 
             </div>
-            <div class="taxonomy-slider-button-next" role="button" aria-label="<?php echo esc_attr__('Next slide','blogkit'); ?>">
+            <div class="blogkit-taxonomy-slider-button-next" role="button" aria-label="<?php echo esc_attr__('Next slide','blogkit'); ?>">
                 <?php echo SVG::arrow_right_alt(); ?>
 </svg>
 
@@ -105,8 +105,8 @@ if (!$terms) {
 
         // Find controls within the same widget wrapper (works even if controls are outside slider-wrapper)
         var paginationEl = widgetRoot.querySelector('.swiper-pagination');
-        var nextEl = widgetRoot.querySelector('.taxonomy-slider-button-next') || widgetRoot.querySelector('.swiper-button-next');
-        var prevEl = widgetRoot.querySelector('.taxonomy-slider-button-prev') || widgetRoot.querySelector('.swiper-button-prev');
+        var nextEl = widgetRoot.querySelector('.blogkit-taxonomy-slider-button-next') || widgetRoot.querySelector('.swiper-button-next');
+        var prevEl = widgetRoot.querySelector('.blogkit-taxonomy-slider-button-prev') || widgetRoot.querySelector('.swiper-button-prev');
 
         // ensure container is positioned so controls/pagination are visible
         var computed = window.getComputedStyle(container);

@@ -94,7 +94,8 @@ class Main extends Widget_Base
                     '4' => esc_html__('4 Columns', 'blogkit'),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper ' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper.list-style-2' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
                 ],
             ]
         );
@@ -267,7 +268,8 @@ class Main extends Widget_Base
                     'px' => ['min' => 0, 'max' => 100]
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper' => 'column-gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper' => 'column-gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper.list-style-2' => 'column-gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -283,7 +285,8 @@ class Main extends Widget_Base
                     'px' => ['min' => 0, 'max' => 100]
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper' => 'row-gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper' => 'row-gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper.list-style-2' => 'row-gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -293,7 +296,7 @@ class Main extends Widget_Base
             Group_Control_Border::get_type(),
             [
                 'name' => 'item_border',
-                'selector' => '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-list-item',
+                'selector' => '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-list-item , {{WRAPPER}} .blogkit-smart-posts-list-wrapper.list-style-2 .blogkit-smart-posts-list-item',
             ]
         );
 
@@ -306,7 +309,7 @@ class Main extends Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
               
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
                 'condition' => [
                     'layout_style' => 'style_1',
@@ -322,7 +325,8 @@ class Main extends Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-list-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-list-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper.list-style-2 .blogkit-smart-posts-list-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -334,9 +338,8 @@ class Main extends Widget_Base
                 'label' => esc_html__('Item Border Radius', 'blogkit'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', 'rem', 'custom'],
-              
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-list-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-list-item , {{WRAPPER}} .blogkit-smart-posts-list-wrapper.list-style-2 .blogkit-smart-posts-list-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -349,7 +352,8 @@ class Main extends Widget_Base
                 'type' => Controls_Manager::COLOR,
                 // 'default' => '#ffffff',
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-list-item' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-list-item' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper.list-style-2 .blogkit-smart-posts-list-item' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -359,7 +363,7 @@ class Main extends Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'item_box_shadow',
-                'selector' => '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-list-item',
+                'selector' => '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-list-item',
                 'fields_options' => [
                     'box_shadow_type' => [
                         // 'default' => 'yes',
@@ -383,7 +387,7 @@ class Main extends Widget_Base
          * Style section: Thumbnail
          */
         $this->start_controls_section(
-            'smart_posts_list_thumb_style',
+            'blogkit_smart_posts_list_thumb_style',
             [
                 'label' => esc_html__('Thumbnail', 'blogkit'),
                 'tab' => Controls_Manager::TAB_STYLE,
@@ -414,7 +418,7 @@ class Main extends Widget_Base
 				],
 				
 				'selectors' => [
-					    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-list-item .smart-posts-thumb img' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+					    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-list-item .blogkit-smart-posts-thumb img' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
 
 				],
 			]
@@ -429,43 +433,10 @@ class Main extends Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
              
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
-
-
-
-        // $this->add_responsive_control(
-        //     'thumbnail_position',
-        //     [
-        //         'label' => esc_html__('Position', 'blogkit'),
-        //         'type' => \Elementor\Controls_Manager::CHOOSE,
-        //         'options' => [
-        //             'column' => [
-        //                 'title' => esc_html__('Top', 'blogkit'),
-        //                 'icon' => 'eicon-v-align-top',
-        //             ],
-        //             'row-reverse' => [
-        //                 'title' => esc_html__('Right', 'blogkit'),
-        //                 'icon' => 'eicon-h-align-right',
-        //             ],
-        //             'column-reverse' => [
-        //                 'title' => esc_html__('Bottom', 'blogkit'),
-        //                 'icon' => 'eicon-v-align-bottom',
-        //             ],
-        //             'row' => [
-        //                 'title' => esc_html__('Left', 'blogkit'),
-        //                 'icon' => 'eicon-h-align-left',
-        //             ],
-        //         ],
-        //         'default' => 'column',
-        //         'toggle' => true,
-        //         'selectors' => [
-        //             '{{WRAPPER}} .smart-posts-list-wrapper .blogkit-post-card' => 'flex-direction: {{VALUE}};',
-        //         ],
-        //     ]
-        // );
 
 
         $this->end_controls_section();
@@ -493,7 +464,7 @@ class Main extends Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'category_typography',
-                'selector' => '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart_posts_list-category',
+                'selector' => '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-content .blogkit-smart-posts-list-category',
                 'fields_options' => [
                     'typography' => [
                         'default' => 'yes',
@@ -509,7 +480,7 @@ class Main extends Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'category_border',
-                'selector' => '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart_posts_list-category',
+                'selector' => '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-content .blogkit-smart-posts-list-category',
             ]
         );
 
@@ -523,7 +494,7 @@ class Main extends Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
              
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart_posts_list-category' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-content .blogkit-smart-posts-list-category' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -537,7 +508,7 @@ class Main extends Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart_posts_list-category' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-content .blogkit-smart-posts-list-category' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -562,7 +533,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Text Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart_posts_list-category' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-content .blogkit-smart-posts-list-category' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -574,7 +545,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Background Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart_posts_list-category' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-content .blogkit-smart-posts-list-category' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -595,7 +566,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Text Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart_posts_list-category:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-content .blogkit-smart-posts-list-category:hover' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -607,7 +578,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Background Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart_posts_list-category:hover' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-content .blogkit-smart-posts-list-category:hover' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -619,7 +590,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Border Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart_posts_list-category:hover' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-content .blogkit-smart-posts-list-category:hover' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
@@ -649,7 +620,7 @@ class Main extends Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'heading_typography',
-                'selector' => '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-title',
+                'selector' => '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-title',
                 'fields_options' => [
                 ],
             ]
@@ -674,7 +645,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Text Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -694,7 +665,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Text Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-title:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-title:hover' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -724,32 +695,18 @@ class Main extends Widget_Base
                 'label' => esc_html__('Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart-posts-date' => 'color: {{VALUE}};','{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content svg path' => 'fill: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-content .blogkit-smart-posts-date' => 'color: {{VALUE}};','{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-content svg path' => 'fill: {{VALUE}};',
                 ],
             ]
         );
 
-        // //Icon Color
-        // $this->add_control(
-        //     'meta_icon_color',
-        //     [
-        //         'label' => esc_html__('Icon Color', 'blogkit'),
-        //         'type' => Controls_Manager::COLOR,
-        //         'selectors' => [
-        //             '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content svg path' => 'fill: {{VALUE}};',
-        //         ],
-        //         'condition' => [
-        //             'layout_style' => 'style_2',
-        //         ],
-        //     ]
-        // );
 
         // Meta Typography
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'meta_typography',
-                'selector' => '{{WRAPPER}} .smart-posts-list-wrapper .smart-posts-content .smart-posts-date',
+                'selector' => '{{WRAPPER}} .blogkit-smart-posts-list-wrapper .blogkit-smart-posts-content .blogkit-smart-posts-date',
                 'fields_options' => [
                 ],
             ]

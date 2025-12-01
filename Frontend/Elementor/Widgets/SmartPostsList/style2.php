@@ -38,24 +38,23 @@ $query = new WP_Query($args);
 
 // check if there are posts to display
 if ($query->have_posts()):
-    echo '<div class="smart-posts-list-wrapper">';
+    echo '<div class="blogkit-smart-posts-list-wrapper list-style-2">';
 
     while ($query->have_posts()):
         $query->the_post();
         $random_color = $this->generate_random_color(); // get random color
         ?>
         <!-- single blog -->
-        <div class="smart-posts-list-item list-style-2">
+        <div class="blogkit-smart-posts-list-item">
 
 
             <!-- Content   -->
-            <div class="smart-posts-content">
+            <div class="blogkit-smart-posts-content">
               
 
 
                 <!-- Rendering post title -->
               <?php
-            
                 // Category 
                 if ('yes' === $settings['show_category']) {
                     $categories = get_the_category();
@@ -65,7 +64,7 @@ if ($query->have_posts()):
                         $category_link = get_category_link($first_category->term_id);
 
                         // Display category button 
-                        echo '<a class="smart_posts_list-category" href="' . esc_url(get_category_link($categories[0]->term_id)) . '"';
+                        echo '<a class="blogkit-smart-posts-list-category" href="' . esc_url(get_category_link($categories[0]->term_id)) . '"';
                         // Display category random bg color 
                                         if ('true' === $settings['category_random_color_switch']) {
                                             echo ' style="background-color: ' . esc_attr($random_color) . '"';
@@ -77,15 +76,15 @@ if ($query->have_posts()):
 
 
 
-                echo '<a href="' . get_the_permalink() . '"><' . $title_tag . ' class="smart-posts-title">' . get_the_title() . '</' . $title_tag . '></a>';
+                echo '<a href="' . get_the_permalink() . '"><' . $title_tag . ' class="blogkit-smart-posts-title">' . get_the_title() . '</' . $title_tag . '></a>';
 
                    
 
                     // Displaying Human Different Time
                     if ('yes' === $settings['show_humanize_date']) {
-                        echo '<span class="smart-posts-date">' . SVG::Clock() . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago </span>';
+                        echo '<span class="blogkit-smart-posts-date">' . SVG::Clock() . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago </span>';
                     } else {
-                        echo '<span class="smart-posts-date">' . SVG::Clock() . get_the_date('M j, Y') . '<span>';
+                        echo '<span class="blogkit-smart-posts-date">' . SVG::Clock() . get_the_date('M j, Y') . '<span>';
                     }
                     ?>
 

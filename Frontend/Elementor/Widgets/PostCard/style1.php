@@ -36,13 +36,13 @@ $query = new WP_Query($args);
 
 // check if there are posts to display
 if ($query->have_posts()):
-    echo '<div class="blogkit-post-card-grid-wrapper blogkit-grid-columns">';
+    echo '<div class="blogkit-post-card-wrapper grid-style1">';
 
     while ($query->have_posts()):
         $query->the_post();
         ?>
         <!-- single blog -->
-        <div class="blogkit-post-card">
+        <div class="blogkit-post-card-item">
             <!-- Thumbnail -->
             <?php if (has_post_thumbnail()): ?>
                 <a class="blogkit-post-card-thumbnail" href="<?php the_permalink(); ?>">

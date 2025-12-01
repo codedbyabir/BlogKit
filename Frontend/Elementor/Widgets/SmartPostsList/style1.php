@@ -37,47 +37,42 @@ $query = new WP_Query($args);
 
 // check if there are posts to display
 if ($query->have_posts()):
-    echo '<div class="smart-posts-list-wrapper ">';
+    echo '<div class="blogkit-smart-posts-list-wrapper">';
 
     while ($query->have_posts()):
         $query->the_post();
         ?>
         <!-- single blog -->
-        <div class="smart-posts-list-item">
+        <div class="blogkit-smart-posts-list-item">
             <!-- Thumbnail -->
             <?php if (has_post_thumbnail()): ?>
-                <div class="smart-posts-thumb" >
+                <div class="blogkit-smart-posts-thumb">
                     <?php the_post_thumbnail('large'); ?>
                 </div>
-                
+
             <?php else: ?>
                 <img src="<?php echo esc_url(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png'); ?>"
                     alt="<?php the_title_attribute(); ?>">
             <?php endif; ?>
 
             <!-- Content   -->
-            <div class="smart-posts-content">
-              
-
+            <div class="blogkit-smart-posts-content">
 
                 <!-- Rendering post title -->
-              <?php
+                <?php
 
 
+                echo '<a href="' . get_the_permalink() . '"><' . $title_tag . ' class="blogkit-smart-posts-title">' . get_the_title() . '</' . $title_tag . '></a>';
 
-                echo '<a href="' . get_the_permalink() . '"><' . $title_tag . ' class="smart-posts-title">' . get_the_title() . '</' . $title_tag . '></a>';
+                // Displaying Human Different Time
+                if ('yes' === $settings['show_humanize_date']) {
+                    echo '<span class="blogkit-smart-posts-date">' . ($settings['layout_style'] === 'style_3' ? SVG::Calender() : '') . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago </span>';
+                } else {
+                    echo '<span class="blogkit-smart-posts-date">' . ($settings['layout_style'] === 'style_3' ? SVG::Calender() : '') . get_the_date('M j, Y') . '<span>';
+                }
+                ?>
 
-                   
 
-                    // Displaying Human Different Time
-                    if ('yes' === $settings['show_humanize_date']) {
-                        echo '<span class="smart-posts-date">' . ( $settings['layout_style'] === 'style_3' ? SVG::Calender() : '' ) . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago </span>';
-                    } else {
-                        echo '<span class="smart-posts-date">' . ( $settings['layout_style'] === 'style_3' ? SVG::Calender() : '' ) . get_the_date('M j, Y') . '<span>';
-                    }
-                    ?>
-
-                
             </div>
         </div>
         <?php
