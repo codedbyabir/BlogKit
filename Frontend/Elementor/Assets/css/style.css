@@ -664,6 +664,79 @@
 }
 
 
+/* Blogkit card grid - Style 4 */
+
+.blogkit-card-grid.grid-style4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.blogkit-card-grid.grid-style4 .blogkit-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px; 
+    color: #fff;
+}
+
+.blogkit-card-grid.grid-style4 .blogkit-card-thumb img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Dark overlay */
+.blogkit-card-grid.grid-style4 .blogkit-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.1));
+    z-index: 1;
+}
+
+/* Content inside */
+.blogkit-card-grid.grid-style4 .blogkit-card-content{
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    right: 20px;
+    color: #fff;
+    z-index: 10;
+}
+
+.blogkit-card-grid.grid-style4 .blogkit-card-badge {
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 13px;
+    text-transform: capitalize;
+    color: #fff;
+    border: 1px solid #fff;
+    text-decoration: none;
+    transition: 0.1s ease;
+}
+.blogkit-card-grid.grid-style4 .blogkit-card-badge:hover{
+    background-color: #fff;
+    color: #000;
+}
+
+.blogkit-card-grid.grid-style4 .blogkit-card-title a {
+    font-size: 20px;
+    font-weight: 600;
+    max-width: 85%;
+    line-height: 1.3em;
+    color: #fff;
+    text-decoration: none;
+}
+
+.blogkit-card-grid.grid-style4 .blogkit-card-meta {
+    font-size: 13px;
+    display: flex;
+    gap: 10px;
+    color: #fff;
+}
+
+
 
 
 /* Blogkit Post Card */
