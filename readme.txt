@@ -2,9 +2,9 @@
 Contributors: nexibyllc
 Tags: elementor, grid, posts, custom post layout, blog design
 Requires at least: 5.8
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,13 @@ Yes, all BlogKit widgets come with extensive styling options in the Elementor ed
 
 
 == Changelog ==
+
+= 1.3.0 =
+* Card Grid - Layout 2,3 Added.
+* Post Card.
+* Smart Posts List - Layout 1,2,3.
+* Featured Grid (New Widget).
+* Taxonomy Slider (New Widget).
 
 = 1.2.1 =
 * Added Featured Grid Widget
