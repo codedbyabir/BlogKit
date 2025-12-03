@@ -15,7 +15,7 @@ class Main extends Widget_Base
 
     public function get_name()
     {
-        return 'taxonomy_slider';
+        return 'blogkit_taxonomy_slider';
     }
     public function get_title()
     {
@@ -32,7 +32,7 @@ class Main extends Widget_Base
 
     public function get_script_depends()
     {
-        return ['swiper-bundle-js'];
+        return ['swiper-bundle-js' , 'blogkit-taxonomy-slider'];
     }
     public function get_style_depends()
     {
@@ -47,12 +47,14 @@ class Main extends Widget_Base
         $this->add_control('slides_per_desktop', [
             'label' => 'Slides per View (Desktop)',
             'type' => Controls_Manager::NUMBER,
-            'default' => 6
+            'default' => 6,
+            'frontend_available' => true
         ]);
         $this->add_control('space_between_desktop', [
             'label' => 'Space Between Slides (Desktop)',
             'type' => Controls_Manager::NUMBER,
-            'default' => 30
+            'default' => 30,
+            'frontend_available' => true
         ]);
         $this->add_control(
             'divider_1',
@@ -65,12 +67,14 @@ class Main extends Widget_Base
         $this->add_control('slides_per_tablet', [
             'label' => 'Slides per View (Tablet)',
             'type' => Controls_Manager::NUMBER,
-            'default' => 3
+            'default' => 3,
+            'frontend_available' => true
         ]);
         $this->add_control('space_between_tablet', [
             'label' => 'Space Between Slides (Tablet)',
             'type' => Controls_Manager::NUMBER,
-            'default' => 30
+            'default' => 30,
+            'frontend_available' => true
         ]);
         $this->add_control(
             'divider_2',
@@ -176,7 +180,7 @@ class Main extends Widget_Base
             [
                 'label' => esc_html__('Width', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['%'],
+                'size_units' => ['%' , 'px'],
                 'range' => [
                     '%' => [
                         'min' => 0,
@@ -184,7 +188,7 @@ class Main extends Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider .blogkit-taxonomy-item .image-box img' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider .blogkit-taxonomy-item .image-box img' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -196,7 +200,7 @@ class Main extends Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider .blogkit-taxonomy-item .image-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider .blogkit-taxonomy-item .image-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -207,7 +211,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Background Color', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider .blogkit-taxonomy-item .image-box' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider .blogkit-taxonomy-item .image-boxs' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -216,7 +220,7 @@ class Main extends Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'border',
-                'selector' => '{{WRAPPER}} .blogkit-taxonomy-slider .blogkit-taxonomy-item .image-box',
+                'selector' => '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider .blogkit-taxonomy-item .image-box',
             ]
         );
         //Hover Border Color
@@ -226,7 +230,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Hover Border Color', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider .blogkit-taxonomy-item .image-box:hover' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider .blogkit-taxonomy-item .image-box:hover' => 'border-color: {{VALUE}}',
                 ],
             ]
         );
@@ -239,7 +243,7 @@ class Main extends Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider .blogkit-taxonomy-item .image-box' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider .blogkit-taxonomy-item .image-box' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -259,7 +263,7 @@ class Main extends Widget_Base
             [
                 'name' => 'taxonomy_name_typography',
                 'label' => esc_html__('Typography', 'blogkit'),
-                'selector' => '{{WRAPPER}} .blogkit-taxonomy-slider .blogkit-taxonomy-item .blogkit-taxonomy-name',
+                'selector' => '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider .blogkit-taxonomy-item .blogkit-taxonomy-name',
             ]
         );
         //Text Color
@@ -269,7 +273,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Color', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider .blogkit-taxonomy-item .blogkit-taxonomy-name' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider .blogkit-taxonomy-item .blogkit-taxonomy-name' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -309,8 +313,8 @@ class Main extends Widget_Base
                     'unit' => 'px',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-next svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-prev svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-next svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-prev svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -323,7 +327,7 @@ class Main extends Widget_Base
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-next, {{WRAPPER}} .blogkit-taxonomy-slider-button-prev' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-next, {{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-prev' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -332,7 +336,7 @@ class Main extends Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'navigation_arrow_border',
-                'selector' => '{{WRAPPER}} .blogkit-taxonomy-slider-button-next, {{WRAPPER}} .blogkit-taxonomy-slider-button-prev',
+                'selector' => '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-next, {{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-prev',
             ]
         );
         //Border Radius
@@ -343,7 +347,7 @@ class Main extends Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-next, {{WRAPPER}} .blogkit-taxonomy-slider-button-prev' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-next, {{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-prev' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -364,7 +368,7 @@ class Main extends Widget_Base
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-prev' => 'left: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-prev' => 'left: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -377,7 +381,7 @@ class Main extends Widget_Base
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-prev' => 'top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-prev' => 'top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -400,7 +404,7 @@ class Main extends Widget_Base
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-next' => 'right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-next' => 'right: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -412,7 +416,7 @@ class Main extends Widget_Base
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-next' => 'top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-next' => 'top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -436,8 +440,8 @@ class Main extends Widget_Base
                 'label' => esc_html__('Color', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-next svg path' => 'fill: {{VALUE}}',
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-prev svg path' => 'fill: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-next svg path' => 'fill: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-prev svg path' => 'fill: {{VALUE}}',
                 ],
             ]
         );
@@ -448,8 +452,8 @@ class Main extends Widget_Base
                 'label' => esc_html__('Background Color', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-next' => 'background-color: {{VALUE}}',
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-prev' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-next' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-prev' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -469,8 +473,8 @@ class Main extends Widget_Base
                 'label' => esc_html__('Color', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-next:hover svg path' => 'fill: {{VALUE}}',
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-prev:hover svg path' => 'fill: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-next:hover svg path' => 'fill: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-prev:hover svg path' => 'fill: {{VALUE}}',
                 ],
             ]
         );
@@ -481,8 +485,8 @@ class Main extends Widget_Base
                 'label' => esc_html__('Background Color', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-next:hover' => 'background-color: {{VALUE}}',
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-prev:hover' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-next:hover' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-prev:hover' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -493,8 +497,8 @@ class Main extends Widget_Base
                 'label' => esc_html__('Border Color', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-next:hover' => 'border-color: {{VALUE}}',
-                    '{{WRAPPER}} .blogkit-taxonomy-slider-button-prev:hover' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-next:hover' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .blogkit-taxonomy-slider-button-prev:hover' => 'border-color: {{VALUE}}',
                 ],
             ]
         );
@@ -537,7 +541,7 @@ class Main extends Widget_Base
                     'unit' => 'px',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .swiper-pagination-bullet' => 'margin-right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .swiper-pagination-bullet' => 'margin-right: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -552,7 +556,7 @@ class Main extends Widget_Base
                     'unit' => 'px',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -563,7 +567,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Color', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .swiper-pagination-bullet' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .swiper-pagination-bullet' => 'background-color: {{VALUE}}',
                 ],
                 'separator' => 'before',
             ]
@@ -575,7 +579,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Active Dot Color', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .swiper-pagination-bullet-active' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .blogkit-taxonomy-slider-wrapper .swiper-pagination-bullet-active' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
