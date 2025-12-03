@@ -46,9 +46,7 @@ class Assets
     public function init()
     {
         add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
-        add_action('wp_enqueue_scripts', [$this, 'enqueue_styles']);
-          // enqueue registered widget assets in Elementor editor preview
-         add_action('elementor/frontend/after_enqueue_scripts', [$this, 'enqueue_editor_assets']);
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_styles']); 
     }
 
     /**
@@ -78,19 +76,4 @@ class Assets
         
     }
 
-    /**
-     * Enqueues registered widget assets in Elementor editor preview.
-     *
-     * @since 1.0.0
-     */
-    public function enqueue_editor_assets()
-    {
-        // Enqueue registered widget assets in Elementor editor preview
-        wp_enqueue_script('swiper-bundle-js');
-        wp_enqueue_script('blogkit-taxonomy-slider');
-        wp_enqueue_style('swiper-bundle-css');
-        wp_enqueue_style('blogkit-elementor-style');
-        wp_enqueue_style('blogkit-style-2');
-        wp_enqueue_style('blogkit-responsive');
-    }    
 }

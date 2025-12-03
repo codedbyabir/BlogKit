@@ -27,12 +27,11 @@ $swiper_settings = wp_json_encode([
 
     // BREAKPOINTS — MATCH EXACT JS KEYS
     'slides_per_view_desktop' => (int) ($settings['slides_per_desktop'] ?? 6),
-    'space_between_desktop' => (int) ($settings['space_between_desktop'] !== ''? $settings['space_between_desktop']: 30),
+    'space_between_desktop' => (int) ($settings['space_between_desktop'] !== '' ? $settings['space_between_desktop'] : 30),
     'slides_per_view_tablet' => (int) ($settings['slides_per_tablet'] ?? 4),
-    'space_between_tablet' => (int) ($settings['space_between_tablet'] !== ''? $settings['space_between_tablet']: 20),
-
+    'space_between_tablet' => (int) ($settings['space_between_tablet'] !== '' ? $settings['space_between_tablet'] : 20),
     'slides_per_view_mobile' => (int) ($settings['slides_per_mobile'] ?? 2),
-    'space_between_mobile' => (int) ($settings['space_between_mobile'] !== ''? $settings['space_between_mobile']: 20),
+    'space_between_mobile' => (int) ($settings['space_between_mobile'] !== '' ? $settings['space_between_mobile'] : 20),
 ]);
 
 // var_dump($swiper_settings);
