@@ -15,7 +15,7 @@ class Main extends Widget_Base
 
     public function get_name()
     {
-        return 'taxonomy_slider';
+        return 'blogkit_taxonomy_slider';
     }
     public function get_title()
     {
@@ -32,7 +32,7 @@ class Main extends Widget_Base
 
     public function get_script_depends()
     {
-        return ['swiper-bundle-js'];
+        return ['swiper-bundle-js' , 'blogkit-taxonomy-slider'];
     }
     public function get_style_depends()
     {
@@ -47,12 +47,14 @@ class Main extends Widget_Base
         $this->add_control('slides_per_desktop', [
             'label' => 'Slides per View (Desktop)',
             'type' => Controls_Manager::NUMBER,
-            'default' => 6
+            'default' => 6,
+            'frontend_available' => true
         ]);
         $this->add_control('space_between_desktop', [
             'label' => 'Space Between Slides (Desktop)',
             'type' => Controls_Manager::NUMBER,
-            'default' => 30
+            'default' => 30,
+            'frontend_available' => true
         ]);
         $this->add_control(
             'divider_1',
@@ -65,12 +67,14 @@ class Main extends Widget_Base
         $this->add_control('slides_per_tablet', [
             'label' => 'Slides per View (Tablet)',
             'type' => Controls_Manager::NUMBER,
-            'default' => 3
+            'default' => 3,
+            'frontend_available' => true
         ]);
         $this->add_control('space_between_tablet', [
             'label' => 'Space Between Slides (Tablet)',
             'type' => Controls_Manager::NUMBER,
-            'default' => 30
+            'default' => 30,
+            'frontend_available' => true
         ]);
         $this->add_control(
             'divider_2',

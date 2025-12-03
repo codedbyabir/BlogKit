@@ -1022,7 +1022,7 @@
     border: 1px solid #35B322;
     box-shadow: 0px 0px 50px 0px #0000001A;
     margin-top: calc(0px - (var(--swiper-navigation-size)/ 2));
-    z-index: 10;
+    z-index: 100;
     cursor: pointer;
     display: flex;
     align-items: center;

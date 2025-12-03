@@ -67,6 +67,7 @@ class Main extends Widget_Base
                     'style_1' => esc_html__('Style 1', 'blogkit'),
                     'style_2' => esc_html__('Style 2', 'blogkit'),
                     'style_3' => esc_html__('Style 3', 'blogkit'),
+                    // 'style_4' => esc_html__('Style 4', 'blogkit'),
                 ]
             ]
         );
@@ -1696,6 +1697,10 @@ class Main extends Widget_Base
             
             case 'style_3':
                 include_once 'style3.php';
+                break;
+
+                case 'style_4':
+                include_once 'style4.php';
                 break;
 
             default:
