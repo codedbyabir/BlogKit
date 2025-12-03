@@ -2,7 +2,7 @@
 /**
  * Plugin Name: BlogKit - Advanced Blog Elements for Elementor
  * Description: A powerful toolkit for enhancing your WordPress blog with custom features and performance improvements.
- * Version: 1.3.0
+ * Version: 1.3.1
  * Author: Nexiby LLC
  * Author URI: https://nexiby.com
  * License: GPLv2 or later
@@ -58,7 +58,7 @@ final class BlogKit
      */
     private function define_constants()
     {
-        define('BLOGKIT_VERSION', '1.3.0');
+        define('BLOGKIT_VERSION', '1.3.1');
         define('BLOGKIT_PATH', plugin_dir_path(__FILE__));
         define('BLOGKIT_URL', plugin_dir_url(__FILE__));
         define('BLOGKIT_BASENAME', plugin_basename(__FILE__));
