@@ -55,35 +55,25 @@ if ($query->have_posts()):
             $post_author_name = get_the_author_meta('display_name', $post_author_id);
 
             ?>
-            <!-- Card Item -->
-            <article class="blogkit-card">
-                <div class="blogkit-card-thumb">
-                        <?php if ($post_thumbnail_url): ?>
-                            <img src="<?php echo esc_url($post_thumbnail_url); ?>" alt="<?php echo esc_attr($post_alt); ?>">
-                        <?php else: ?>
-                            <img src="<?php echo esc_url(BLOGKIT_PLUGIN_URL . 'assets/images/placeholder.png'); ?>" alt="<?php echo esc_attr($post_alt); ?>">
-                        <?php endif; ?>
-                    
-                </div>
+             <!-- Card Item -->
+    <article class="blogkit-card">
+        <div class="blogkit-card-thumb">
+            <img src="2149328349.jpg" alt="">
+        </div>
 
-                <div class="blogkit-card-content">
-                    <!-- <a class="blogkit-card-badge" href="#">lawyer</a> -->
-                    <?php
-                        if($single_category!=null){
-                            echo '<a class="blogkit-card-badge" href="' . esc_url(get_category_link($single_category->term_id)) . '">' . esc_html($single_category->name) . '</a>';
-                        }
-                    ?>
-
-                    <h3 class="blogkit-card-title"><a href="<?php echo esc_url($post_permalink); ?>"><?php echo esc_html($post_title); ?></a></h3>
-                    <?php echo '.<$title_tag class="blogkit-card-title"><a href="".' ?>
+        <div class="blogkit-card-content">
+            <a class="blogkit-card-badge" href="#">lawyer</a>
 
 
-                    <div class="blogkit-card-meta">
-                        <span>BY Latisha Reeves</span>
-                        <span>jan 16 2025</span>
-                    </div>
-                </div>
-            </article>
+        <h3 class="blogkit-card-title"><a href="">Vic Real Estate Agents Caught Underquoting</a></h3>
+
+
+        <div class="blogkit-card-meta">
+            <span>BY Latisha Reeves</span>
+            <span>Jan 16 2025</span>
+        </div>
+        </div>
+    </article>
             <?php
         endforeach;
         wp_reset_postdata();
