@@ -1,8 +1,6 @@
 <?php
 if (!defined('ABSPATH'))
     exit; // Exit if accessed directly
-use BlogKit\Admin\Assets\SVG;
-use Elementor\Icons_Manager;
 /**
  * Blog Grid Widget View for Elementor
  * Compatible with any theme, styled like abcblog theme
@@ -22,7 +20,7 @@ if (get_query_var('paged')) {
 // Posts Query 
 $args = [
     'post_type' => 'post',
-    'posts_per_page' => $settings['posts_per_page_style3'],
+    'posts_per_page' => $settings['posts_per_page_style4'],
     'orderby' => $settings['orderby'],
     'order' => $settings['order'],
     'paged' => $paged,
@@ -49,36 +47,58 @@ if ($query->have_posts()):
             $post_excerpt = get_the_excerpt($post_id);
             $post_thumbnail_url = get_the_post_thumbnail_url($post_id, 'medium_large');
             $post_alt = get_post_meta(get_post_thumbnail_id($post_id), '_wp_attachment_image_alt', true);
-            $single_category = get_the_category($post_id)[0] ?? null;
-            $post_date = get_the_date('', $post_id);
+            $category = get_the_category($post_id);
+            $category_name = !empty($category) ? $category[0]->name : '';
+            $category_link = !empty($category) ? get_category_link($category[0]->term_id) : '';
+            $post_date = get_the_date('M j Y', $post_id);
             $post_author_id = $post->post_author;
             $post_author_name = get_the_author_meta('display_name', $post_author_id);
 
             ?>
-             <!-- Card Item -->
-    <article class="blogkit-card">
-        <div class="blogkit-card-thumb">
-            <img src="2149328349.jpg" alt="">
-        </div>
 
-        <div class="blogkit-card-content">
-            <a class="blogkit-card-badge" href="#">lawyer</a>
+            <!-- Card Item -->
+            <article class="blogkit-card">
+                <div class="blogkit-card-thumb">
+                    <?php
+                    if ($post_thumbnail_url):
+                        echo '<img src="' . $post_thumbnail_url . '" alt="' . esc_attr($post_alt) . '">';
+
+                    else:
+
+                        echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" alt="' . esc_attr($post_alt) . '">';
+
+                    endif;
+                    ?>
+                </div>
+
+                <div class="blogkit-card-content">
+                    <?php
+                    if ($category_name):
+                        echo '<a class="blogkit-card-badge" href="' . esc_url($category_link) . '">' . esc_html($category_name) . '</a>';
+
+                    endif;
+                    ?>
 
 
-        <h3 class="blogkit-card-title"><a href="">Vic Real Estate Agents Caught Underquoting</a></h3>
+
+                    <?php
+                    echo '<h3 class="blogkit-card-title"><a href="' . $post_permalink . '">' . $post_title . '</a></h3>';
+                    ?>
 
 
-        <div class="blogkit-card-meta">
-            <span>BY Latisha Reeves</span>
-            <span>Jan 16 2025</span>
-        </div>
-        </div>
-    </article>
+                    <div class="blogkit-card-meta">
+                        <?php
+                        echo '<span><i>BY</i> ' . $post_author_name . '</span>';
+                        echo '<span>' . $post_date . '</span>';
+                        ?>
+                    </div>
+                </div>
+            </article>
+
             <?php
         endforeach;
         wp_reset_postdata();
         ?>
-        </div>
 
     </section>
 
