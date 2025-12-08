@@ -44,10 +44,16 @@ if ( $query->have_posts() ) :
 				<!-- Featured Post -->
 				<?php if ( $featured_post ) :
 					$thumb = get_the_post_thumbnail_url( $featured_post->ID, 'large' );
+    $post_alt = get_post_meta(get_post_thumbnail_id($featured_post), '_wp_attachment_image_alt', true);
 					?>
 					<div class="blogkit-featured-post">
 						<a href="<?php echo get_permalink( $featured_post->ID ); ?>">
-							<img class="blogkit-featured-thumbnail" src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title( $featured_post->ID ) ); ?>">
+							<?php if($thumb):
+                                        echo '<img class="blogkit-featured-thumbnail" src="'. esc_url( $thumb ) .'" alt="'. esc_attr($post_alt) .'">';
+                            else:
+                                echo '<img class="blogkit-featured-thumbnail" src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" alt="' . esc_attr($post_alt) . '">';
+                            endif;
+    ?>
 						</a>
 						<div class="blogkit-featured-overlay">
 							<span class="tag">
@@ -79,10 +85,17 @@ if ( $query->have_posts() ) :
 					foreach ( $posts as $index => $post ) :
 						setup_postdata( $post );
 						$thumb = get_the_post_thumbnail_url( $post->ID, 'medium_large' );
+                    $post_alt = get_post_meta(get_post_thumbnail_id($post->ID), '_wp_attachment_image_alt', true);
 						?>
 						<div class="blogkit-card-grid-item">
 							<a href="<?php echo get_permalink( $post->ID ); ?>">
-								<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title( $post->ID ) ); ?>">
+								<?php
+                                    if($thumb):
+                                        echo '<img src="'.esc_url( $thumb ).'" alt="'.esc_attr($post_alt).'">';
+                                    else:
+                                        echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" alt="' . esc_attr($post_alt) . '">';
+                                    endif;
+                                ?>
 								
 									<div class="blogkit-overlay-content">
 										<span class="date"><?php echo get_the_date( 'F j, Y', $post->ID ); ?></span>

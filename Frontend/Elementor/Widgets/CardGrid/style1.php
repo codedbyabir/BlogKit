@@ -40,6 +40,7 @@ if ($query->have_posts()):
 
     while ($query->have_posts()):
         $query->the_post();
+        $post_alt = get_post_meta(get_post_thumbnail_id($post_id), '_wp_attachment_image_alt', true);
         ?>
         <!-- single blog -->
         <div class="blogkit-card-grid-item">
@@ -51,7 +52,11 @@ if ($query->have_posts()):
                             <?php the_post_thumbnail('large'); ?>
                         </a>
                     </div>
-                <?php endif; ?>
+                <?php
+                    else:
+                        echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" alt="' . esc_attr($post_alt) . '">';
+
+                 endif; ?>
                 <!-- Category Button -->
                 <?php
                 if ('yes' === $settings['show_category']) {

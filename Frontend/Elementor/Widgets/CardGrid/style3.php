@@ -43,11 +43,19 @@ if ($query->have_posts()):
     <section class="blogkit-card-grid grid-style3">
         <!-- Featured Post -->
         <?php if ($featured_post):
+            $post_thumbnail = get_the_post_thumbnail($featured_post->ID, 'medium_large');
+            $post_alt = get_post_meta(get_post_thumbnail_id($featured_post->ID), '_wp_attachment_image_alt', true);
             ?>
             <div class="blogkit-featured-post">
                 <div class="blogkit-featured-thumb">
                     <a href="<?php echo get_permalink($featured_post); ?>">
-                        <?php echo get_the_post_thumbnail($featured_post, 'large'); ?>
+                        <?php
+                        if($post_thumbnail):
+                            echo $post_thumbnail;
+                        else:
+                            echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" alt="' . esc_attr($post_alt) . '">';
+                        endif;
+                        ?>
                     </a>
                 </div>
 
@@ -91,14 +99,21 @@ if ($query->have_posts()):
             <?php
             foreach ($posts as $index => $post):
                 setup_postdata($post);
-                $thumb = get_the_post_thumbnail_url($post->ID, 'medium_large');
+                $thumb = get_the_post_thumbnail($post->ID, 'medium_large');
+            $post_alt = get_post_meta(get_post_thumbnail_id($post->ID), '_wp_attachment_image_alt', true);
                 ?>
 
                 <div class="blogkit-card-grid-item">
 
                     <div class="blogkit-card-grid-thumb">
                         <a href="<?php the_permalink($post->ID); ?>">
-                            <img src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr(get_the_title($post->ID)); ?>">
+                            <?php
+                                if($thumb):
+                                    echo $thumb;
+                                else:
+                                    echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" alt="' . esc_attr($post_alt) . '">';
+                                endif;
+                            ?>
                         </a>
                     </div>
 
