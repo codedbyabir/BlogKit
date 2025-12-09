@@ -330,6 +330,13 @@
   position: relative;
 }
 
+.blogkit-card-grid-wrapper .blogkit-card-grid-header img{
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+
+}
+
+
 .blogkit-card-grid-wrapper .blogkit-card-grid-category {
   position: absolute;
   top: 16px;

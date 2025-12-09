@@ -66,9 +66,9 @@ $swiper_settings = wp_json_encode([
                         <div class="image-box">
                             <?php if ($img): ?>
                                 <img src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($term->name); ?>">
-                            <?php else: ?>
-                                <div class="no-image">No Image</div>
-                            <?php endif; ?>
+                            <?php else:
+                                echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" alt="' . esc_attr($term->name) . '">';
+                                endif; ?>
                         </div>
                     </a>
                     <div class="blogkit-taxonomy-name"><?php echo esc_html($term->name); ?></div>

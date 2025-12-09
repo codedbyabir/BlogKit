@@ -51,7 +51,7 @@ if ( $query->have_posts() ) :
 							<?php if($thumb):
                                         echo '<img class="blogkit-featured-thumbnail" src="'. esc_url( $thumb ) .'" alt="'. esc_attr($post_alt) .'">';
                             else:
-                                echo '<img class="blogkit-featured-thumbnail" src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" alt="' . esc_attr($post_alt) . '">';
+                                echo '<img class="blogkit-featured-thumbnail" src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" >';
                             endif;
     ?>
 						</a>
@@ -93,7 +93,7 @@ if ( $query->have_posts() ) :
                                     if($thumb):
                                         echo '<img src="'.esc_url( $thumb ).'" alt="'.esc_attr($post_alt).'">';
                                     else:
-                                        echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" alt="' . esc_attr($post_alt) . '">';
+                                        echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" >';
                                     endif;
                                 ?>
 								
