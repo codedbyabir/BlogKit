@@ -49,8 +49,10 @@ if ($query->have_posts()):
                     <?php the_post_thumbnail('large'); ?>
                 </a>
             <?php else: ?>
+                <a class="blogkit-post-card-thumbnail" href="<?php the_permalink(); ?>">
                 <img src="<?php echo esc_url(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png'); ?>"
                     alt="<?php the_title_attribute(); ?>">
+                    </a>
             <?php endif; ?>
 
             <!-- Content   -->
