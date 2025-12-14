@@ -10,12 +10,7 @@ $settings = $this->get_settings_for_display();
 $title_tag = $settings['title_tag'];
 
 // Pagination setup
-$paged = 1;
-if (get_query_var('paged')) {
-    $paged = get_query_var('paged');
-} elseif (get_query_var('page')) {
-    $paged = get_query_var('page');
-}
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
 // Posts Query 
 $args = [
@@ -127,8 +122,9 @@ if ($query->have_posts()):
             echo '<p>' . esc_html__('No posts found.', 'blogkit') . '</p>';
         }
 
-        wp_reset_postdata();
+
 
     }
+    wp_reset_postdata();
 endif;
 

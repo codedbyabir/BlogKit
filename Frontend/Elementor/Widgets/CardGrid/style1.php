@@ -11,12 +11,7 @@ use Elementor\Icons_Manager;
 $settings = $this->get_settings_for_display();
 
 // Pagination setup
-$paged = 1;
-if (get_query_var('paged')) {
-    $paged = get_query_var('paged');
-} elseif (get_query_var('page')) {
-    $paged = get_query_var('page');
-}
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
 // Posts Query 
 $args = [
@@ -52,11 +47,11 @@ if ($query->have_posts()):
                             <?php the_post_thumbnail('large'); ?>
                         </a>
                     </div>
-                <?php
-                    else:
-                        echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" alt="">';
+                    <?php
+                else:
+                    echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" alt="">';
 
-                 endif; ?>
+                endif; ?>
 
                 <!-- Category Button -->
                 <?php
@@ -132,8 +127,7 @@ if ($query->have_posts()):
             echo '<p>' . esc_html__('No posts found.', 'blogkit') . '</p>';
         }
 
-        wp_reset_postdata();
-
     }
+    wp_reset_postdata();
 endif;
 

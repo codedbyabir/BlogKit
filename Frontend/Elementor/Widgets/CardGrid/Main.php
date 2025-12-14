@@ -375,7 +375,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Grid Item', 'blogkit'),
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
-                    'layout_style' => ['style_1' , 'style_4'],
+                    'layout_style' => ['style_1', 'style_4'],
                 ]
             ]
         );
@@ -454,7 +454,7 @@ class Main extends Widget_Base
                 'condition' => [
                     'layout_style!' => 'style_4',
                 ]
-                ],
+            ],
         );
 
         //Border Radius
@@ -499,7 +499,7 @@ class Main extends Widget_Base
             \Elementor\Group_Control_Background::get_type(),
             [
                 'name' => 'background_overlay',
-                'types' => [ 'classic', 'gradient'],
+                'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .blogkit-card-grid.grid-style4 .blogkit-card::after',
                 'condition' => [
                     'layout_style' => 'style_4',
@@ -566,7 +566,7 @@ class Main extends Widget_Base
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_category' => 'yes',
-                    'layout_style' => ['style_1' , 'style_4'],
+                    'layout_style' => ['style_1', 'style_4'],
                 ],
             ]
         );
@@ -691,7 +691,7 @@ class Main extends Widget_Base
                 ],
             ]
         );
-        
+
         //Hover Border Color
         $this->add_control(
             'category_hover_border_color',
@@ -722,7 +722,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Meta Info', 'blogkit'),
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
-                    'layout_style' => ['style_1' , 'style_4'],
+                    'layout_style' => ['style_1', 'style_4'],
                 ],
             ]
         );
@@ -776,7 +776,7 @@ class Main extends Widget_Base
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_title' => 'yes',
-                    'layout_style' => ['style_1' , 'style_4'],
+                    'layout_style' => ['style_1', 'style_4'],
                 ],
             ]
         );
@@ -1157,7 +1157,7 @@ class Main extends Widget_Base
         );
 
         // Icon Color
-         $this->add_control(
+        $this->add_control(
             'featured_meta_icon_color',
             [
                 'label' => esc_html__('Icon Color', 'blogkit'),
@@ -1357,7 +1357,7 @@ class Main extends Widget_Base
                 ],
             ]
         );
-        
+
         // Icon Color 
         $this->add_control(
             'cards_icon_color',
@@ -1684,30 +1684,30 @@ class Main extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $layout_style = $settings['layout_style'] ?? 'style_1';
 
-        $layout_style = $settings['layout_style'] ?? 'style_1'; // fallback to style_1 if not set
+        // Start capturing the output
+        ob_start();
 
         switch ($layout_style) {
             case 'style_1':
-                include_once 'style1.php';
+                include 'style1.php'; // Changed to include
                 break;
-
             case 'style_2':
-                include_once 'style2.php';
+                include 'style2.php'; // Changed to include
                 break;
-            
             case 'style_3':
-                include_once 'style3.php';
+                include 'style3.php'; // Changed to include
                 break;
-
-                case 'style_4':
-                include_once 'style4.php';
+            case 'style_4':
+                include 'style4.php'; // Changed to include
                 break;
-
             default:
-                // Optional: fallback style
-                include_once 'style1.php';
+                include 'style1.php'; // Changed to include
                 break;
         }
+
+        // Echo the captured content and clear the buffer
+        echo ob_get_clean();
     }
 }

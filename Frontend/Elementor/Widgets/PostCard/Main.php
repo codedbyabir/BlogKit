@@ -37,6 +37,7 @@ class Main extends Widget_Base
     }
 
 
+
     /**
      * Register controls.
      */
@@ -61,6 +62,7 @@ class Main extends Widget_Base
                 'default' => 'style_1',
                 'options' => [
                     'style_1' => esc_html__('Style 1', 'blogkit'),
+                    'style_2' => esc_html__('Style 2', 'blogkit'),
                 ]
             ]
         );
@@ -70,7 +72,6 @@ class Main extends Widget_Base
             [
                 'label' => esc_html__('Posts Per Page', 'blogkit'),
                 'type' => Controls_Manager::NUMBER,
-                'default' => 6,
             ]
         );
         // Columns
@@ -79,9 +80,6 @@ class Main extends Widget_Base
             [
                 'label' => esc_html__('Columns', 'blogkit'),
                 'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => '3', // Desktop default
-                'tablet_default' => '2', // Tablet default
-                'mobile_default' => '1', // Mobile default
                 'options' => [
                     '1' => esc_html__('1 Column', 'blogkit'),
                     '2' => esc_html__('2 Columns', 'blogkit'),
@@ -90,9 +88,11 @@ class Main extends Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
                 ],
             ]
         );
+
 
         // Order By
         $this->add_control(
@@ -130,7 +130,7 @@ class Main extends Widget_Base
                 'options' => $this->get_blogkit_categories(),
                 'multiple' => true,
                 'label_block' => true,
-            ]
+            ],
         );
 
         $this->end_controls_section();
@@ -154,6 +154,9 @@ class Main extends Widget_Base
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'separator' => 'after',
+                'condition' => [
+                    'layout_style!' => 'style_2',
+                ]
             ]
         );
 
@@ -173,9 +176,14 @@ class Main extends Widget_Base
                     'div' => 'div',
                     'span' => 'span',
                     'p' => 'p',
+
                 ],
                 'default' => 'h3',
                 'separator' => 'after',
+
+                'condition' => [
+                    'layout_style!' => 'style_2',
+                ]
             ]
         );
 
@@ -189,6 +197,10 @@ class Main extends Widget_Base
                 'label_off' => esc_html__('Hide', 'blogkit'),
                 'return_value' => 'yes',
                 'default' => 'yes',
+
+                'condition' => [
+                    'layout_style!' => 'style_2',
+                ]
             ]
         );
 
@@ -937,18 +949,24 @@ class Main extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $layout_style = $settings['layout_style'] ?? 'style_1';
 
-        $layout_style = $settings['layout_style'] ?? 'style_1'; // fallback to style_1 if not set
+        // Start capturing the output
+        ob_start();
 
         switch ($layout_style) {
             case 'style_1':
-                include_once 'style1.php';
+                include 'style1.php'; // Changed to include
                 break;
-
+            case 'style_2':
+                include 'style2.php'; // Changed to include
+                break;
             default:
-                // Optional: fallback style
-                include_once 'style1.php';
+                include 'style1.php'; // Changed to include
                 break;
         }
+
+        // Echo the captured content and clear the buffer
+        echo ob_get_clean();
     }
 }

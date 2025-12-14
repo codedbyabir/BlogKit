@@ -51,8 +51,10 @@ if ($query->have_posts()):
                 </div>
 
             <?php else: ?>
-                <img src="<?php echo esc_url(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png'); ?>"
-                    alt="<?php the_title_attribute(); ?>">
+                <div class="blogkit-smart-posts-thumb">
+
+                    <img src="<?php echo esc_url(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png'); ?>">
+                </div>
             <?php endif; ?>
 
             <!-- Content   -->

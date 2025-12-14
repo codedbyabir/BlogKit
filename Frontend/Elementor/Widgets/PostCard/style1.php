@@ -11,17 +11,12 @@ use Elementor\Icons_Manager;
 $settings = $this->get_settings_for_display();
 
 // Pagination setup
-$paged = 1;
-if (get_query_var('paged')) {
-    $paged = get_query_var('paged');
-} elseif (get_query_var('page')) {
-    $paged = get_query_var('page');
-}
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
 // Posts Query 
 $args = [
     'post_type' => 'post',
-    'posts_per_page' => $settings['posts_per_page'],
+    'posts_per_page' => $settings['posts_per_page'] ? $settings['posts_per_page'] : 6,
     'orderby' => $settings['orderby'],
     'order' => $settings['order'],
     'paged' => $paged,
@@ -50,9 +45,8 @@ if ($query->have_posts()):
                 </a>
             <?php else: ?>
                 <a class="blogkit-post-card-thumbnail" href="<?php the_permalink(); ?>">
-                <img src="<?php echo esc_url(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png'); ?>"
-                    alt="<?php the_title_attribute(); ?>">
-                    </a>
+                    <img src="<?php echo esc_url(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png'); ?>">
+                </a>
             <?php endif; ?>
 
             <!-- Content   -->
@@ -122,11 +116,7 @@ if ($query->have_posts()):
         } else {
             echo '<p>' . esc_html__('No posts found.', 'blogkit') . '</p>';
         }
-
-        wp_reset_postdata();
-
     }
+    wp_reset_postdata();
 endif;
 
-
-?>
