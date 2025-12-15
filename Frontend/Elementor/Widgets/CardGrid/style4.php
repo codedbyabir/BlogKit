@@ -40,8 +40,6 @@ if ($query->have_posts()):
             $post_title = get_the_title($post_id);
             $post_permalink = get_permalink($post_id);
             $post_excerpt = get_the_excerpt($post_id);
-            $post_thumbnail_url = get_the_post_thumbnail_url($post_id, 'medium_large');
-            $post_alt = get_post_meta(get_post_thumbnail_id($post_id), '_wp_attachment_image_alt', true);
             $category = get_the_category($post_id);
             $category_name = !empty($category) ? $category[0]->name : '';
             $category_link = !empty($category) ? get_category_link($category[0]->term_id) : '';
@@ -55,12 +53,13 @@ if ($query->have_posts()):
             <article class="blogkit-card">
                 <div class="blogkit-card-thumb">
                     <?php
-                    if ($post_thumbnail_url):
-                        echo '<img src="' . $post_thumbnail_url . '" alt="' . esc_attr($post_alt) . '">';
+                    if (has_post_thumbnail($post_id)):
+                        echo get_the_post_thumbnail($post_id, 'full');
+
 
                     else:
 
-                        echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" alt="' . esc_attr($post_alt) . '">';
+                        echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" >';
 
                     endif;
                     ?>

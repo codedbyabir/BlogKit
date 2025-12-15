@@ -44,7 +44,7 @@ if ($query->have_posts()):
                 <?php if (has_post_thumbnail()): ?>
                     <div class="blogkit-card-grid-sbthumb">
                         <a href="<?php the_permalink(); ?>">
-                            <?php the_post_thumbnail('large'); ?>
+                            <?php the_post_thumbnail('full'); ?>
                         </a>
                     </div>
                     <?php

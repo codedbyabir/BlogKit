@@ -87,7 +87,7 @@ if ($query->have_posts()):
 					<a href="<?php echo get_permalink($post->ID); ?>">
 						<?php
 						if (has_post_thumbnail($post->ID)):
-							echo get_the_post_thumbnail($post->ID, 'large');
+							echo get_the_post_thumbnail($post->ID, 'full');
 						else:
 							echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" >';
 						endif;

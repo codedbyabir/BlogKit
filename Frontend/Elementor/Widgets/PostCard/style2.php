@@ -48,7 +48,7 @@ if ($query->have_posts()):
                     <div class="blogkit-featured-thumb">
                         <?php
                         if (has_post_thumbnail($post->ID)) {
-                            echo get_the_post_thumbnail($post->ID, 'large');
+                            echo get_the_post_thumbnail($post->ID, 'full');
                         } else {
                             echo '<img src="' . esc_url(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" />';
                         }

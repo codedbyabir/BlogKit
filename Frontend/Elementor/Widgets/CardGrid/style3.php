@@ -38,17 +38,15 @@ if ($query->have_posts()):
     <section class="blogkit-card-grid grid-style3">
         <!-- Featured Post -->
         <?php if ($featured_post):
-            $post_thumbnail = get_the_post_thumbnail($featured_post->ID, 'medium_large');
-            $post_alt = get_post_meta(get_post_thumbnail_id($featured_post->ID), '_wp_attachment_image_alt', true);
             ?>
             <div class="blogkit-featured-post">
                 <div class="blogkit-featured-thumb">
                     <a href="<?php echo get_permalink($featured_post); ?>">
                         <?php
-                        if($post_thumbnail):
-                            echo $post_thumbnail;
+                        if (get_the_post_thumbnail($featured_post->ID, 'full')):
+                            echo get_the_post_thumbnail($featured_post->ID, 'full');
                         else:
-                            echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" alt="' . esc_attr($post_alt) . '">';
+                            echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" >';
                         endif;
                         ?>
                     </a>
@@ -94,8 +92,6 @@ if ($query->have_posts()):
             <?php
             foreach ($posts as $index => $post):
                 setup_postdata($post);
-                $thumb = get_the_post_thumbnail($post->ID, 'medium_large');
-            $post_alt = get_post_meta(get_post_thumbnail_id($post->ID), '_wp_attachment_image_alt', true);
                 ?>
 
                 <div class="blogkit-card-grid-item">
@@ -103,11 +99,11 @@ if ($query->have_posts()):
                     <div class="blogkit-card-grid-thumb">
                         <a href="<?php the_permalink($post->ID); ?>">
                             <?php
-                                if($thumb):
-                                    echo $thumb;
-                                else:
-                                    echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" alt="' . esc_attr($post_alt) . '">';
-                                endif;
+                            if (get_the_post_thumbnail($post->ID, 'full')):
+                                echo get_the_post_thumbnail($post->ID, 'full');
+                            else:
+                                echo '<img src="' . esc_attr(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" >';
+                            endif;
                             ?>
                         </a>
                     </div>
@@ -118,8 +114,6 @@ if ($query->have_posts()):
                             <?php echo human_time_diff(get_the_time('U'), current_time('timestamp')); ?> Ago
                         </span>
 
-
-
                         <<?php echo $title_tag; ?>
                             class="blogkit-card-grid-title"><a
                                 href="<?php echo get_permalink($post->ID); ?>"><?php echo esc_html(get_the_title($post->ID)); ?></a></<?php echo $title_tag; ?>>
@@ -127,16 +121,6 @@ if ($query->have_posts()):
                     </div>
 
                 </div>
-
-
-
-
-
-
-
-
-
-
 
                 <?php
             endforeach;
@@ -149,30 +133,30 @@ if ($query->have_posts()):
 
 
 
-	// Pagination
+    // Pagination
 
-	if ('yes' === $settings['show_pagination']) {
+    if ('yes' === $settings['show_pagination']) {
 
-		$big = 999999999; // need an unlikely integer for base replacement
-		$pagination_links = paginate_links([
-			'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-			'format' => '?paged=%#%',
-			'current' => max(1, $paged),
-			'total' => $query->max_num_pages,
-			'prev_text' => __('« Previous', 'blogkit'),
-			'next_text' => __('Next »', 'blogkit'),
-			'type' => 'list',
-		]);
+        $big = 999999999; // need an unlikely integer for base replacement
+        $pagination_links = paginate_links([
+            'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+            'format' => '?paged=%#%',
+            'current' => max(1, $paged),
+            'total' => $query->max_num_pages,
+            'prev_text' => __('« Previous', 'blogkit'),
+            'next_text' => __('Next »', 'blogkit'),
+            'type' => 'list',
+        ]);
 
-		if ($pagination_links) {
-			echo '<div class="blogkit-pagination">' . wp_kses_post($pagination_links) . '</div>';
-		} else {
-			echo '<p>' . esc_html__('No posts found.', 'blogkit') . '</p>';
-		}
+        if ($pagination_links) {
+            echo '<div class="blogkit-pagination">' . wp_kses_post($pagination_links) . '</div>';
+        } else {
+            echo '<p>' . esc_html__('No posts found.', 'blogkit') . '</p>';
+        }
 
-		
 
-	}
-	wp_reset_postdata();
+
+    }
+    wp_reset_postdata();
 endif;
 

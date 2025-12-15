@@ -13,7 +13,7 @@ class Main extends Widget_Base
 {
     public function get_name()
     {
-        return 'smart-posts-list';
+        return 'blogkit-smart-posts-list';
     }
 
     public function get_title()
