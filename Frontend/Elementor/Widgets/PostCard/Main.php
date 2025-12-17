@@ -204,6 +204,19 @@ class Main extends Widget_Base
             ]
         );
 
+        // Excerpt Lenght 
+        $this->add_control(
+            'excerpt_length',
+            [
+                'label' => esc_html__('Excerpt Length', 'blogkit'),
+                'type' => Controls_Manager::NUMBER,
+                // 'default' => 20,
+                'condition' => [
+                    'layout_style' => 'style_2',
+                ]
+            ]
+        );
+
         // Pagination
         $this->add_control(
             'show_pagination',

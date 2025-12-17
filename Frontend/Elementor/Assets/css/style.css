@@ -964,7 +964,7 @@
   border-radius: 100px;
 }
 
-.blogkit-post-card.card-style-2 .blogkit-featured-post .blogkit-featured-title {
+.blogkit-post-card.card-style-2 .blogkit-featured-post .blogkit-featured-title a {
   font-size: 24px;
   font-weight: 600;
   line-height: 1.35;
@@ -989,7 +989,7 @@
 
 }
 
-.blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card-title {
+.blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card-title a {
   font-size: 16px;
   margin-bottom: 6px;
   line-height: 1.4;

@@ -16,7 +16,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 // Posts Query 
 $args = [
     'post_type' => 'post',
-    'posts_per_page' => $settings['posts_per_page']?$settings['posts_per_page']:6,
+    'posts_per_page' => $settings['posts_per_page'] ? $settings['posts_per_page'] : 6,
     'orderby' => $settings['orderby'],
     'order' => $settings['order'],
     'paged' => $paged,
@@ -70,20 +70,22 @@ if ($query->have_posts()):
                                 echo esc_html(get_the_author_meta('display_name', $post->post_author)); ?></span>
                             </a>
                             <!-- Date Archive -->
-                            <a href="<?php echo esc_url(get_day_link(get_the_time('Y', $post), get_the_time('m', $post), get_the_time('d', $post))); ?>">
+                            <a
+                                href="<?php echo esc_url(get_day_link(get_the_time('Y', $post), get_the_time('m', $post), get_the_time('d', $post))); ?>">
                                 <span><?php echo SVG::Calender();
-                            echo esc_html(get_the_date('M d, Y', $post)); ?></span>
+                                echo esc_html(get_the_date('M d, Y', $post)); ?></span>
                             </a>
                             <!-- Comments -->
-                            <span><?php echo SVG::Comments();
-                            echo (int) get_comments_number($post); ?></span>
+                            <span><?php echo SVG::Comments(); echo '(' . (int) get_comments_number($post) . ')'; ?></span>
                         </div>
 
-                        <a href="<?php echo esc_url(get_permalink($post)); ?>">
+                        
                             <h3 class="blogkit-featured-title">
-                                <?php echo esc_html(get_the_title($post)); ?>
+                                
+                                <a href="<?php echo esc_url(get_permalink($post)); ?>">
+                                    <?php echo esc_html(get_the_title($post)); ?>
+                                    </a>
                             </h3>
-                        </a>
 
 
                     </div>
@@ -103,17 +105,20 @@ if ($query->have_posts()):
                     <a href="<?php echo esc_url(get_permalink($post)); ?>">
                         <?php
                         if (has_post_thumbnail($post->ID)):
-                            echo get_the_post_thumbnail($post->ID, 'large');
+                            echo get_the_post_thumbnail($post->ID, 'full');
                         else:
                             echo '<img src="' . esc_url(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" />';
 
                         endif;
                         ?>
                     </a>
-                    <a href="<?php echo esc_url(get_permalink($post)); ?>">
-                        <h3 class="blogkit-post-card-title"><?php echo esc_html(get_the_title($post)); ?></h3>
-                    </a>
-                    <p><?php echo esc_html(wp_trim_words(get_the_excerpt($post), 15)); ?></p>
+                    
+                        <h4 class="blogkit-post-card-title">
+                            <a href="<?php echo esc_url(get_permalink($post)); ?>"><?php echo esc_html(get_the_title($post)); ?></a>
+                        </h4>
+                    
+                    <p><?php echo esc_html(wp_trim_words(get_the_excerpt($post), $settings['excerpt_length'] ? $settings['excerpt_length'] : 15)); ?>
+                    </p>
                 </article>
                 <?php
             }
@@ -125,27 +130,27 @@ if ($query->have_posts()):
     <?php
 
 
-	// Pagination
+    // Pagination
 
-	if ('yes' === $settings['show_pagination']) {
+    if ('yes' === $settings['show_pagination']) {
 
-		$big = 999999999; // need an unlikely integer for base replacement
-		$pagination_links = paginate_links([
-			'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-			'format' => '?paged=%#%',
-			'current' => max(1, $paged),
-			'total' => $query->max_num_pages,
-			'prev_text' => __('« Previous', 'blogkit'),
-			'next_text' => __('Next »', 'blogkit'),
-			'type' => 'list',
-		]);
+        $big = 999999999; // need an unlikely integer for base replacement
+        $pagination_links = paginate_links([
+            'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+            'format' => '?paged=%#%',
+            'current' => max(1, $paged),
+            'total' => $query->max_num_pages,
+            'prev_text' => __('« Previous', 'blogkit'),
+            'next_text' => __('Next »', 'blogkit'),
+            'type' => 'list',
+        ]);
 
-		if ($pagination_links) {
-			echo '<div class="blogkit-pagination">' . wp_kses_post($pagination_links) . '</div>';
-		} else {
-			echo '<p>' . esc_html__('No posts found.', 'blogkit') . '</p>';
-		}
-	}
-	wp_reset_postdata();
+        if ($pagination_links) {
+            echo '<div class="blogkit-pagination">' . wp_kses_post($pagination_links) . '</div>';
+        } else {
+            echo '<p>' . esc_html__('No posts found.', 'blogkit') . '</p>';
+        }
+    }
+    wp_reset_postdata();
 endif;
 
