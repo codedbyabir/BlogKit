@@ -11,7 +11,12 @@ use Elementor\Icons_Manager;
 $settings = $this->get_settings_for_display();
 
 // Pagination setup
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+$paged = 1;
+if (get_query_var('paged')) {
+    $paged = get_query_var('paged');
+} elseif (get_query_var('page')) {
+    $paged = get_query_var('page');
+}
 
 // Posts Query 
 $args = [
