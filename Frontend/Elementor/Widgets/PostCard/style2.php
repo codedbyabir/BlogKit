@@ -46,19 +46,22 @@ if ($query->have_posts()):
                 ?>
                 <article class="blogkit-featured-post">
                     <div class="blogkit-featured-thumb">
-                        <?php
-                        if (has_post_thumbnail($post->ID)) {
-                            echo get_the_post_thumbnail($post->ID, 'full');
-                        } else {
-                            echo '<img src="' . esc_url(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" />';
-                        }
-                        ?>
-                        <?php
-                        $categories = get_the_category($post->ID);
-                        if (!empty($categories)) {
-                            echo '<span class="blogkit-featured-badge">' . esc_html($categories[0]->name) . '</span>';
-                        }
-                        ?>
+                        <a href="<?php echo esc_url(get_permalink($post)); ?>">
+                            <?php
+                            if (has_post_thumbnail($post->ID)) {
+                                echo get_the_post_thumbnail($post->ID, 'full');
+                            } else {
+                                echo '<img src="' . esc_url(BLOGKIT_ELEMENTOR_ASSETS . '/img/placeholder.png') . '" />';
+                            }
+                            ?>
+                            <?php
+                            $categories = get_the_category($post->ID);
+                            if (!empty($categories)) {
+                                // echo '<span class="blogkit-featured-badge">' . esc_html($categories[0]->name) . '</span>';
+                                echo '<a href="' . esc_url(get_category_link($categories[0]->term_id)) . '" class="blogkit-featured-badge">' . esc_html($categories[0]->name) . '</a>';
+                            }
+                            ?>
+                        </a>
                     </div>
 
                     <div class="blogkit-featured-content">
@@ -76,16 +79,17 @@ if ($query->have_posts()):
                                 echo esc_html(get_the_date('M d, Y', $post)); ?></span>
                             </a>
                             <!-- Comments -->
-                            <span><?php echo SVG::Comments(); echo '(' . (int) get_comments_number($post) . ')'; ?></span>
+                            <span><?php echo SVG::Comments();
+                            echo '(' . (int) get_comments_number($post) . ')'; ?></span>
                         </div>
 
-                        
-                            <h3 class="blogkit-featured-title">
-                                
-                                <a href="<?php echo esc_url(get_permalink($post)); ?>">
-                                    <?php echo esc_html(get_the_title($post)); ?>
-                                    </a>
-                            </h3>
+
+                        <h3 class="blogkit-featured-title">
+
+                            <a href="<?php echo esc_url(get_permalink($post)); ?>">
+                                <?php echo esc_html(get_the_title($post)); ?>
+                            </a>
+                        </h3>
 
 
                     </div>
@@ -112,13 +116,16 @@ if ($query->have_posts()):
                         endif;
                         ?>
                     </a>
-                    
+
+                    <div class="blogkit-post-card-content">
                         <h4 class="blogkit-post-card-title">
-                            <a href="<?php echo esc_url(get_permalink($post)); ?>"><?php echo esc_html(get_the_title($post)); ?></a>
+                            <a
+                                href="<?php echo esc_url(get_permalink($post)); ?>"><?php echo esc_html(get_the_title($post)); ?></a>
                         </h4>
-                    
-                    <p><?php echo esc_html(wp_trim_words(get_the_excerpt($post), $settings['excerpt_length'] ? $settings['excerpt_length'] : 15)); ?>
-                    </p>
+
+                        <p class="blogkit-post-card-excerpt"><?php echo esc_html(wp_trim_words(get_the_excerpt($post), $settings['excerpt_length'] ? $settings['excerpt_length'] : 15)); ?>
+                        </p>
+                    </div>
                 </article>
                 <?php
             }

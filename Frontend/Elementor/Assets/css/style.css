@@ -826,7 +826,7 @@
 .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-thumbnail img {
   width: 100%;
   border-radius: 10px;
-  aspect-ratio: 16 / 9 !important;
+  aspect-ratio: 16 / 8 ;
   object-fit: cover;
 }
 
@@ -867,7 +867,7 @@
 
 .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-content .blogkit-post-card-comments {
   margin-top: 0.5rem;
-  display: flex;
+  display: flex; 
   align-items: center;
   gap: 6px;
   font-size: 14px;
@@ -899,12 +899,13 @@
 
 .blogkit-post-card.card-style-2 .blogkit-featured-post {
   background: #fff;
+  overflow: hidden;
 }
 
 .blogkit-post-card.card-style-2 .blogkit-featured-post .blogkit-featured-thumb {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
+  
 }
 
 .blogkit-post-card.card-style-2 .blogkit-featured-post .blogkit-featured-thumb img {
@@ -913,6 +914,7 @@
   object-fit: cover;
   object-position: center;
   display: block;
+  border-radius: 12px;
 }
 
 .blogkit-post-card.card-style-2 .blogkit-featured-posts .blogkit-featured-badge {
@@ -967,6 +969,7 @@
 .blogkit-post-card.card-style-2 .blogkit-featured-post .blogkit-featured-title a {
   font-size: 24px;
   font-weight: 600;
+  text-decoration: underline;
   line-height: 1.35;
   color: #020E0A;
 }
@@ -980,20 +983,21 @@
 
 .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card img {
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16/8;
   object-fit: cover;
   object-position: center;
   display: block;
   border-radius: 10px;
   margin-bottom: 10px;
-
 }
 
 .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card-title a {
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 600;
   margin-bottom: 6px;
   line-height: 1.4;
   color: #020E0A;
+  text-decoration: underline;
 }
 
 .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card p {
