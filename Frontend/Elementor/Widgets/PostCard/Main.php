@@ -961,7 +961,7 @@ class Main extends Widget_Base
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card img ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card-item img ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -974,7 +974,7 @@ class Main extends Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -987,7 +987,7 @@ class Main extends Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card .blogkit-post-card-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card-item .blogkit-post-card-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1000,7 +1000,7 @@ class Main extends Widget_Base
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1012,7 +1012,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Background Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card-item' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -1022,7 +1022,7 @@ class Main extends Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'style2_bottom_grid_box_shadow',
-                'selector' => '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card',
+                'selector' => '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card-item',
                 'fields_options' => [
                     'box_shadow_type' => [
                     ],
@@ -1046,7 +1046,7 @@ class Main extends Widget_Base
             [
                 'name' => 'style2_bottom_grid_heading_typography',
                 'label' => esc_html__('Heading Typography', 'blogkit'),
-                'selector' => '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card .blogkit-post-card-title a',
+                'selector' => '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card-item .blogkit-post-card-title a',
                 
             ],
         );
@@ -1058,7 +1058,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Heading Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card .blogkit-post-card-title a' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card-item .blogkit-post-card-title a' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -1070,7 +1070,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Hover Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card .blogkit-post-card-title a:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card-item .blogkit-post-card-title a:hover' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -1089,7 +1089,7 @@ class Main extends Widget_Base
             [
                 'name' => 'style2_bottom_grid_excerpt_typography',
                 'label' => esc_html__('Excerpt Typography', 'blogkit'),
-                'selector' => '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card .blogkit-post-card-excerpt',
+                'selector' => '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card-item .blogkit-post-card-excerpt',
                 
             ],
         );
@@ -1101,7 +1101,7 @@ class Main extends Widget_Base
                 'label' => esc_html__('Excerpt Color', 'blogkit'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card .blogkit-post-card-excerpt' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-post-card-bottom-grid .blogkit-post-card-item .blogkit-post-card-excerpt' => 'color: {{VALUE}};',
                 ],
             ]
         );

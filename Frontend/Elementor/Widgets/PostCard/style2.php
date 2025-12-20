@@ -110,7 +110,7 @@ if ($query->have_posts()):
             foreach ($other_posts as $post) {
                 setup_postdata($post);
                 ?>
-                <article class="blogkit-post-card">
+                <article class="blogkit-post-card-item">
                     <a href="<?php echo esc_url(get_permalink($post)); ?>">
                         <?php
                         if (has_post_thumbnail($post->ID)):
