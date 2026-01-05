@@ -66,6 +66,7 @@ class Main extends Widget_Base
                 'options' => [
                     'style_1' => esc_html__('Style 1', 'blogkit'),
                     'style_2' => esc_html__('Style 2', 'blogkit'),
+                    'style_3' => esc_html__('Style 3', 'blogkit'),
                 ]
             ]
         );
@@ -92,6 +93,7 @@ class Main extends Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
                     '{{WRAPPER}} .blogkit-post-card.card-style-2 .blogkit-featured-posts' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
                 ],
             ]
         );
@@ -138,7 +140,7 @@ class Main extends Widget_Base
 
         $this->end_controls_section();
 
-        // Layout Tab 
+        // Layout Tab
         $this->start_controls_section(
             'blogkit_card_grid_layout',
             [
@@ -213,7 +215,6 @@ class Main extends Widget_Base
             [
                 'label' => esc_html__('Excerpt Length', 'blogkit'),
                 'type' => Controls_Manager::NUMBER,
-                // 'default' => 20,
                 'condition' => [
                     'layout_style' => 'style_2',
                 ]
@@ -262,6 +263,7 @@ class Main extends Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1' => 'column-gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3' => 'column-gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -279,6 +281,7 @@ class Main extends Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1' => 'row-gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3' => 'row-gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -288,7 +291,7 @@ class Main extends Widget_Base
             Group_Control_Border::get_type(),
             [
                 'name' => 'item_border',
-                'selector' => '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item',
+                'selector' => '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item , {{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item',
             ]
         );
 
@@ -301,9 +304,11 @@ class Main extends Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
+
         //Padding 
         $this->add_responsive_control(
             'grid_item_padding',
@@ -313,6 +318,7 @@ class Main extends Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -326,6 +332,7 @@ class Main extends Widget_Base
                 'size_units' => ['px', 'em', 'rem', 'custom'],
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -338,6 +345,7 @@ class Main extends Widget_Base
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -347,7 +355,7 @@ class Main extends Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'item_box_shadow',
-                'selector' => '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item',
+                'selector' => '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item , {{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item',
                 'fields_options' => [
                     'box_shadow_type' => [
                     ],
@@ -382,6 +390,7 @@ class Main extends Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-thumbnail img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-thumb img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -415,6 +424,7 @@ class Main extends Widget_Base
                 'toggle' => true,
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item' => 'flex-direction: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item' => 'flex-direction: {{VALUE}};',
                 ],
             ]
         );
@@ -442,7 +452,7 @@ class Main extends Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'category_typography',
-                'selector' => '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-category',
+                'selector' => '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-category , {{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-category',
             ]
         );
 
@@ -451,7 +461,7 @@ class Main extends Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'category_border',
-                'selector' => '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-category',
+                'selector' => '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-category , {{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-category',
             ]
         );
 
@@ -465,6 +475,7 @@ class Main extends Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-category' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-category' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -478,6 +489,7 @@ class Main extends Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-category' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-category' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -503,6 +515,7 @@ class Main extends Widget_Base
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-category' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-category' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -515,6 +528,7 @@ class Main extends Widget_Base
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-category' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-category' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -536,6 +550,7 @@ class Main extends Widget_Base
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-category:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-category:hover' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -548,6 +563,7 @@ class Main extends Widget_Base
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-category:hover' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-category:hover' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -560,6 +576,7 @@ class Main extends Widget_Base
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-category:hover' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-category:hover' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
@@ -582,6 +599,7 @@ class Main extends Widget_Base
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'layout_style!' => 'style_2',
+                    'layout_style!' => 'style_3',
                 ],
             ]
         );
@@ -640,7 +658,7 @@ class Main extends Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'heading_typography',
-                'selector' => '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-content .blogkit-post-card-title',
+                'selector' => '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-content .blogkit-post-card-title , {{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-title',
             ]
         );
 
@@ -664,6 +682,7 @@ class Main extends Widget_Base
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-content .blogkit-post-card-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-title a' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -684,6 +703,7 @@ class Main extends Widget_Base
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .blogkit-post-card-wrapper.grid-style1 .blogkit-post-card-item .blogkit-post-card-content .blogkit-post-card-title:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-title a:hover' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -1405,6 +1425,9 @@ class Main extends Widget_Base
                 break;
             case 'style_2':
                 include 'style2.php'; // Changed to include
+                break;
+                case 'style_3':
+                include 'style3.php'; // Changed to include
                 break;
             default:
                 include 'style1.php'; // Changed to include

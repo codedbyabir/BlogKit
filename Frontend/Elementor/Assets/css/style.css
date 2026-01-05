@@ -1092,6 +1092,96 @@
   }
 }
 
+/* Blogkit Post Card - Style 3 */
+.blogkit-post-card-wrapper.card-style-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* Card */
+.blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* Thumbnail */
+.blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-thumb {
+  flex: 1;
+}
+
+.blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-thumb img {
+  width: 100%;
+  height: auto;     
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  object-position: left center;
+  border-radius: 10px;
+  display: block;    /* Prevents tiny bottom gaps under images */
+}
+
+/* Content */
+.blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-content {
+  flex: 1;
+}
+
+/* Category pill */
+.blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-category {
+  display: inline-block;
+  padding: 4px 13px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 999px;
+  background: #6b6b6b;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+/* Title */
+.blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-title {
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 600;
+  margin: 0;
+}
+
+.blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-title a{
+  color: #111;
+}
+
+/* Hover effect */
+.blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-category:hover {
+  background-color: #35B322;
+  color: #fff;
+
+}
+.blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item .blogkit-post-title a:hover{
+  color: #35B322;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .blogkit-post-card-wrapper.card-style-3 {
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .blogkit-post-card-wrapper.card-style-3 {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .blogkit-post-card-wrapper.card-style-3 .blogkit-post-card-item {
+    gap: 14px;
+  }
+}
+
 
 /* Blogkit Featured Grid  */
 .blogkit-featured-grid.grid-style1 {
