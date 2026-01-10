@@ -43,9 +43,7 @@ class Main extends Widget_Base
     protected function register_controls()
     {
 
-
-
-        // Query Tab 
+        // Query Tab
         $this->start_controls_section(
             'blogkit_card_grid_settings',
             [
@@ -76,7 +74,6 @@ class Main extends Widget_Base
                 'max' => 4,
             ]
         );
-
 
 
         $this->add_control(
